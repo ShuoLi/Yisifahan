@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BlanketV</title>
-  <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
 
 	<!-- load jquery-UI from google -->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js">
@@ -12,9 +8,15 @@
 		<!-- css for date-picker in new contest page -->
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/dark-hive/jquery-ui.css" type="text/css" media="all">
 
+  <title>BlanketV</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+
 </head>
-<body>
 <%= render "layouts/header" %>
+<body>
 <%= yield %>
 
 </body>

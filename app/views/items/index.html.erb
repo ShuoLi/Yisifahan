@@ -1,36 +1,30 @@
-<h1>Listing items</h1>
 
-<%= form_tag items_path, :method => 'get' do %>
-  <p>
-   <%= text_field_tag :search_text, params[:search_text] %>
-   <%= submit_tag 'Search', :name=>nil %>
-  </p>
-<% end %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Pic</th>
-    <th>Price</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div id='listleft'></div>
+<div id='listright'>
+	<div id='searchDiv'>
+	<%= form_tag items_path, :method => 'get' do %>
+	  <p>
+	   <%= text_field_tag :search_text, params[:search_text] %>
+	   <%= submit_tag 'Search', :name=>nil %>
+	  </p>
+	<% end %>
+	</div>
+	<div id="itemlist">
+	<% @items.each do |item| %>
+	    <td><%= item.name %></td>
+	    <td><%= item.description %></td>
+	    <td><%= item.pic %></td>
+	    <td><%= item.price %></td>
+	    <td><%= link_to 'Show', item %></td>
+		</br>
+	<%end%>
+		</div>
+</div>
 
-<% @items.each do |item| %>
-  <tr>
-    <td><%= item.name %></td>
-    <td><%= item.description %></td>
-    <td><%= item.pic %></td>
-    <td><%= item.price %></td>
-    <td><%= link_to 'Show', item %></td>
-    <td><%= link_to 'Edit', edit_item_path(item) %></td>
-    <td><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Item', new_item_path %>
+<script>
+	$(function() {
+		$( "input:submit, a, button" ).button();
+	});
+</script>
