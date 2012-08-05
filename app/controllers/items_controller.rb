@@ -3,7 +3,8 @@
   # GET /items.json
   def index
     @items = Item.search(params[:search_text])
-
+	@items = Item.filter(params[:low], params[:high])
+	
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @items }

@@ -1,6 +1,7 @@
 <div>
-	<%= image_tag @images.first.image_url, :size => "200x200" %>
-	
+	<% if @item.images.first%>
+	<%= image_tag @item.images.first.image_url, :size => "200x200" %>
+	<% end%>
 </div>
 
 <div>

@@ -1,29 +1,60 @@
 
 
-<div id='listleft'></div>
-<div id='listright'>
+<div id='listleft'>
 	<div id='searchDiv'>
-	<%= form_tag items_path, :method => 'get' do %>
-	  <p>
-	   <%= text_field_tag :search_text, params[:search_text] %>
-	   <%= submit_tag 'Search', :name=>nil %>
-	  </p>
-	<% end %>
+		<%= form_tag items_path, :method => 'get' do %>
+	  	<p>
+	   	<%= text_field_tag :search_text, params[:search_text] %>
+	   	<%= submit_tag 'Search', :name=>nil %>
+	  	</p>
+		<% end %>
 	</div>
-	<div id="itemlist">
-	<% @items.each do |item| %>
-	    <td><%= item.name %></td>
-	    <td><%= item.description %></td>
-	    <td><%= item.price %></td>
-	    <td><%= link_to 'Show', item %></td>
-		</br>
-	<%end%>
-		</div>
+	<div class="category-box">
+		<p>Price Range</p>
+		<%= form_tag items_path, :method => 'get' do %>
+	  	<p>
+	  	Low: $
+	   	<%= number_field_tag :low, params[:low] %>
+	  	</p>
+	  	<p>
+	  	High: $
+	   	<%= number_field_tag :high, params[:high] %>
+	  	</p>
+	  	<p>	<%= submit_tag 'Filter', :name=>nil %> </p>
+		<% end %>
+	</div>
+</div>
+
+<div id='listright'>
+		<div id="itemlist">
+		<% @items.each do |item| %>
+		    <div class='item-box'>
+		    <p>	<% if item.images == []%>
+				<%= "No Image Found"%>
+				<%else%>
+				<%= image_tag item.images.first.image_url, :size => "200x200" %>				
+				<% end%>
+			</p>
+			<p><%= link_to item.name, item%></p>
+		    <p><%if item.description == nil%>
+		    	<%= "No Description Available" %>
+		    	<%else%>
+		    	<%= item.description %>
+		    	<%end%>
+	    	</p>
+		    <p><%if item.price == nil%>
+		    	<%= "No Price Available" %>
+		    	<%else%>
+		    	<%= number_to_currency item.price %>
+		    	<%end%></p>
+			</div>
+		<%end%>
+	</div>
 </div>
 
 
 <script>
 	$(function() {
-		$( "input:submit, a, button" ).button();
+		$( "input:submit, button" ).button();
 	});
 </script>
