@@ -1,3 +1,4 @@
+<div id='listright'>
 <div>
 	<% if @item.images.first%>
 	<%= image_tag @item.images.first.image_url, :size => "200x200" %>
@@ -22,3 +23,4 @@
 </div>
 
 <%= link_to 'Back', items_path %>
+</div>

@@ -1,29 +1,6 @@
 
 
-<div id='listleft'>
-	<div id='searchDiv'>
-		<%= form_tag items_path, :method => 'get' do %>
-	  	<p>
-	   	<%= text_field_tag :search_text, params[:search_text] %>
-	   	<%= submit_tag 'Search', :name=>nil %>
-	  	</p>
-		<% end %>
-	</div>
-	<div class="category-box">
-		<p>Price Range</p>
-		<%= form_tag items_path, :method => 'get' do %>
-	  	<p>
-	  	Low: $
-	   	<%= number_field_tag :low, params[:low] %>
-	  	</p>
-	  	<p>
-	  	High: $
-	   	<%= number_field_tag :high, params[:high] %>
-	  	</p>
-	  	<p>	<%= submit_tag 'Filter', :name=>nil %> </p>
-		<% end %>
-	</div>
-</div>
+
 
 <div id='listright'>
 		<div id="itemlist">
