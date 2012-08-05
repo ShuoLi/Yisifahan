@@ -1,4 +1,22 @@
 
+@import "bootstrap_and_overwrite";
+@import "items";
+
+body{
+	padding-top: 60px;
+}
+
+
+.sidebar_text_field{
+	width: 125px;
+}
+
+.sidebar_number_field{
+	width: 80px;
+}
+
+
+/*
 
 body { 
 	position:fixed;
@@ -28,5 +46,4 @@ header{
 	background-image:url("header.jpg");
 }
 
-
-@import "items";
+*/

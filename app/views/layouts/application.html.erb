@@ -1,49 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<title>BlanketV</title>
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+	<![endif]-->
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- load jquery-UI from google -->
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js">
-		</script> 
-		<!-- css for date-picker in new contest page -->
-		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/dark-hive/jquery-ui.css" type="text/css" media="all">
-
-  <title>BlanketV</title>
-  <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-
-
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js">
+	</script>
+	<!-- css for date-picker in new contest page -->
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/dark-hive/jquery-ui.css" type="text/css" media="all">
 </head>
-<%= render "layouts/header" %>
-<body>
 
-<div id='listleft'>
-	<div id='searchDiv'>
-		<%= form_tag items_path, :method => 'get' do %>
-	  	<p>
-	   	<%= text_field_tag :search_text, params[:search_text] %>
-	   	<%= submit_tag 'Search', :name=>nil %>
-	  	</p>
-		<% end %>
+<body>
+	<%= render 'layouts/header' %>
+	<div class="container">
+		<div class="row">
+			<div class="span2">
+				<%= render "layouts/left_side_bar" %>
+			</div>
+			<div class="span10">
+				<%= yield %>
+			</div>
+		</div>
 	</div>
-	<div class="category-box">
-		<p>Price Range</p>
-		<%= form_tag items_path, :method => 'get' do %>
-	  	<p>
-	  	Low: $
-	   	<%= number_field_tag :low, params[:low] %>
-	  	</p>
-	  	<p>
-	  	High: $
-	   	<%= number_field_tag :high, params[:high] %>
-	  	</p>
-	  	<p>	<%= submit_tag 'Filter', :name=>nil %> </p>
-		<% end %>
-	</div>
-</div>	
-	
-<%= yield %>
 
 </body>
 </html>

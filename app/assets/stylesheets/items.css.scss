@@ -1,14 +1,14 @@
 // Place all the styles related to the Items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#listleft{
+/*#listleft{
 	width:20%;
 	height:100%;
 	position:fixed;
 	left:2%;	
-}
+}*/
 
-#listright{
+/*#listright{
 	width:80%;
 	height:100%;
 	position:fixed;
@@ -26,13 +26,18 @@
 	border-radius:25px;
 	margin: 5px 5px 5px 5px;
 	}
-}
+}*/
 
+
+/*
+
+.ui-widget {
+font-family: Verdana, Arial, sans-serif;
+font-size: 0.7em;
+}*/
 
 .item-box{
-	float: left;
-	width: 20%;
-	height: 20%;
+
 	border:2px solid #a1a1a1;
 	padding:10px; 
 	background:#ffffff;
@@ -40,8 +45,6 @@
 	margin: 5px 5px 5px 5px;
 }
 
-.ui-widget {
-font-family: Verdana, Arial, sans-serif;
-font-size: 0.7em;
+.item_image{
+	width: 150px;
 }
-

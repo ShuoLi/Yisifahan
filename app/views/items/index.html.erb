@@ -3,35 +3,36 @@
 
 
 <div id='listright'>
-		<div id="itemlist">
+	<div id="itemlist">
 		<% @items.each do |item| %>
-		    <div class='item-box'>
-		    <p>	<% if item.images == []%>
+		<div class='item-box span3'>
+			<p>	<% if item.images == []%>
 				<%= "No Image Found"%>
 				<%else%>
 				<%= image_tag item.images.first.image_url, :size => "200x200" %>				
 				<% end%>
 			</p>
 			<p><%= link_to item.name, item%></p>
-		    <p><%if item.description == nil%>
-		    	<%= "No Description Available" %>
-		    	<%else%>
-		    	<%= item.description %>
-		    	<%end%>
-	    	</p>
-		    <p><%if item.price == nil%>
-		    	<%= "No Price Available" %>
-		    	<%else%>
-		    	<%= number_to_currency item.price %>
-		    	<%end%></p>
-			</div>
+			<p><%if item.description == nil%>
+				<%= "No Description Available" %>
+				<%else%>
+				<%= item.description %>
+				<%end%>
+			</p>
+			<p><%if item.price == nil%>
+				<%= "No Price Available" %>
+				<%else%>
+				<%= number_to_currency item.price %>
+				<%end%>
+			</p>
+		</div>
 		<%end%>
 	</div>
 </div>
 
 
 <script>
-	$(function() {
-		$( "input:submit, button" ).button();
-	});
+$(function() {
+	$( "input:submit, button" ).button();
+});
 </script>
