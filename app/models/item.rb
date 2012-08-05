@@ -1,5 +1,7 @@
 class Item < ActiveRecord::Base
   has_many :images
+  belongs_to :category
+  attr_accessible :category_id, :name 
   
   #the self search code is for building the search list
   def self.search(query)
