@@ -1,5 +1,8 @@
-<p id="notice"><%= notice %></p>
+<div>
+	<%= @images.to_s%>
+</div>
 
+<div>
 <p>
   <b>Name:</b>
   <%= @item.name %>
@@ -11,15 +14,9 @@
 </p>
 
 <p>
-  <b>Pic:</b>
-  <%= @item.pic %>
-</p>
-
-<p>
   <b>Price:</b>
   <%= @item.price %>
 </p>
+</div>
 
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>

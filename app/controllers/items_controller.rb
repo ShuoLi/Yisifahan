@@ -14,6 +14,7 @@
   # GET /items/1.json
   def show
     @item = Item.find(params[:id])
+    @images = @item.images.find(:all)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @item }

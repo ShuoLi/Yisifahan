@@ -9,5 +9,5 @@ class Item < ActiveRecord::Base
       find(:all)
     end
   end
-  
+
 end
