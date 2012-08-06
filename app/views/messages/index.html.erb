@@ -15,13 +15,13 @@
     <td><%= message.name %></td>
     <td><%= message.email %></td>
     <td><%= message.content %></td>
-    <td><%= link_to 'Show', message %></td>
-    <td><%= link_to 'Edit', edit_message_path(message) %></td>
-    <td><%= link_to 'Destroy', message, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', message, :class=>"btn" %></td>
+    <td><%= link_to 'Edit', edit_message_path(message), :class=>"btn" %></td>
+    <td><%= link_to 'Destroy', message, confirm: 'Are you sure?', method: :delete, :class=>"btn" %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Message', new_message_path %>
+<%= link_to 'New Message', new_message_path, :class=>"btn" %>
