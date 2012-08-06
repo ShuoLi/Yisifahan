@@ -1,5 +1,5 @@
-<div id='listleft'>
-	<div id='searchDiv span2' >
+
+	<div>
 		<%= form_tag items_path, :method => 'get' do %>
 		<p>
 			<%= text_field_tag :search_text, params[:search_text], :class=>"sidebar_text_field"%>
@@ -8,7 +8,7 @@
 		<% end %>
 	</div>
 	<hr />
-	<div class='span2'>
+	<div>
 		<p>Categories</p>
 		<% Category.all.each do |category| %>
 			<div>
@@ -23,9 +23,8 @@
 		<%end%>
 		<p><%= link_to 'Uncategorized', items_path(:uncategorized=>true)%></p>
 	</div>
-		
 	<hr />
-	<div class='span2'>
+	<div>
 		<p>Price Range</p>
 		<%= form_tag items_path, :method => 'get' do %>
 		<p>
@@ -39,4 +38,3 @@
 		<p>	<%= submit_tag 'Filter', :name=>nil %> </p>
 		<% end %>
 	</div>
-</div>
