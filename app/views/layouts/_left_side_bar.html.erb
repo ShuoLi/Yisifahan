@@ -7,6 +7,25 @@
 		</p>
 		<% end %>
 	</div>
+	<hr />
+	<div class="category-box">
+		<p>Categories</p>
+		<% Category.all.each do |category| %>
+			<div>
+				<p>
+					<% if category.category_image%>
+					<%= link_to image_tag(category.category_image.image_url, :size => "200x100"), items_path(:cpath=>category) %>	
+					<% else%>
+					<%= link_to category.name, items_path(:cpath=>category)%>
+					<% end%>
+				</p>
+			</div>
+		<%end%>
+		<p><%= link_to 'Uncategorized', items_path(:uncategorized=>true)%></p>
+	</div>
+		
+	</div>
+	<hr />
 	<div class="category-box">
 		<p>Price Range</p>
 		<%= form_tag items_path, :method => 'get' do %>

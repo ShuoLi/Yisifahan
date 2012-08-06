@@ -24,8 +24,16 @@ class Item < ActiveRecord::Base
   		end
   		condition += ' price <= ' + high
   	end
-  	
   	find(:all, :conditions=>[condition])
-
+  end
+  
+  def self.categoryfilter(category)
+  	find(:all, :conditions=>['category_id IS ?', category])
+  	
+  end
+  
+  def self.uncategorized()
+  	find(:all, :conditions=>['category_id IS null'])
+  	
   end
 end

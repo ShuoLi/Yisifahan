@@ -2,8 +2,17 @@
   # GET /items
   # GET /items.json
   def index
-    @items = Item.search(params[:search_text])
-	@items = Item.filter(params[:low], params[:high])
+  	if (params.has_key?(:search_text))
+    	@items = Item.search(params[:search_text])
+    elsif (params.has_key?(:low) or params.has_key?(:high))
+		@items = Item.filter(params[:low], params[:high])
+	elsif (params.has_key?(:cpath))
+		@items = Item.categoryfilter(params[:cpath])
+	elsif (params.has_key?(:uncategorized))
+		@items = Item.uncategorized()
+	else
+		@items = Item.find(:all)
+	end
 	
     respond_to do |format|
       format.html # index.html.erb

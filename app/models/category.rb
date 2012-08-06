@@ -1,4 +1,4 @@
 class Category < ActiveRecord::Base
   has_many :items
-  has_many :category_images
+  has_one :category_image
 end
