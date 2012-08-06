@@ -7,4 +7,8 @@ class HomeController < ApplicationController
       format.json { render json: @items }
     end
   end
+  
+  def contact
+
+  end
 end
