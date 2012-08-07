@@ -2,7 +2,9 @@ class Item < ActiveRecord::Base
   has_many :images
   belongs_to :category
   attr_accessible :category_id, :name, :popular, :price, :description
-  
+  validates :price, :presence => true
+  validates :name, :presence => true
+
   #the self search code is for building the search list
   def self.search(query)
     if query
