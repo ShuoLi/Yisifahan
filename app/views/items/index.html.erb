@@ -3,9 +3,15 @@
 	<div id="catalog">	
 		<div>
 			<p>Sort by Price:
-			<%if @category%>
-				<%= link_to 'Ascending', items_path(:ascend=>true, :cat=>@category) %>,
-				<%= link_to 'Descending', items_path(:ascend=>false, :cat=>@category) %>
+			<%if params.has_key?(:cpath)%>
+				<%= link_to 'Ascending', items_path(:ascend=>true, :cpath=>params[:cpath]) %>,
+				<%= link_to 'Descending', items_path(:ascend=>false, :cpath=>params[:cpath]) %>
+			<%elsif params.has_key?(:search_text)%>
+				<%= link_to 'Ascending', items_path(:ascend=>true, :search_text=>params[:search_text]) %>,
+				<%= link_to 'Descending', items_path(:ascend=>false, :search_text=>params[:search_text]) %>
+			<%elsif params.has_key?(:low) or params.has_key?(:high)%>
+				<%= link_to 'Ascending', items_path(:ascend=>true, :low=>params[:low], :high=>params[:high]) %>,
+				<%= link_to 'Descending', items_path(:ascend=>false, :low=>params[:low], :high=>params[:high]) %>			
 			<%else%>
 				<%= link_to 'Ascending', items_path(:ascend=>true) %>,
 				<%= link_to 'Descending', items_path(:ascend=>false) %>	

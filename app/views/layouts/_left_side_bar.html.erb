@@ -11,17 +11,9 @@
 				</p>
 			</div>
 		<%end%>
-		<p><%= link_to 'Uncategorized', items_path(:uncategorized=>true)%></p>
+		<p><%= link_to 'Uncategorized', items_path(:cpath=>-1)%></p>
 	</div>
 	<hr />
-	
-	<!--	<div>
-		<%= form_tag items_path, :method => 'get' do %>
-			Price:<%= number_field_tag :low, params[:low], :class=>"sidebar_number_field" %>-<%= number_field_tag :high, params[:high], :class=>"sidebar_number_field" %></p>
-			<%= submit_tag 'Filter', :name=>nil, :class=>"btn"%>
-		<% end %>
-		</p>
-	</div> -->
 
 	<div class="btn-group">
 	  <a class="btn dropdown-toggle" data-toggle="dropdown">
@@ -36,24 +28,3 @@
 	    <li><%= link_to "$1000.00+", items_path(:low=>1000)%></li>
 	  </ul>
 	</div>
-
-	
-	<!-- <ul class="nav nav-pills">
-	  <li class="dropdown" id="menu1">
-	    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
-	      Price Range
-	      <b class="caret"></b>
-	    </a>
-			<% @lowest = Item.minimum('price') %>
-			<% @highest = Item.maximum('price') %>
-			<% @increse = (@highest-@lowest)/4%>
-	    <ul class="dropdown-menu">
-				<% @current = @lowest %>
-				<% 4.times do |i| %>
-						<% @lowbound = @lowest+i*@increse%>
-				    <% @upbound = @lowest+(i+1)*@increse%>
-						<li><a href="#">$<%= @lowbound.to_s %>----$<%= @upbound.to_s %></a></li>
-				<% end %>
-	    </ul>
-	  </li>
-	</ul> -->

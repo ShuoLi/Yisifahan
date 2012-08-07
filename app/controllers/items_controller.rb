@@ -3,22 +3,23 @@
   # GET /items
   # GET /items.json
   def index
-  	if (params.has_key?(:search_text))
+	if (params.has_key?(:ascend))
+		parameters = {"ascend"=>params[:ascend]}
+		if (params.has_key?(:cpath))
+			parameters["cpath"] = params[:cpath]
+		elsif (params.has_key?(:search_text))
+			parameters["search_text"] = params[:search_text]			
+		elsif (params.has_key?(:low) or params.has_key?(:high))
+			parameters["low"] = params[:low]
+			parameters["high"] = params[:high]
+		end
+		@items = Item.sortbyprice(parameters)
+  	elsif (params.has_key?(:search_text))
     	@items = Item.search(params[:search_text])
-    elsif (params.has_key?(:low) or params.has_key?(:high))
+   	elsif (params.has_key?(:low) or params.has_key?(:high))
 		@items = Item.filter(params[:low], params[:high])
 	elsif (params.has_key?(:cpath))
 		@items = Item.categoryfilter(params[:cpath])
-		@category = params[:cpath]
-	elsif (params.has_key?(:uncategorized))
-		@items = Item.uncategorized()
-	elsif (params.has_key?(:ascend))
-		if (params.has_key?(:cat))
-			@items = Item.sortbyprice(params[:ascend], params[:cat])
-			@category = params[:cat]
-		else
-			@items = Item.sortbyprice(params[:ascend], nil)
-		end
 	else
 		@items = Item.find(:all)
 	end

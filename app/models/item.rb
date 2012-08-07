@@ -26,29 +26,51 @@ class Item < ActiveRecord::Base
   		end
   		condition += ' price <= ' + high
   	end
-  	find(:all, :conditions=>[condition])
+  	find(:all, :conditions=>[condition], :order=>'price ASC')
   end
   
   def self.categoryfilter(category)
-  	find(:all, :conditions=>['category_id IS ?', category])
-  	
+   	if category == "-1"
+  		find(:all, :conditions=>['category_id IS null'])
+	else
+ 		find(:all, :conditions=>['category_id IS ?', category])
+  	end
   end
   
-  def self.uncategorized()
-  	find(:all, :conditions=>['category_id IS null'])
-  	
-  end
-  
-  def self.sortbyprice(ascend, category)
+  def self.sortbyprice(parameters)
   	condition = ""
-  	if category
-  		condition += "category_id IS " + category
+  	if parameters["cpath"]
+  		if condition != ""
+  			condtion += ' AND '
+  		end
+  		condition += "category_id IS " + parameters["cpath"]
   	end
   	
-  	if ascend == "true"
-  		find(:all, :conditions=>condition, :order=>'price ASC')
+  	if parameters["low"] != "" and parameters["low"]
+  		if condition != ""
+  			condition += ' AND '
+  		end
+   		condition += ' price >= ' + parameters["low"]
+  	end
+  		
+  	if parameters["high"] != "" and parameters["high"]
+  		if condition != ""
+  			condition += ' AND '
+  		end
+  		condition += ' price <= ' + parameters["high"]
+  	end
+  	
+  	order = ""
+  	if parameters["ascend"] == "true"
+  		order +='price ASC'
   	else
-  		find(:all, :conditions=>condition, :order=>'price DESC')
+  		order +='price DESC'
+  	end
+  	
+  	if parameters["search_text"]
+  		where('name LIKE ?', "%#{parameters["search_text"]}%").find(:all, :conditions=>condition, :order=>order)
+  	else
+  		find(:all, :conditions=>condition, :order=>order)
   	end
   end
 end
