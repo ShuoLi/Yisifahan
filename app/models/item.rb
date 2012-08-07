@@ -36,4 +36,12 @@ class Item < ActiveRecord::Base
   	find(:all, :conditions=>['category_id IS null'])
   	
   end
+  
+  def self.sortbyprice(ascend)
+  	if ascend == "true"
+  		find(:all, :order=>'price ASC')
+  	else
+  		find(:all, :order=>'price DESC')
+  	end
+  end
 end

@@ -1,10 +1,18 @@
-	<div id="catalog">
+
+	
+	<div id="catalog">	
+		<div>
+			<p>Sort by Price:
+			<%= link_to 'Ascending', items_path(:ascend=>true) %>,
+			<%= link_to 'Descending', items_path(:ascend=>false) %></p>		
+		</div>
+		
 		<% @items.each do |item| %>
 		<div class='thumbnail span3 item-box'>
 				<% if item.images == []%>
 				<%= "No Image Found"%>
 				<%else%>
-				<%= image_tag item.images.first.image_url, :size => "220x165" %>				
+				<%= link_to image_tag(item.images.first.image_url, :size => "220x165"), item %>				
 				<% end%>
 			<br>
 			<h4 class='itemName'><%= link_to item.name, item%></h4>
@@ -15,7 +23,7 @@
 				<%= number_to_currency item.price %>
 				<%end%>
 			</p>
-			<h3>Descriptsion:</h3>
+			<h3>Descriptions:</h3>
 			<p>
 				<%if item.description == nil%>
 				<%= "No Description Available" %>
