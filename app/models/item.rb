@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-  has_many :images
+  has_many :images, :dependent => :destroy
   belongs_to :category
   attr_accessible :category_id, :name, :popular, :price, :description
   
