@@ -39,3 +39,5 @@ end
 group :development do 
   gem 'wirb'
 end
+
+gem 'madmimi'
