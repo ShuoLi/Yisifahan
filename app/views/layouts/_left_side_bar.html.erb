@@ -1,13 +1,3 @@
-
-	<div>
-		<%= form_tag items_path, :method => 'get' do %>
-		<p>
-			<%= text_field_tag :search_text, params[:search_text], :class=>"sidebar_text_field"%>
-			<%= submit_tag 'Search', :name=>nil, :class=>"btn" %>
-		</p>
-		<% end %>
-	</div>
-	<hr />
 	<div>
 		<p>Categories</p>
 		<% Category.all.each do |category| %>
@@ -25,16 +15,29 @@
 	</div>
 	<hr />
 	<div>
-		<p>Price Range</p>
 		<%= form_tag items_path, :method => 'get' do %>
-		<p>
-			Low: $
-			<%= number_field_tag :low, params[:low], :class=>"sidebar_number_field" %>
-		</p>
-		<p>
-			High: $
-			<%= number_field_tag :high, params[:high], :class=>"sidebar_number_field" %>
-		</p>
-		<p>	<%= submit_tag 'Filter', :name=>nil, :class=>"btn"%> </p>
+			Price:<%= number_field_tag :low, params[:low], :class=>"sidebar_number_field" %>-<%= number_field_tag :high, params[:high], :class=>"sidebar_number_field" %></p>
+			<%= submit_tag 'Filter', :name=>nil, :class=>"btn"%>
 		<% end %>
+		</p>
 	</div>
+	
+	<!-- <ul class="nav nav-pills">
+	  <li class="dropdown" id="menu1">
+	    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+	      Price Range
+	      <b class="caret"></b>
+	    </a>
+			<% @lowest = Item.minimum('price') %>
+			<% @highest = Item.maximum('price') %>
+			<% @increse = (@highest-@lowest)/4%>
+	    <ul class="dropdown-menu">
+				<% @current = @lowest %>
+				<% 4.times do |i| %>
+						<% @lowbound = @lowest+i*@increse%>
+				    <% @upbound = @lowest+(i+1)*@increse%>
+						<li><a href="#">$<%= @lowbound.to_s %>----$<%= @upbound.to_s %></a></li>
+				<% end %>
+	    </ul>
+	  </li>
+	</ul> -->

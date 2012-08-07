@@ -1,5 +1,5 @@
 
-		<div id="myCarousel" class="carousel slide">
+		<div id="myCarousel" class="carousel slide span10">
 		  <!-- Carousel items -->
 		  <div class="carousel-inner">
 				<% @slides.each do |slide| %>
@@ -30,32 +30,34 @@
 		  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 			</div>
 
-				<div id="itemlist">
-					<% @items.each do |item| %>
-					<div class='item-box span3'>
-						<p>	<% if item.images == []%>
-							<%= "No Image Found"%>
-							<%else%>
-							<%= image_tag item.images.first.image_url, :size => "200x200" %>				
-							<% end%>
-						</p>
-						<p><%= link_to item.name, item%></p>
-						<p><%if item.description == nil%>
-							<%= "No Description Available" %>
-							<%else%>
-							<%= item.description %>
-							<%end%>
-						</p>
-						<p><%if item.price == nil%>
-							<%= "No Price Available" %>
-							<%else%>
-							<%= number_to_currency item.price %>
-							<%end%>
-						</p>
-					</div>
-					<%end%>
+			<div id="catalog">
+				<% @items.each do |item| %>
+				<div class='thumbnail span3 item-box'>
+						<% if item.images == []%>
+						<%= "No Image Found"%>
+						<%else%>
+						<%= image_tag item.images.first.image_url, :size => "220x165" %>				
+						<% end%>
+					<br>
+					<h4 class='itemName'><%= link_to item.name, item%></h4>
+					<p class="btn btn-warning">
+						<%if item.price == nil%>
+						<%= "No Price Available" %>
+						<%else%>
+						<%= number_to_currency item.price %>
+						<%end%>
+					</p>
+					<h3>Descriptsion:</h3>
+					<p>
+						<%if item.description == nil%>
+						<%= "No Description Available" %>
+						<%else%>
+						<%= truncate(item.description, :length=>100)%>
+						<%end%>
+					</p>
 				</div>
-				
+				<%end%>
+			</div>
 
 <script>
 $(function() {

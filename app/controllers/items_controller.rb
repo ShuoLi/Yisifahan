@@ -1,4 +1,5 @@
  class ItemsController < ApplicationController
+
   # GET /items
   # GET /items.json
   def index
@@ -30,4 +31,5 @@
       format.json { render json: @item }
     end
   end
+  
 end
