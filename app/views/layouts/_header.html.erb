@@ -11,8 +11,8 @@
 				
 					<div class="navbar-form pull-left">
 						<ul class="nav">
-								<li><%= link_to "Browse Products",'items#list' %></li>
-								<li><%= link_to "Price List",'items#list'%></li>
+								<li><%= link_to "Browse Products",items_path %></li>
+								<li><%= link_to "Price List",items_path%></li>
 								<li><%= link_to "Blog"%></li>
 						</ul>
 					</div>
@@ -36,5 +36,5 @@
 
 	
 	<script type="text/javascript">
-	$('#myModal').load('messages/new')
+	$('#myModal').load('../message/new')
 	</script>
