@@ -3,8 +3,14 @@
 	<div id="catalog">	
 		<div>
 			<p>Sort by Price:
-			<%= link_to 'Ascending', items_path(:ascend=>true) %>,
-			<%= link_to 'Descending', items_path(:ascend=>false) %></p>		
+			<%if @category%>
+				<%= link_to 'Ascending', items_path(:ascend=>true, :cat=>@category) %>,
+				<%= link_to 'Descending', items_path(:ascend=>false, :cat=>@category) %>
+			<%else%>
+				<%= link_to 'Ascending', items_path(:ascend=>true) %>,
+				<%= link_to 'Descending', items_path(:ascend=>false) %>	
+			<%end%>		
+			</p>		
 		</div>
 		
 		<% @items.each do |item| %>
@@ -32,7 +38,7 @@
 				<%end%>
 			</p>
 		</div>
-		<%end%>
+	<%end%>
 	</div>
 
 <script>

@@ -1,6 +1,6 @@
 <div id='listright'>
 	
-	<div id="myCarousel" class="carousel slide span4">
+	<div id="myCarousel" class="carousel slide span5">
 		  <!-- Carousel items -->
 		  <div class="carousel-inner">
 				<% @item.images.each do |pic| %>
@@ -9,7 +9,7 @@
 					<p>	<% if pic.image == []%>
 						<%= "No Image Found"%>
 						<%else%>
-						<%= image_tag pic.image, :size => "300x300" %>				
+						<%= image_tag pic.image, :size => "400x300" %>				
 						<% end%>
 					</p>
 				</div>
@@ -18,7 +18,7 @@
 						<p>	<% if pic.image == []%>
 							<%= "No Image Found"%>
 							<%else%>
-							<%= image_tag pic.image, :size => "300x300" %>				
+							<%= image_tag pic.image, :size => "400x300" %>				
 							<% end%>
 						</p>
 					</div>
@@ -34,24 +34,44 @@
 	</div>
 
 
-	<div class="span 4">
+	<div class="span 7">
 	<p>
-	  <b>Name:</b>
-	  <%= @item.name %>
+	  <h1><%= @item.name %></h1>
 	</p>
 	
 	<p>
 	  <b>Price:</b>
-	  <%= @item.price %>
+	  <%= number_to_currency @item.price %>
 	</p>
 	
-	<p>
+	<p class="description-box span4">
 	  <b>Description:</b>
-	  <%= @item.description %>
+	  <%= @item.description%>
 	</p>
+
+	<%= link_to 'Back', items_path, :class=>"btn" %>
+
 	</div>
 
 	<div class="span12">
-	<%= link_to 'Back', items_path, :class=>"btn" %>
+		<h3>Similar Items:</h3>
+		<% @similar[0,4].each do |item| %>
+			<div class='thumbnail span3 item-box'>
+					<% if item.images == []%>
+					<%= "No Image Found"%>
+					<%else%>
+					<%= link_to image_tag(item.images.first.image_url, :size => "220x165"), item %>				
+					<% end%>
+				<br>
+				<h4 class='itemName'><%= link_to item.name, item%></h4>
+				<p class="btn btn-warning">
+					<%if item.price == nil%>
+					<%= "No Price Available" %>
+					<%else%>
+					<%= number_to_currency item.price %>
+					<%end%>
+				</p>
+			</div>
+		<%end%>
 	</div>
 </div>

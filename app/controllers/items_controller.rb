@@ -9,10 +9,16 @@
 		@items = Item.filter(params[:low], params[:high])
 	elsif (params.has_key?(:cpath))
 		@items = Item.categoryfilter(params[:cpath])
+		@category = params[:cpath]
 	elsif (params.has_key?(:uncategorized))
 		@items = Item.uncategorized()
 	elsif (params.has_key?(:ascend))
-		@items = Item.sortbyprice(params[:ascend])
+		if (params.has_key?(:cat))
+			@items = Item.sortbyprice(params[:ascend], params[:cat])
+			@category = params[:cat]
+		else
+			@items = Item.sortbyprice(params[:ascend], nil)
+		end
 	else
 		@items = Item.find(:all)
 	end
@@ -28,6 +34,7 @@
   def show
     @item = Item.find(params[:id])
     @images = @item.images.find(:all)
+    @similar = Item.find(:all, :conditions=>["category_id IS ? AND id IS NOT ?", @item.category_id, @item.id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @item }
