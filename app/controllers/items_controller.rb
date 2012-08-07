@@ -1,4 +1,5 @@
  class ItemsController < ApplicationController
+
   # GET /items
   # GET /items.json
   def index
@@ -10,6 +11,8 @@
 		@items = Item.categoryfilter(params[:cpath])
 	elsif (params.has_key?(:uncategorized))
 		@items = Item.uncategorized()
+	elsif (params.has_key?(:ascend))
+		@items = Item.sortbyprice(params[:ascend])
 	else
 		@items = Item.find(:all)
 	end

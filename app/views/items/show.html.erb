@@ -1,26 +1,57 @@
 <div id='listright'>
-<div>
-	<% if @item.images.first%>
-	<%= image_tag @item.images.first.image_url, :size => "200x200" %>
-	<% end%>
-</div>
+	
+	<div id="myCarousel" class="carousel slide span4">
+		  <!-- Carousel items -->
+		  <div class="carousel-inner">
+				<% @item.images.each do |pic| %>
+				<%if pic==@item.images.first%>
+				<div class="active item">
+					<p>	<% if pic.image == []%>
+						<%= "No Image Found"%>
+						<%else%>
+						<%= image_tag pic.image, :size => "300x300" %>				
+						<% end%>
+					</p>
+				</div>
+					<%else%>
+					<div class="item">
+						<p>	<% if pic.image == []%>
+							<%= "No Image Found"%>
+							<%else%>
+							<%= image_tag pic.image, :size => "300x300" %>				
+							<% end%>
+						</p>
+					</div>
+				<%end%>
 
-<div>
-<p>
-  <b>Name:</b>
-  <%= @item.name %>
-</p>
+				<%end%>
+		  </div>
+		  		  <!-- Carousel nav -->
+		  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+		  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		</div>
 
-<p>
-  <b>Description:</b>
-  <%= @item.description %>
-</p>
+	</div>
 
-<p>
-  <b>Price:</b>
-  <%= @item.price %>
-</p>
-</div>
 
-<%= link_to 'Back', items_path %>
+	<div class="span 4">
+	<p>
+	  <b>Name:</b>
+	  <%= @item.name %>
+	</p>
+	
+	<p>
+	  <b>Price:</b>
+	  <%= @item.price %>
+	</p>
+	
+	<p>
+	  <b>Description:</b>
+	  <%= @item.description %>
+	</p>
+	</div>
+
+	<div class="span12">
+	<%= link_to 'Back', items_path, :class=>"btn" %>
+	</div>
 </div>

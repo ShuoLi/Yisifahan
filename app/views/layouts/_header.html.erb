@@ -6,15 +6,35 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="#"></a>
+			<a class="brand" href="homepage"></a>
 			<div class="nav-collapse">
-				<ul class="nav">
-					<li><%= link_to "Browse Products" %></li>
-					<li><%= link_to "Price List" %></li>
-					<li><%= link_to "Contact Us" %></li>
-					<li><%= link_to "Admin",'admin'%></li>
-				</ul>
+				
+					<div class="navbar-form pull-left">
+						<ul class="nav">
+								<li><%= link_to "Browse Products",'items#list' %></li>
+								<li><%= link_to "Price List",'items#list'%></li>
+								<li><%= link_to "Blog"%></li>
+						</ul>
+					</div>
+					<%= form_tag items_path, :method => 'get',:class=>"navbar-search pull-left" do %>
+						<%= text_field_tag :search_text, params[:search_text], :class=>"search-query",:placeholder=>"Search"%>
+					<% end %>
+					<div class="navbar-form pull-right">
+						<ul class="nav">
+								<li><a data-toggle="modal" href="#myModal">Contact Us</a></li>
+								<li><%= link_to "Admin",'admin'%></li>
+						</ul>
+					</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<div class="modal hide fade" id="myModal">
+	 
+</div>
+
+	
+	<script type="text/javascript">
+	$('#myModal').load('messages/new')
+	</script>
