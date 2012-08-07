@@ -1,8 +1,25 @@
 
 	
 	<div id="catalog">	
-		<div>
-			<p>Sort by Price:
+
+		<div class='span8 pull-left'>	
+			<p>
+			<div class='pull-left'><i class="icon-home"></i>
+													<%if params.has_key?(:cpath)%>
+														<i class="icon-chevron-right"></i>
+														<%if params[:cpath]=='-1'%>
+															<span class='label'>Uncategorized</span>
+														<%else%>
+														<%@category=Category.find(params[:cpath])%>
+														<span class='label'><%=@category.name%></span>
+														<%end%>
+														<%elsif params.has_key?(:search_text)%>
+														<i class="icon-search"></i>
+														<span class='label'><%=params[:search_text]%></span>
+													<%end%>
+			</div>	
+			<div class='pull-right'>
+			Sort by Price:
 			<%if params.has_key?(:cpath)%>
 				<%= link_to 'Ascending', items_path(:ascend=>true, :cpath=>params[:cpath]) %>,
 				<%= link_to 'Descending', items_path(:ascend=>false, :cpath=>params[:cpath]) %>
@@ -15,10 +32,11 @@
 			<%else%>
 				<%= link_to 'Ascending', items_path(:ascend=>true) %>,
 				<%= link_to 'Descending', items_path(:ascend=>false) %>	
-			<%end%>		
+			<%end%>
+			</div>		
 			</p>		
 		</div>
-		
+
 		<% @items.each do |item| %>
 		<div class='thumbnail span3 item-box'>
 				<% if item.images == []%>
