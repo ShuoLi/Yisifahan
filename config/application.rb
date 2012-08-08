@@ -11,6 +11,9 @@ end
 
 module BlanketV
   class Application < Rails::Application
+    
+    @mimi = MadMimi.new('yisifahan@gmail.com','fa4a98ed7af0adfe49e64ccdec8fca92')
+    @mimi.new_list('newsletter')
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

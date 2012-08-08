@@ -28,3 +28,29 @@
 	    <li><%= link_to "$1000.00+", items_path(:low=>1000)%></li>
 	  </ul>
 	</div>
+	<br>
+	<div>
+		<a data-toggle="modal" href="#subscribe" class="btn btn-success">Subscribe</a>
+	</div>
+	
+	<div  class="modal hide fade" id='subscribe'>
+		<div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">×</button>
+	    <h3>Enter Your email</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p><%= text_field_tag :email, (params[:email])  %></p>
+	  </div>
+	  <div class="modal-footer">
+	    <a href="#" class="btn" data-dismiss="modal">Close</a>
+			<%= button_to_function "confirm", "confirm()", :id => "follow_button", :class=>"btn btn-primary" %>
+	  </div>
+	</div>
+	
+	<script>
+	funtion confirm(){
+		<% @mimi = MadMimi.new('yisifahan@gmail.com','fa4a98ed7af0adfe49e64ccdec8fca92')%>
+		<% @mimi.add_to_list('dante@gmail.com','newsletter') %>
+		$("#subscribe").hide()
+	})
+	</script>
