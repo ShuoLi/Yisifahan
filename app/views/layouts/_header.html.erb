@@ -6,14 +6,15 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="homepage"></a>
+			<a class="brand" href="<%=root_path%>"></a>
 			<div class="nav-collapse">
 				
 					<div class="navbar-form pull-left">
 						<ul class="nav">
 								<li><%= link_to "Browse Products",items_path %></li>
 								<li><%= link_to "Price List",items_path%></li>
-								<li><%= link_to "Blog"%></li>
+								<li><%= link_to "Blog", 'http://yisifahan.lofter.com',:target => "_blank"%></li>
+								
 						</ul>
 					</div>
 					<%= form_tag items_path, :method => 'get',:class=>"navbar-search pull-left" do %>
