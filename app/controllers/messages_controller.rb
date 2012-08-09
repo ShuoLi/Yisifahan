@@ -8,7 +8,7 @@ class MessagesController < InheritedResources::Base
   
   def create
      @message = Message.create(params[:message])
-     redirect_to ''
      flash[:notice] = "message sent"
+     redirect_to ''
    end
 end
