@@ -4,6 +4,7 @@ class Item < ActiveRecord::Base
   attr_accessible :category_id, :name, :popular, :price, :description, :item_code
   validates :price, :presence => true
   validates :name, :presence => true
+  validates :item_code, :presence => true, :uniqueness => true
 
   #the self search code is for building the search list
   def self.search(query)
@@ -43,7 +44,11 @@ class Item < ActiveRecord::Base
   		if condition != ""
   			condtion += ' AND '
   		end
-  		condition += "category_id IS " + parameters["cpath"]
+  		if parameters["cpath"] == "-1"
+  			condition += "category_id IS null"
+  		else
+  			condition += "category_id IS " + parameters["cpath"]
+  		end
   	end
   	
   	if parameters["low"] != "" and parameters["low"]

@@ -5,18 +5,18 @@
 		<div class='span8 pull-left'>	
 			<p>
 			<div class='pull-left'><i class="icon-home"></i>
-													<%if params.has_key?(:cpath)%>
-														<i class="icon-chevron-right"></i>
-														<%if params[:cpath]=='-1'%>
-															<span class='label'>Uncategorized</span>
-														<%else%>
-														<%@category=Category.find(params[:cpath])%>
-														<span class='label'><%=@category.name%></span>
-														<%end%>
-														<%elsif params.has_key?(:search_text)%>
-														<i class="icon-search"></i>
-														<span class='label'><%=params[:search_text]%></span>
-													<%end%>
+				<%if params.has_key?(:cpath)%>
+					<i class="icon-chevron-right"></i>
+					<%if params[:cpath]=='-1'%>
+						<span class='label'>Uncategorized</span>
+					<%else%>
+						<%@category=Category.find(params[:cpath])%>
+					<span class='label'><%=@category.name%></span>
+					<%end%>
+				<%elsif params.has_key?(:search_text)%>
+					<i class="icon-search"></i>
+					<span class='label'><%=params[:search_text]%></span>
+				<%end%>
 			</div>	
 			<div class='pull-right'>
 			Sort by Price:
@@ -38,31 +38,55 @@
 		</div>
 
 		<% @items.each do |item| %>
-		<div class='thumbnail span3 item-box'>
-				<% if item.images == []%>
-				<%= "No Image Found"%>
-				<%else%>
-				<%= link_to image_tag(item.images.first.image_url, :size => "220x165"), item %>				
-				<% end%>
-			<br>
-			<h4 class='itemName'><%= link_to item.name, item%></h4>
-			<p class="btn btn-warning">
-				<%if item.price == nil%>
-				<%= "No Price Available" %>
-				<%else%>
-				<%= number_to_currency item.price %>
-				<%end%>
-			</p>
-			<h3>Descriptions:</h3>
+			<div class='thumbnail span3 item-box'>
+					<% if item.images == []%>
+					<%= "No Image Found"%>
+					<%else%>
+					<%= link_to image_tag(item.images.first.image_url, :size => "220x165"), item %>				
+					<% end%>
+				<br>
+				<h4 class='itemName'><%= link_to item.name, item%></h4>
+				<p class="itemcode">Serial #<%= item.item_code %></p>
+				<p class="btn btn-warning">
+					<%if item.price == nil%>
+					<%= "No Price Available" %>
+					<%else%>
+					<%= number_to_currency item.price %>
+					<%end%>
+				</p>
+				<h3>Descriptions:</h3>
+				<p>
+					<%if item.description == nil%>
+					<%= "No Description Available" %>
+					<%else%>
+					<%= truncate(item.description, :length=>100)%>
+					<%end%>
+				</p>
+			</div>
+		<%end%>
+		
+		<div class="span12">
 			<p>
-				<%if item.description == nil%>
-				<%= "No Description Available" %>
-				<%else%>
-				<%= truncate(item.description, :length=>100)%>
+				<%if @numpages > 1%>
+					<%= "Go to page: "%>
+					<% (1..@numpages).each do |i|%>
+						<%if i > 1%>
+							<%= ", "%>
+						<%end%>
+						<%if params.has_key?(:cpath)%>
+							<%= link_to i.to_s, items_path(:page=>i, :cpath=>params[:cpath])%>
+						<%elsif params.has_key?(:search_text)%>
+							<%= link_to i.to_s, items_path(:page=>i, :search_text=>[:search_text])%>
+						<%elsif params.has_key?(:low) or params.has_key?(:high)%>
+							<%= link_to i.to_s, items_path(:page=>i, :low=>params[:low], :high=>params[:high])%>
+						<%else%>
+							<%= link_to i.to_s, items_path(:page=>i)%>
+						<%end%>						
+												
+					<%end%>
 				<%end%>
 			</p>
-		</div>
-	<%end%>
+		<div>
 	</div>
 
 <script>

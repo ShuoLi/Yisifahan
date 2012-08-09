@@ -40,6 +40,7 @@
 						<% end%>
 					<br>
 					<h4 class='itemName'><%= link_to item.name, item%></h4>
+					<p class="itemcode">Serial #<%= item.item_code %></p>
 					<p class="btn btn-warning">
 						<%if item.price == nil%>
 						<%= "No Price Available" %>
@@ -47,7 +48,7 @@
 						<%= number_to_currency item.price %>
 						<%end%>
 					</p>
-					<h3>Descriptsion:</h3>
+					<h3>Descriptions:</h3>
 					<p>
 						<%if item.description == nil%>
 						<%= "No Description Available" %>
