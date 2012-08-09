@@ -1,9 +1,15 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.1.rc1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
+
+group :assets do  
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
+  gem 'bootstrap-sass', '~> 2.0.4.0'
+end
 
 group :development do
   gem 'sqlite3'
@@ -15,6 +21,7 @@ group :production do
 end
 
 gem 'sass-rails', "~> 3.1.2"
+gem 'jquery-rails'
 gem 'activeadmin'
  
 gem 'heroku'
@@ -23,14 +30,7 @@ gem "carrierwave"
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do  
-  gem 'coffee-rails', "~> 3.1.0"
-  gem 'uglifier'
-  gem 'bootstrap-sass', '~> 2.0.4.0'
-end
 
-gem 'activeadmin'
-gem 'jquery-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
