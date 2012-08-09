@@ -25,13 +25,19 @@
 	end
 	
 	perpage = 6
-	@numpages = (@items.count/perpage) + 1
+	@numpages = (@items.count/perpage)
+	if (@items.count % perpage) != 0
+		@numpages += 1
+	end
+	
 	start = 0
 	if (params.has_key?(:page))
 		start += (params[:page].to_i-1) * perpage
 	end
+
 	@items = @items[start, start+perpage]
-	
+
+		
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @items }

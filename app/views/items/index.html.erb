@@ -37,7 +37,7 @@
 			</p>		
 		</div>
 
-		<% @items.each do |item| %>
+		<% @items[0,6].each do |item| %>
 			<div class='thumbnail span3 item-box'>
 					<% if item.images == []%>
 					<%= "No Image Found"%>
