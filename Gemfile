@@ -20,9 +20,9 @@ group :production do
   gem 'pg'
 end
 
-gem 'sass-rails', "~> 3.1.2"
 gem 'jquery-rails'
 gem 'activeadmin'
+gem 'sass-rails', "~> 3.1.2"
  
 gem 'heroku'
 
