@@ -14,6 +14,11 @@ group :production do
   gem 'pg'
 end
 
+<<<<<<< HEAD
+=======
+gem 'jquery-rails'
+gem 'activeadmin'
+>>>>>>> 66a3ab764da7c5f7eceeb965cd809b7df7f9a98c
 gem 'sass-rails', "~> 3.1.2"
  
 gem 'heroku'
