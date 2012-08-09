@@ -21,7 +21,7 @@
 			<div class="span2">
 				<%= render "layouts/left_side_bar" %>
 			</div>
-			<div class="span10">
+			<div id ='mainpage' class="span10">
 				<%= yield %>
 			</div>
 		</div>
@@ -29,3 +29,8 @@
 
 </body>
 </html>
+<script type="text/javascript">
+$('#blog').click(function(){
+	$("#mainpage").load('http://yisifahan.lofter.com');
+});
+</script>
