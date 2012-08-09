@@ -5,17 +5,28 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
+group :development do
+  gem 'sqlite3'
+  gem 'wirb'
+end
+
+group :production do
+  gem 'pg'
+end
+
 
 gem 'activeadmin'
 
 gem "carrierwave"
 gem 'sass-rails', "  ~> 3.1.0"
-gem 'coffee-rails', "~> 3.1.0"
-gem 'uglifier'
-gem 'bootstrap-sass', '~> 2.0.4.0'
-
 # Gems used only for assets and not required
 # in production environments by default.
+group :assets do
+
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
+  gem 'bootstrap-sass', '~> 2.0.4.0'
+end
 
 gem 'jquery-rails'
 
@@ -33,13 +44,11 @@ group :test do
   gem 'turn', :require => false
 end
 
-group :development do
-  gem 'sqlite3'
+group :development do 
   gem 'wirb'
 end
 
-group :production do
-  gem 'pg'
-end
-
 gem 'madmimi'
+
+
+
