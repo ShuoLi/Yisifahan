@@ -35,23 +35,23 @@
 
 
 	<div class="span12">
-		<div class="span5 item-image">
+		<div class="span7 remove-margin">
 			<p>	<% if @current == nil%>
 					<%= "No Image Found"%>
 				<%else%>
-					<%= image_tag @current.image, :size => "400x300" %>				
+					<%= image_tag @current.image, :size => "532x399" %>				
 				<% end%>
 			</p>
-			<ul class="thumbnails item-image">
+			<ul class="thumbnails remove-margin">
 				<% if @images != [] %>
 					<% @images.each do |img|%>
-						<%= link_to image_tag(img.image, :size=> "80x60"), item_path(:id=>params[:id], :img_id=>img.id)%>
+						<%= link_to image_tag(img.image, :size=> "120x90"), item_path(:id=>params[:id], :img_id=>img.id)%>
 					<% end %>
 				<% end%>
 			</ul>
 		</div>
 		
-		<div class="span5">
+		<div class="span4">
 			<p>
 			  <h1><%= @item.name %></h1>
 			</p>
@@ -61,7 +61,7 @@
 			  <%= number_to_currency @item.price %>
 			</p>
 			
-			<p class="description-box">
+			<p class="remove-margin">
 			  <b>Description:</b>
 			  <%= @item.description%>
 			</p>

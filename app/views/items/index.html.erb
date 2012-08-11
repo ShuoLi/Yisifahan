@@ -2,7 +2,7 @@
 	
 	<div class="catalog">	
 
-		<div class="span8">	
+		<div class="span8 remove-margin">	
 			<p>
 			<div class="pull-left"><i class="icon-home"></i>
 				<%if params.has_key?(:cpath)%>
@@ -67,7 +67,8 @@
 				</div>	
 			</p>	
 		</div>
-
+		
+		<div class="span10 remove-margin">
 		<% @items[0,8].each do |item| %>
 			<div class='thumbnail span2 item-box'>
 					<% if item.images == []%>
@@ -75,39 +76,72 @@
 					<%else%>
 					<%= link_to image_tag(item.images.first.image_url, :size => "180x135"), item %>				
 					<% end%>
-				<br>
+
 				<h4 class='itemName'><%= link_to item.name, item%></h4>
-				<p class="itemcode">Serial #<%= item.item_code %></p>
+				<p class="remove-margin">Serial #<%= item.item_code %></p>
 				<p class="btn btn-warning"><%= number_to_currency item.price %></p>
-				<p class="btn">	<%= "Buy it" %></p>
+				<a data-toggle="modal" href="#buyit" class="btn btn-success">Buy it</a>
+				
+				<div  class="modal hide fade" id='buyit'>
+					<div class="modal-header">
+				    	<button type="button" class="close" data-dismiss="modal">×</button>
+				    	<h3>Buy <%= item.name%></h3>
+				    </div>
+				    
+				    <div class="modal-body">
+				    	<p>Serial #: <%= text_field_tag :item_code, item.item_code, :readonly=>true%></p>
+				    	<p>Price: <%= text_field_tag :price, (number_to_currency item.price), :readonly=>true%></p>
+				    	<p>Phone Number: <%= text_field_tag :phone, (params[:phone])  %></p>
+				    	<p>Email Address: <%= text_field_tag :email, (params[:email])  %></p>
+				    </div>
+				    
+				    <div class="modal-footer">
+				    	<a href="#" class="btn" data-dismiss="modal">Close</a>
+						<%= button_to_function "confirm", "confirm()", :id => "follow_button", :class=>"btn btn-primary" %>
+				    </div>
+				</div>
+				
 			</div>
 		<%end%>
-		
-		<div class="span12">
-			<p>
+		</div>
+		<div class="pagination span12">
+			<ul>
 				<%if @numpages > 1%>
-					<%= "Go to page: "%>
 					<% (1..@numpages).each do |i|%>
-						<%if i > 1%>
-							<%= ", "%>
-						<%end%>
-						<%if params.has_key?(:cpath)%>
-							<%= link_to i.to_s, items_path(:page=>i, :cpath=>params[:cpath])%>
-						<%elsif params.has_key?(:search_text)%>
-							<%= link_to i.to_s, items_path(:page=>i, :search_text=>[:search_text])%>
-						<%elsif params.has_key?(:low) or params.has_key?(:high)%>
-							<%= link_to i.to_s, items_path(:page=>i, :low=>params[:low], :high=>params[:high])%>
+						<%if params.has_key?(:page) and params[:page] == i.to_s%>
+							<li class="active">
 						<%else%>
-							<%= link_to i.to_s, items_path(:page=>i)%>
-						<%end%>						
-												
+							<li>
+						<%end%>
+							<%if params.has_key?(:cpath)%>
+								<%= link_to i.to_s, items_path(:page=>i, :cpath=>params[:cpath])%>
+							<%elsif params.has_key?(:search_text)%>
+								<%= link_to i.to_s, items_path(:page=>i, :search_text=>[:search_text])%>
+							<%elsif params.has_key?(:low) or params.has_key?(:high)%>
+								<%= link_to i.to_s, items_path(:page=>i, :low=>params[:low], :high=>params[:high])%>
+							<%else%>
+								<%= link_to i.to_s, items_path(:page=>i)%>
+							<%end%>						
+						</li>			
 					<%end%>
 				<%end%>
-			</p>
+			</ul>
 		<div>
 	</div>
 
+
+	
+
+	
+
+
 <script>
+	funtion confirm(){
+		<% @mimi = MadMimi.new('yisifahan@gmail.com','fa4a98ed7af0adfe49e64ccdec8fca92')%>
+		<% @mimi.add_to_list('dante@gmail.com','newsletter') %>
+		$("#subscribe").hide()
+	})
+
 $(function() {
 	$( "input:submit, button" ).button();
 });

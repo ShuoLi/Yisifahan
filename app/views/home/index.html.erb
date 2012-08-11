@@ -1,61 +1,50 @@
 
 		<div id="myCarousel" class="carousel slide">
-		  <!-- Carousel items -->
-		  <div class="carousel-inner">
+		    <!-- Carousel items -->
+		    <div class="carousel-inner">
 				<% @slides.each do |slide| %>
-				<%if slide==@slides.first%>
-				<div class="active item">
-					<p>	<% if slide.image == []%>
-						<%= "No Image Found"%>
-						<%else%>
-						<%= image_tag slide.image, :size => "780x400" %>				
-						<% end%>
-					</p>
-				</div>
+					<%if slide==@current%>
+						<div class="active item">
+							<p>	<% if slide.image == []%>
+								<%= "No Image Found"%>
+								<%else%>
+								<%= image_tag slide.image, :size => "780x400" %>				
+								<% end%>
+							</p>
+						</div>
 					<%else%>
-					<div class="item">
-						<p>	<% if slide.image == []%>
-							<%= "No Image Found"%>
-							<%else%>
-							<%= image_tag slide.image, :size => "780x400" %>				
-							<% end%>
-						</p>
-					</div>
+						<div class="item">
+							<p>	<% if slide.image == []%>
+								<%= "No Image Found"%>
+								<%else%>
+								<%= image_tag slide.image, :size => "780x400" %>				
+								<% end%>
+							</p>
+						</div>
+					<%end%>
 				<%end%>
+		    </div>
+	  	    <!-- Carousel nav -->
+		    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+		    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		</div>
 
-				<%end%>
-		  </div>
-		  <!-- Carousel nav -->
-		  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-		  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-			</div>
-
+		<div>
+			
+		</div>
+		
 			<div id="catalog">
 				<% @items.each do |item| %>
-				<div class='thumbnail span3 item-box'>
+				<div class='thumbnail span2 popular-box'>
 						<% if item.images == []%>
 						<%= "No Image Found"%>
 						<%else%>
-						<%= image_tag item.images.first.image_url, :size => "220x165" %>				
+						<%= image_tag item.images.first.image_url, :size => "180x135" %>				
 						<% end%>
-					<br>
+
 					<h4 class='itemName'><%= link_to item.name, item%></h4>
-					<p class="itemcode">Serial #<%= item.item_code %></p>
-					<p class="btn btn-warning">
-						<%if item.price == nil%>
-						<%= "No Price Available" %>
-						<%else%>
-						<%= number_to_currency item.price %>
-						<%end%>
-					</p>
-					<h3>Descriptions:</h3>
-					<p>
-						<%if item.description == nil%>
-						<%= "No Description Available" %>
-						<%else%>
-						<%= truncate(item.description, :length=>100)%>
-						<%end%>
-					</p>
+					<p class="remove-margin">Serial #<%= item.item_code %></p>
+					<p class="btn btn-warning"><%= number_to_currency item.price %></p>
 				</div>
 				<%end%>
 		</div>
