@@ -17,6 +17,12 @@
 <body>
 	<%= render 'layouts/header' %>
 	<div class="container">
+		<% flash.each do |name, msg| %>
+		  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+		    <a class="close" data-dismiss="alert">×</a>
+		    <%= msg %>
+		  </div>
+		<% end %>
 		<div class="row">
 			<div class="span2">
 				<%= render "layouts/left_side_bar" %>

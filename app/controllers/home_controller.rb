@@ -9,7 +9,7 @@ class HomeController < ApplicationController
     end
   end
   
-  def contact
+  def service
 
   end
   

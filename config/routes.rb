@@ -58,6 +58,7 @@ BlanketV::Application.routes.draw do
   # just remember to delete public/index.html.
   match '/homepage' => 'home#index'
   match '/admin' => 'sessions#failure'
+  match '/service' => 'home#service'
   root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
