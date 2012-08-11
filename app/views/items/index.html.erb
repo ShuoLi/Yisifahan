@@ -80,9 +80,9 @@
 				<h4 class='itemName'><%= link_to item.name, item%></h4>
 				<p class="remove-margin">Serial #<%= item.item_code %></p>
 				<p class="btn btn-warning"><%= number_to_currency item.price %></p>
-				<a data-toggle="modal" href="#buyit" class="btn btn-success">Buy it</a>
+				<a data-toggle="modal" href=<%="#buyit" + item.id.to_s%> class="btn btn-success">Buy it</a>
 				
-				<div  class="modal hide fade" id='buyit'>
+				<div  class="modal hide fade" id=<%="buyit" + item.id.to_s%>>
 					<div class="modal-header">
 				    	<button type="button" class="close" data-dismiss="modal">×</button>
 				    	<h3>Buy <%= item.name%></h3>
