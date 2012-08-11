@@ -24,7 +24,7 @@
 		@items = Item.find(:all)
 	end
 	
-	perpage = 6
+	perpage = 8
 	@numpages = (@items.count/perpage)
 	if (@items.count % perpage) != 0
 		@numpages += 1
@@ -49,6 +49,14 @@
   def show
     @item = Item.find(params[:id])
     @images = @item.images.find(:all)
+    if (params.has_key?(:img_id))
+    	@current = Image.where(:id=>params[:img_id]).first
+    elsif @images != []
+    	@current = @images[0]
+    else
+    	@current = nil
+    end
+    
     @similar = Item.find(:all, :conditions=>["category_id IS ? AND id IS NOT ?", @item.category_id, @item.id])
     respond_to do |format|
       format.html # show.html.erb

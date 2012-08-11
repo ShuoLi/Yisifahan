@@ -1,10 +1,10 @@
 
 	
-	<div id="catalog">	
+	<div class="catalog">	
 
-		<div class='span8 pull-left'>	
+		<div class="span8">	
 			<p>
-			<div class='pull-left'><i class="icon-home"></i>
+			<div class="pull-left"><i class="icon-home"></i>
 				<%if params.has_key?(:cpath)%>
 					<i class="icon-chevron-right"></i>
 					<%if params[:cpath]=='-1'%>
@@ -17,51 +17,69 @@
 					<i class="icon-search"></i>
 					<span class='label'><%=params[:search_text]%></span>
 				<%end%>
-			</div>	
-			<div class='pull-right'>
-			Sort by Price:
-			<%if params.has_key?(:cpath)%>
-				<%= link_to 'Ascending', items_path(:ascend=>true, :cpath=>params[:cpath]) %>,
-				<%= link_to 'Descending', items_path(:ascend=>false, :cpath=>params[:cpath]) %>
-			<%elsif params.has_key?(:search_text)%>
-				<%= link_to 'Ascending', items_path(:ascend=>true, :search_text=>params[:search_text]) %>,
-				<%= link_to 'Descending', items_path(:ascend=>false, :search_text=>params[:search_text]) %>
-			<%elsif params.has_key?(:low) or params.has_key?(:high)%>
-				<%= link_to 'Ascending', items_path(:ascend=>true, :low=>params[:low], :high=>params[:high]) %>,
-				<%= link_to 'Descending', items_path(:ascend=>false, :low=>params[:low], :high=>params[:high]) %>			
-			<%else%>
-				<%= link_to 'Ascending', items_path(:ascend=>true) %>,
-				<%= link_to 'Descending', items_path(:ascend=>false) %>	
-			<%end%>
-			</div>		
-			</p>		
+			</div>
+				
+				<div class="btn-group pull-right">
+					  <a class="btn dropdown-toggle" data-toggle="dropdown">
+					    Sort by
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu">
+					    <li>
+						    <%if params.has_key?(:cpath)%>
+								<%= link_to 'Ascending', items_path(:ascend=>true, :cpath=>params[:cpath]) %>,
+							<%elsif params.has_key?(:search_text)%>
+								<%= link_to 'Ascending', items_path(:ascend=>true, :search_text=>params[:search_text]) %>,
+							<%elsif params.has_key?(:low) or params.has_key?(:high)%>
+								<%= link_to 'Ascending', items_path(:ascend=>true, :low=>params[:low], :high=>params[:high]) %>,
+							<%else%>
+								<%= link_to 'Ascending', items_path(:ascend=>true) %>,
+							<%end%>
+					    </li>
+					    <li>
+							<%if params.has_key?(:cpath)%>
+								<%= link_to 'Descending', items_path(:ascend=>false, :cpath=>params[:cpath]) %>
+							<%elsif params.has_key?(:search_text)%>
+								<%= link_to 'Descending', items_path(:ascend=>false, :search_text=>params[:search_text]) %>
+							<%elsif params.has_key?(:low) or params.has_key?(:high)%>
+								<%= link_to 'Descending', items_path(:ascend=>false, :low=>params[:low], :high=>params[:high]) %>			
+							<%else%>
+								<%= link_to 'Descending', items_path(:ascend=>false) %>	
+							<%end%>				    
+						</li>
+					  </ul>					
+				</div>
+				
+				<div class="btn-group pull-right">
+				  <a class="btn dropdown-toggle" data-toggle="dropdown">
+				    Price Range
+				    <span class="caret"></span>
+				  </a>
+				  <ul class="dropdown-menu">
+				    <li><%= link_to "$0.00 - $100.00", items_path(:low=>0, :high=>100)%></li>
+				    <li><%= link_to "$100.00 - $250.00", items_path(:low=>100, :high=>250)%></li>
+				    <li><%= link_to "$250.00 - $500.00", items_path(:low=>250, :high=>500)%></li>
+				    <li><%= link_to "$500.00 - $1000.00", items_path(:low=>500, :high=>1000)%></li>
+				    <li><%= link_to "$1000.00+", items_path(:low=>1000)%></li>
+				  </ul>
+				  
+
+				</div>	
+			</p>	
 		</div>
 
-		<% @items[0,6].each do |item| %>
-			<div class='thumbnail span3 item-box'>
+		<% @items[0,8].each do |item| %>
+			<div class='thumbnail span2 item-box'>
 					<% if item.images == []%>
 					<%= "No Image Found"%>
 					<%else%>
-					<%= link_to image_tag(item.images.first.image_url, :size => "220x165"), item %>				
+					<%= link_to image_tag(item.images.first.image_url, :size => "180x135"), item %>				
 					<% end%>
 				<br>
 				<h4 class='itemName'><%= link_to item.name, item%></h4>
 				<p class="itemcode">Serial #<%= item.item_code %></p>
-				<p class="btn btn-warning">
-					<%if item.price == nil%>
-					<%= "No Price Available" %>
-					<%else%>
-					<%= number_to_currency item.price %>
-					<%end%>
-				</p>
-				<h3>Descriptions:</h3>
-				<p>
-					<%if item.description == nil%>
-					<%= "No Description Available" %>
-					<%else%>
-					<%= truncate(item.description, :length=>100)%>
-					<%end%>
-				</p>
+				<p class="btn btn-warning"><%= number_to_currency item.price %></p>
+				<p class="btn">	<%= "Buy it" %></p>
 			</div>
 		<%end%>
 		
