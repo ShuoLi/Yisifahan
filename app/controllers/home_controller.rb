@@ -16,7 +16,10 @@ class HomeController < ApplicationController
   end
   
   def service
-
+    @services = Service.find(:all)
   end
   
+  def aboutUs
+    @abouts = About.find(:all)
+  end
 end

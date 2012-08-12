@@ -59,6 +59,7 @@ BlanketV::Application.routes.draw do
   match '/homepage' => 'home#index'
   match '/admin' => 'sessions#failure'
   match '/service' => 'home#service'
+  match '/aboutUs' => 'home#aboutUs'
   root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"

@@ -1,3 +1,15 @@
 <div id ='service'>
-	We provide a lot of service
+		<% @services.each do |service| %>
+			<div class="well span9">
+			<h3 class='btn-large btn-inverse'><%=service.title%></h3>
+			</br>
+			<p><%=service.content%></p>
+			<p>	
+				<%if service.image?%>
+						<%= image_tag service.image%>
+				<% end%>
+			</p>
+			</div>
+		<% end %>
+		
 </div>
