@@ -13,10 +13,13 @@
 		<%end%>
 		<p><%= link_to 'Uncategorized', items_path(:cpath=>-1)%></p>
 	</div>
-	<hr />
+	<hr/>
 
 	<br>
 	
+	<div id ='wishlist'>
+			<%= session[:wishlist].to_s %>
+	</div>
 	
 	
 <!--	<div>

@@ -81,7 +81,7 @@
 				<p class="remove-margin">Serial #<%= item.item_code %></p>
 				<p class="btn btn-warning"><%= number_to_currency item.price %></p>
 				<a data-toggle="modal" href=<%="#buyit" + item.id.to_s%> class="btn btn-success">Buy it</a>
-				
+				<p class="btn btn-primary interest" id=<%="interest" +item.id.to_s%>>interest</p>
 				<div  class="modal hide fade" id=<%="buyit" + item.id.to_s%>>
 					<div class="modal-header">
 				    	<button type="button" class="close" data-dismiss="modal">×</button>
@@ -136,13 +136,23 @@
 
 
 <script>
-	funtion confirm(){
+	function confirm(){
 		<% @mimi = MadMimi.new('yisifahan@gmail.com','fa4a98ed7af0adfe49e64ccdec8fca92')%>
 		<% @mimi.add_to_list('dante@gmail.com','newsletter') %>
-		$("#subscribe").hide()
-	})
+		$('#subscribe').modal('hide');
+	};
 
 $(function() {
 	$( "input:submit, button" ).button();
+});
+
+$(".interest").click(function() {
+	var s = this.id;
+	var t = null;
+	if (t  = s.match(/(\d+)[^\d]*$/)){
+		var item_id = t[1];
+		// <%(session[:wishlist] ||= []) << 't[1]'%>
+	}
+	$('#wishlist').append('<p>Item: '+item_id+'<p>');
 });
 </script>
