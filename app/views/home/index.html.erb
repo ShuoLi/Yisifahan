@@ -35,17 +35,7 @@
 		
 			<div id="catalog">
 				<% @items.each do |item| %>
-				<div class='thumbnail span2 popular-box'>
-						<% if item.images == []%>
-						<%= "No Image Found"%>
-						<%else%>
-						<%= image_tag item.images.first.image_url, :size => "180x135" %>				
-						<% end%>
-
-					<h4 class='itemName'><%= link_to item.name, item%></h4>
-					<p class="remove-margin">Serial #<%= item.item_code %></p>
-					<p class="btn btn-warning"><%= number_to_currency item.price %></p>
-				</div>
+					<%= render "items/item_box", :item => item %>	
 				<%end%>
 		</div>
 
