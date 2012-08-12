@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
   has_many :images, :dependent => :destroy
+  has_many :slides, :dependent => :destroy
   belongs_to :category
   attr_accessible :category_id, :name, :popular, :price, :description, :item_code
   validates :price, :presence => true

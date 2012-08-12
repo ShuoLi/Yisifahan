@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120811044449) do
+ActiveRecord::Schema.define(:version => 20120812202539) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -95,10 +95,10 @@ ActiveRecord::Schema.define(:version => 20120811044449) do
   end
 
   create_table "slides", :force => true do |t|
+    t.integer  "item_id"
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "item_id"
   end
 
 end
