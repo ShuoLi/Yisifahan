@@ -99,11 +99,6 @@
 	</div>
 
 
-	
-
-	
-
-
 <script>
 	function confirm(){
 		<% @mimi = MadMimi.new('yisifahan@gmail.com','fa4a98ed7af0adfe49e64ccdec8fca92')%>
@@ -115,13 +110,4 @@ $(function() {
 	$( "input:submit, button" ).button();
 });
 
-$(".interest").click(function() {
-	var s = this.id;
-	var t = null;
-	if (t  = s.match(/(\d+)[^\d]*$/)){
-		var item_id = t[1];
-		// <%(session[:wishlist] ||= []) << 't[1]'%>
-	}
-	$('#wishlist').append('<p>Item: '+item_id+'<p>');
-});
 </script>

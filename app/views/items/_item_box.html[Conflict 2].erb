@@ -1,4 +1,4 @@
-<div class='thumbnail span2 item-box' id='<%="item_box_" + item.id.to_s%>'>
+<div class='thumbnail span2 item-box'>
 	<% if item.images == []%>
 	<%= "No Image Found"%>
 	<%else%>
@@ -7,14 +7,10 @@
 
 	<h4 class='itemName'><%= link_to item.name, item%></h4>
 	<p class="remove-margin">Serial #<%= item.item_code %></p>
-	<p class="btn btn-warning item_price"><%= number_to_currency item.price %></p>
+	<p class="btn btn-warning"><%= number_to_currency item.price %></p>
 	<a data-toggle="modal" href=<%="#buyit" + item.id.to_s%> class="btn btn-success">Buy it</a>
 
-	<% if (!cookies['wishlist'].split(",").include?(item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
-	<p class="btn btn-primary interest" id=<%="interest_" +item.id.to_s%>>
-		interest
-	</p>
-	<% end %>
+	<p class="btn btn-primary interest" id=<%="interest_" +item.id.to_s%>>interest</p>
 	
 	<div  class="modal hide fade" id=<%="buyit" + item.id.to_s%>>
 		<div class="modal-header">
@@ -46,22 +42,16 @@ $(".interest").click(function() {
 	if(wishlist == null){
 		wishlist = [item_id];
 		$.cookie('wishlist', wishlist, { expires: 99 });
-		// display in wishlist
-		var item_name = $("#item_box_"+item_id+" .itemName").text();
-		var item_price = $("#item_box_"+item_id+" .item_price").text();
-		$('#wishlist').prepend('<div>'+'<span>'+item_name+' : </span>'+'<span>'+item_price+'</span>'+'</div>');
 	}else{
 		wishlist = wishlist.split(',');
 		if ($.inArray(item_id, wishlist) == -1) {
 			wishlist.push(item_id);
 			$.cookie('wishlist', wishlist, { expires: 99 });
-			// display in wishlist
-			var item_name = $("#item_box_"+item_id+" .itemName").text();
-			var item_price = $("#item_box_"+item_id+" .item_price").text();
-			$('#wishlist').prepend('<div>'+'<span>'+item_name+' : </span>'+'<span>'+item_price+'</span>'+'</div>');
 		};
 	}
-	$('#interest_'+item_id).hide();
+	// $.cookie('wishlist', wishlist, { expires: 7 });
+	// display in wishlist
+	$('#wishlist').append('<div>'+item_id+'</div>');
+	// $('#interest_'+item_id).hide();
 });
 </script>
-
