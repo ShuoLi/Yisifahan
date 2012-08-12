@@ -1,49 +1,41 @@
+<div>
+	<h4>Categories</h4>
+	<% Category.all.each do |category| %>
 	<div>
-		<h4>Categories</h4>
-		<% Category.all.each do |category| %>
-			<div>
-				<p>
-					<% if category.category_image%>
-						<%= link_to image_tag(category.category_image.image_url, :size => "200x100"), items_path(:cpath=>category) %>	
-					<% else%>
-						<%= link_to category.name, items_path(:cpath=>category)%>
-					<% end%>
-				</p>
-			</div>
-		<%end%>
-		<p><%= link_to 'Uncategorized', items_path(:cpath=>-1)%></p>
+		<p>
+			<% if category.category_image%>
+			<%= link_to image_tag(category.category_image.image_url, :size => "200x100"), items_path(:cpath=>category) %>	
+			<% else%>
+			<%= link_to category.name, items_path(:cpath=>category)%>
+			<% end%>
+		</p>
 	</div>
-	<hr/>
+	<%end%>
+	<p><%= link_to 'Uncategorized', items_path(:cpath=>-1)%></p>
+</div>
+<hr/>
 
-	<br>
-	
-	<div id ='wishlist'>
-			<%= session[:wishlist].to_s %>
+<br>
+
+<div id ='wishlist'>
+	<% if cookies['wishlist'] %>
+	<% cookies['wishlist'].split(",").each do |wl| %>
+	<% item_wl = Item.find(wl.to_i) %>
+	<% if item_wl %>
+	<div>
+		<span> <%= item_wl.name %> : </span>
+		<span> $ <%= item_wl.price %> </span>
 	</div>
-	
-	
-<!--	<div>
-		<a data-toggle="modal" href="#subscribe" class="btn btn-success">Subscribe</a>
+	<% end %>
+	<% end %>
+	<div>
+		<a id="clean_wishlist">Clean Wishlist</a>
 	</div>
-	
-	<div  class="modal hide fade" id='subscribe'>
-		<div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal">×</button>
-	    <h3>Enter Your email</h3>
-	  </div>
-	  <div class="modal-body">
-	    <p><%= text_field_tag :email, (params[:email])  %></p>
-	  </div>
-	  <div class="modal-footer">
-	    <a href="#" class="btn" data-dismiss="modal">Close</a>
-			<%= button_to_function "confirm", "confirm()", :id => "follow_button", :class=>"btn btn-primary" %>
-	  </div>
-	</div>
-	
-	<script>
-	funtion confirm(){
-		<% @mimi = MadMimi.new('yisifahan@gmail.com','fa4a98ed7af0adfe49e64ccdec8fca92')%>
-		<% @mimi.add_to_list('dante@gmail.com','newsletter') %>
-		$("#subscribe").hide()
-	})
-</script>-->
+	<script type="text/javascript">
+	$("#clean_wishlist").click(function(){
+		$.cookie('wishlist', null);
+		$('#wishlist').html("");
+	});
+	</script>
+	<% end %>
+</div>

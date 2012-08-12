@@ -10,10 +10,14 @@ class Item < ActiveRecord::Base
   #the self search code is for building the search list
   def self.search(query)
     if query
-      find(:all ,:conditions=>['name LIKE ?', "%#{query}%"])
+      result = find(:all ,:conditions=>['name LIKE ?', "%#{query}%"])
+      # find by item_code
+      item = find_by_item_code(query)
+      result << item if item
     else
-      find(:all)
+      result = find(:all)
     end
+    return result
   end
   
   def self.filter(low, high)
