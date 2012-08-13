@@ -56,9 +56,9 @@
 	$('#myModal').load('<%= new_message_path %>');
 	</script>
 	<script>
-	funtion confirm(){
+	function confirm(){
 		<% @mimi = MadMimi.new('yisifahan@gmail.com','fa4a98ed7af0adfe49e64ccdec8fca92')%>
 		<% @mimi.add_to_list(params[:email],'newsletter') %>
 		$("#subscribe").hide();
-	});
+	}
 	</script>
