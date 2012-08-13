@@ -46,22 +46,23 @@ $(".interest").click(function() {
 	if(wishlist == null){
 		wishlist = [item_id];
 		$.cookie('wishlist', wishlist, { expires: 99 });
-		// display in wishlist
-		var item_name = $("#item_box_"+item_id+" .itemName").text();
-		var item_price = $("#item_box_"+item_id+" .item_price").text();
-		$('#wishlist').prepend('<div>'+'<span>'+item_name+' : </span>'+'<span>'+item_price+'</span>'+'</div>');
+		add_item_in_wishlist_html(item_id);
 	}else{
 		wishlist = wishlist.split(',');
 		if ($.inArray(item_id, wishlist) == -1) {
 			wishlist.push(item_id);
 			$.cookie('wishlist', wishlist, { expires: 99 });
-			// display in wishlist
-			var item_name = $("#item_box_"+item_id+" .itemName").text();
-			var item_price = $("#item_box_"+item_id+" .item_price").text();
-			$('#wishlist').prepend('<div>'+'<span>'+item_name+' : </span>'+'<span>'+item_price+'</span>'+'</div>');
+			add_item_in_wishlist_html(item_id);
 		};
 	}
 	$('#interest_'+item_id).hide();
 });
+
+function add_item_in_wishlist_html(item_id){
+	// display in wishlist
+	var item_name = $("#item_box_"+item_id+" .itemName").text();
+	var item_price = $("#item_box_"+item_id+" .item_price").text();
+	$('#wishlist').prepend('<a href="/items/'+item_id+'"><div>'+'<span>'+item_name+' : </span>'+'<span>'+item_price+'</span>'+'</div></a>');
+}
 </script>
 

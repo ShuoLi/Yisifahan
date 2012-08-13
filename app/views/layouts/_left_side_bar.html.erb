@@ -22,10 +22,12 @@
 	<% cookies['wishlist'].split(",").each do |wl| %>
 	<% item_wl = Item.find(wl.to_i) %>
 	<% if item_wl %>
+	<%= link_to item_wl do %>
 	<div>
 		<span> <%= item_wl.name %> : </span>
 		<span> $ <%= item_wl.price %> </span>
 	</div>
+	<% end %>
 	<% end %>
 	<% end %>
 	<div>
