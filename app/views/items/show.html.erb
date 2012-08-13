@@ -65,7 +65,30 @@
 			  <b>Description:</b>
 			  <%= @item.description%>
 			</p>
+			
+			<p>
+			<a data-toggle="modal" href="#buyit" class="btn btn-success">Buy it</a>
+			</p>
+			
+			<div  class="modal hide fade" id="buyit">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h3>Buy <%= @item.name%></h3>
+				</div>
 		
+				<div class="modal-body">
+					<p>Serial #: <%= text_field_tag :item_code, @item.item_code, :readonly=>true%></p>
+					<p>Price: <%= text_field_tag :price, (number_to_currency @item.price), :readonly=>true%></p>
+					<p>Phone Number: <%= text_field_tag :phone, (params[:phone])  %></p>
+					<p>Email Address: <%= text_field_tag :email, (params[:email])  %></p>
+				</div>
+		
+				<div class="modal-footer">
+					<a href="#" class="btn" data-dismiss="modal">Close</a>
+					<%= button_to_function "confirm", "confirm()", :id => "follow_button", :class=>"btn btn-primary" %>
+				</div>
+			</div>
+			
 			<%= link_to 'Back', items_path, :class=>"btn" %>
 			
 		</div>

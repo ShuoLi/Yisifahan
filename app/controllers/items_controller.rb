@@ -24,7 +24,7 @@
 		@items = Item.find(:all)
 	end
 	
-	perpage = 8
+	perpage = 10
 	@numpages = (@items.count/perpage)
 	if (@items.count % perpage) != 0
 		@numpages += 1
