@@ -63,4 +63,18 @@
       format.json { render json: @item }
     end
   end
+
+  def create
+	  @item = Item.new(params[:item])
+		if @item.save
+			image = params[:item][:images_attributes]['0']
+			if image
+				@image = @item.images.new(image)
+				@image.save
+			end
+			redirect_to '/admin/items/'+@item.id.to_s
+		else
+			render :nothing => true
+		end
+  end
 end

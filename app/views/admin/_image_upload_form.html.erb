@@ -1,0 +1,24 @@
+<%= semantic_form_for @item, :html => { :multipart => true } do |f| %>
+
+    <%= f.inputs "Details" do %>
+        <%= f.input :category %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :price %>
+        <%= f.input :popular %>
+        <%= f.input :item_code %>
+    <% end %>
+
+
+    <%= f.inputs "images" do %>
+
+        <% @item.images.build %>
+        <%= f.semantic_fields_for :images do |i| %>
+            <%= i.input :image, :as => :file %>
+        <% end %>
+
+    <% end %>
+
+    <%= f.buttons %>
+
+<% end %>
