@@ -1,0 +1,15 @@
+<div id ='aboutus'>
+		<% @abouts.each do |about| %>
+			<div class="well span9">
+			<h3 class='btn-large btn-inverse'><%=about.title%></h3>
+			</br>
+			<p><%=about.content%></p>
+			<p>	
+				<%if about.image?%>
+						<%= image_tag about.image%>
+				<% end%>
+			</p>
+			</div>
+		<% end %>
+		
+</div>
