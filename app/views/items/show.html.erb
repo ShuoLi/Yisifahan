@@ -1,51 +1,24 @@
 <div id='listright'>
 	
-<!--	<div id="myCarousel" class="carousel slide span6">
-		   Carousel items 
-		  <div class="carousel-inner">
-				<% @item.images.each do |pic| %>
-				<%if pic==@item.images.first%>
-				<div class="active item">
-					<p>	<% if pic.image == []%>
-						<%= "No Image Found"%>
-						<%else%>
-						<%= image_tag pic.image, :size => "400x300" %>				
-						<% end%>
-					</p>
-				</div>
-					<%else%>
-					<div class="item">
-						<p>	<% if pic.image == []%>
-							<%= "No Image Found"%>
-							<%else%>
-							<%= image_tag pic.image, :size => "400x300" %>				
-							<% end%>
-						</p>
-					</div>
-				<%end%>
-
-				<%end%>
-		  </div>
-		  		   Carousel nav 
-		  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-		  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-		</div>
-
-	</div> -->
-
-
 	<div class="span12">
 		<div class="span7 remove-margin">
-			<p>	<% if @current == nil%>
-					<%= "No Image Found"%>
-				<%else%>
-					<%= image_tag @current.image, :size => "532x399" %>				
-				<% end%>
-			</p>
-			<ul class="thumbnails remove-margin">
+			
+			<div id="curr-img">
+				<p>	
+					<% if @current == nil%>
+						<%= "No Image Found"%>
+					<%else%>
+						<%= image_tag @current.image, :size => "532x399"%>				
+					<% end%>
+				</p>
+			</div>
+			
+			<ul class="thumbnails">
 				<% if @images != [] %>
 					<% @images.each do |img|%>
-						<%= link_to image_tag(img.image, :size=> "120x90"), item_path(:id=>params[:id], :img_id=>img.id)%>
+						<li class="remove-margin sel-img" id=<%= "image" + img.id.to_s%>>
+							<%= image_tag img.image, :size=> "120x90"%>
+						</li>
 					<% end %>
 				<% end%>
 			</ul>
@@ -101,3 +74,11 @@
 		<%end%>
 	</div>
 </div>
+
+<script>
+    $('.sel-img').click(function(){
+    	var myid = this.id;
+        var image_url = document.getElementById(myid).src;
+        $('#curr-img').html('<img alt="" src="' + image_url + '" width="532"/>');
+    });
+</script>
