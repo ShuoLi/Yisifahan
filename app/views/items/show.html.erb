@@ -16,8 +16,8 @@
 			<ul class="thumbnails">
 				<% if @images != [] %>
 					<% @images.each do |img|%>
-						<li class="remove-margin sel-img" id=<%= "image" + img.id.to_s%>>
-							<%= image_tag img.image, :size=> "120x90"%>
+						<li>
+							<%= image_tag img.image, :size=> "120x90", :class=>"sel-img", :id=>("image"+img.id.to_s)%>
 						</li>
 					<% end %>
 				<% end%>
