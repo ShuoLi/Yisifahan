@@ -2,9 +2,9 @@
 		<div id="myCarousel" class="carousel slide">
 		    <!-- Carousel items -->
 		    <div class="carousel-inner">
-				<% @slides.each do |slide| %>
+				<% @slides.each_with_index do |slide,index| %>
 					<%if slide==@current%>
-						<div class="active item">
+						<div  class="active item" id='car_<%=index%>'>
 							<p>	<% if slide.image == []%>
 								<%= "No Image Found"%>
 								<%else%>
@@ -13,7 +13,7 @@
 							</p>
 						</div>
 					<%else%>
-						<div class="item">
+						<div class="item" id='car_<%=index%>'>
 							<p>	<% if slide.image == []%>
 								<%= "No Image Found"%>
 								<%else%>
@@ -27,11 +27,17 @@
 	  	    <!-- Carousel nav -->
 		    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 		    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		
+				<div class ='slideIndex'>
+					<ul>
+					<% (1..@slides.count).each do |i| %>
+					  <li id='slide_<%=i%>' class='slideNav'></li>    
+					<% end %>
+					</ul>
+				</div>
 		</div>
 
-		<div>
-			
-		</div>
+
 		
 			<div id="catalog">
 				<% @items.each do |item| %>
@@ -42,5 +48,11 @@
 <script>
 $(function() {
 	$( "input:submit, button" ).button();
+});
+
+$('.slideNav').click(function(){
+	var s = this.id.toString();
+	var item_id = parseInt(s.split('_')[1]);
+	$('.carousel').carousel(item_id-1);
 });
 </script>

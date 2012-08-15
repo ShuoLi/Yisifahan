@@ -45,6 +45,27 @@ body{
 	height: 20px;
 }
 
+.slideIndex{
+ 	width: 20%;
+  margin-left: auto ;
+  margin-right: auto ;
+	ul li {
+	float: left;
+	display: inline;
+	padding: 0 5px;
+	}
+}
+
+.slideNav{
+	background:url('slider-nav.png') no-repeat right 0;
+	float: left;
+	display: inline;
+	width: 10px;
+	height: 10px;
+	font-size: 0;
+	line-height: 0;
+	text-indent: -4000px;
+}
 /*
 
 body { 
