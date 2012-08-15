@@ -48,15 +48,17 @@
   # GET /items/1.json
   def show
     @item = Item.find(params[:id])
+    puts @item
     @images = @item.images.find(:all)
+    puts @images
     if (params.has_key?(:img_id))
-    	@current = Image.where(:id=>params[:img_id]).first
+    	@current = Image.find(params[:img_id])
     elsif @images != []
     	@current = @images[0]
     else
     	@current = nil
     end
-    
+    puts "working---------"
     @similar = Item.find(:all, :conditions=>["category_id IS ? AND id IS NOT ?", @item.category_id, @item.id])
     respond_to do |format|
       format.html # show.html.erb
