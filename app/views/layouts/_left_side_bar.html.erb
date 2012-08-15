@@ -1,10 +1,10 @@
-<div>
+<div class='remove-magrin'>
 	<h4>Categories</h4>
 	<% Category.all.each do |category| %>
-	<div>
+	<div remove-magrin>
 		<p>
-			<% if category.category_image%>
-			<%= link_to image_tag(category.category_image.image_url, :size => "200x100"), items_path(:cpath=>category) %>	
+			<% if category.image%>
+			<%= link_to image_tag(category.image, :size => "200x60"), items_path(:cpath=>category) %>	
 			<% else%>
 			<%= link_to category.name, items_path(:cpath=>category)%>
 			<% end%>

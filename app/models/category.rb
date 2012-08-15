@@ -1,5 +1,6 @@
 class Category < ActiveRecord::Base
   has_many :items
-  has_one :category_image, :dependent => :destroy
+  attr_accessible :name, :image 
   validates_presence_of :name
+  mount_uploader :image, ImageUploader
 end
