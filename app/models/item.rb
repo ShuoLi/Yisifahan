@@ -40,7 +40,7 @@ class Item < ActiveRecord::Base
    	if category == "-1"
   		where('category_id IS null')
 	else
- 		where('category_id IS ?', category.to_i)
+ 		where(['category_id IS ?', category.to_i])
   	end
   end
   
@@ -53,7 +53,7 @@ class Item < ActiveRecord::Base
   		if parameters["cpath"] == "-1"
   			condition += "category_id IS null"
   		else
-  			condition += "category_id IS " + parameters["cpath"]
+  			condition += ("category_id IS " + parameters["cpath"])
   		end
   	end
   	
