@@ -6,18 +6,18 @@
 					<%if slide==@current%>
 						<div  class="active item" id='car_<%=index%>'>
 							<p>	<% if slide.image == []%>
-								<%= "No Image Found"%>
+									<%= "No Image Found"%>
 								<%else%>
-								<%= image_tag slide.image, :size => "780x400" %>				
+									<%=link_to image_tag(slide.image, :size => "780x400"), item_path(:id=>slide.item_id) %>				
 								<% end%>
 							</p>
 						</div>
 					<%else%>
 						<div class="item" id='car_<%=index%>'>
 							<p>	<% if slide.image == []%>
-								<%= "No Image Found"%>
+									<%= "No Image Found"%>
 								<%else%>
-								<%= image_tag slide.image, :size => "780x400" %>				
+									<%=link_to image_tag(slide.image, :size => "780x400"), item_path(:id=>slide.item_id) %>				
 								<% end%>
 							</p>
 						</div>
