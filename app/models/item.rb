@@ -40,7 +40,7 @@ class Item < ActiveRecord::Base
    	if category == "-1"
   		where('category_id IS null')
 	else
- 		where('category_id IS ?', category)
+ 		where('category_id IS ?', category.to_i)
   	end
   end
   
