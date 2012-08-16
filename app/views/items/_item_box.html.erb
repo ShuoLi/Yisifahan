@@ -6,13 +6,15 @@
 	<% end%>
 
 	<h4 class='itemName'><%= link_to item.name, item%></h4>
-	<p class="remove-margin">Serial #<%= item.item_code %></p>
-	<p class="btn btn-warning item_price"><%= number_to_currency item.price %></p>
+	<ul class='remove-margin '>
+	<li class="remove-margin btn-small btn-danger">#<%= item.item_code %></li>
+	<li class="remove-margin btn btn-warning item_price"><%= number_to_currency item.price %></li>
 
 	<% if (!cookies['wishlist'].split(",").include?(item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
-	<p class="btn btn-primary interest" id=<%="interest_" +item.id.to_s%>>
+	<li class="remove-margin btn-small btn-success interest" id=<%="interest_" +item.id.to_s%>>
 		Wishlist
-	</p>
+	</li>
+	</ul>
 	<% end %>
 	
 

@@ -27,15 +27,6 @@
 	  	    <!-- Carousel nav -->
 		    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 		    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-		
-				<div class ='slideIndex'>
-					<ul>
-					<% (1..@slides.count).each do |i| %>
-					  <li id='slide_<%=i%>' class='slideNav'></li>    
-					<% end %>
-					</ul>
-					<br>
-				</div>
 		</div>
 
 
@@ -50,11 +41,5 @@
 $(function() {
 	$( "input:submit, button" ).button();
 	$('.carousel').carousel();
-});
-
-$('.slideNav').click(function(){
-	var s = this.id.toString();
-	var item_id = parseInt(s.split('_')[1]);
-	$('.carousel').carousel(item_id-1);
 });
 </script>
