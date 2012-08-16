@@ -26,12 +26,18 @@
 		
 		<div class="span4">
 			<p>
-			  <h1><%= @item.name %></h1>
+			  <h1 id="item-name"><%= @item.name %></h1>
 			</p>
 			
 			<p>
-			  <b>Price:</b>
-			  <%= number_to_currency @item.price %>
+			  <span class="btn btn-warning" id="item-price"> <%= number_to_currency @item.price%></span>
+			  
+			  	<% if (!cookies['wishlist'].split(",").include?(@item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
+					<span class="remove-margin btn btn-success interest" id=<%="interest_" +@item.id.to_s%>>
+						Wishlist
+					</span>
+				<% end %>
+			  
 			</p>
 			
 			<p class="remove-margin">
@@ -39,36 +45,12 @@
 			  <%= @item.description%>
 			</p>
 			
-			<p>
-			<a data-toggle="modal" href="#buyit" class="btn btn-success">Buy it</a>
-			</p>
-			
-			<div  class="modal hide fade" id="buyit">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">×</button>
-					<h3>Buy <%= @item.name%></h3>
-				</div>
-		
-				<div class="modal-body">
-					<p>Serial #: <%= text_field_tag :item_code, @item.item_code, :readonly=>true%></p>
-					<p>Price: <%= text_field_tag :price, (number_to_currency @item.price), :readonly=>true%></p>
-					<p>Phone Number: <%= text_field_tag :phone, (params[:phone])  %></p>
-					<p>Email Address: <%= text_field_tag :email, (params[:email])  %></p>
-				</div>
-		
-				<div class="modal-footer">
-					<a href="#" class="btn" data-dismiss="modal">Close</a>
-					<%= button_to_function "confirm", "confirm()", :id => "follow_button", :class=>"btn btn-primary" %>
-				</div>
-			</div>
-			
 			<%= link_to 'Back', items_path, :class=>"btn" %>
 			
 		</div>
 	
 	</div>
 	<div class="span12">
-		<h3>Similar Items:</h3>
 		<% @similar[0,5].each do |item| %>
 			<%= render "items/item_box", :item => item %>
 		<%end%>
@@ -81,4 +63,32 @@
         var image_url = document.getElementById(myid).src;
         $('#curr-img').html('<img alt="" src="' + image_url + '" width="532"/>');
     });
+    
+    // handle interest button click
+$(".interest").click(function() {
+	var s = this.id.toString();
+	var item_id = s.split('_')[1];
+	// add item_id into cookies
+	var wishlist = $.cookie('wishlist');
+	if(wishlist == null){
+		wishlist = [item_id];
+		$.cookie('wishlist', wishlist, { expires: 99 });
+		add_item_in_wishlist_html(item_id);
+	}else{
+		wishlist = wishlist.split(',');
+		if ($.inArray(item_id, wishlist) == -1) {
+			wishlist.push(item_id);
+			$.cookie('wishlist', wishlist, { expires: 99 });
+			add_item_in_wishlist_html(item_id);
+		};
+	}
+	$('#interest_'+item_id).hide();
+});
+
+function add_item_in_wishlist_html(item_id){
+	// display in wishlist
+	var item_name = $("#item-name").text();
+	var item_price = $("#item-price").text();
+	$('#wishlist').prepend('<a href="/items/'+item_id+'"><div>'+'<span>'+item_name+' : </span>'+'<span>'+item_price+'</span>'+'</div></a>');
+}
 </script>

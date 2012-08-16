@@ -7,5 +7,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= requre dropdown
 //= require_tree .
+
+
+
+

@@ -11,11 +11,13 @@
 	<li class="remove-margin btn btn-warning item_price"><%= number_to_currency item.price %></li>
 
 	<% if (!cookies['wishlist'].split(",").include?(item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
-	<li class="remove-margin btn-small btn-success interest" id=<%="interest_" +item.id.to_s%>>
-		Wishlist
-	</li>
-	</ul>
+		<li class="remove-margin btn-small btn-success interest" id=<%="interest_" +item.id.to_s%>>
+			Wishlist
+		</li>
 	<% end %>
+	
+	</ul>
+
 	
 
 </div>
