@@ -48,12 +48,6 @@
 			<%= link_to 'Back', items_path, :class=>"btn" %>
 			
 		</div>
-	
-	</div>
-	<div class="span12">
-		<% @similar[0,5].each do |item| %>
-			<%= render "items/item_box", :item => item %>
-		<%end%>
 	</div>
 </div>
 

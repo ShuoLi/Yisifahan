@@ -3,28 +3,24 @@
   # GET /items
   # GET /items.json
   def index
+  	parameters = {}  	
   	if (params.has_key?(:ascend))
-  		parameters = {"ascend"=>params[:ascend]}
-  		if (params.has_key?(:cpath))
-  			parameters["cpath"] = params[:cpath]
-  		elsif (params.has_key?(:search_text))
-  			parameters["search_text"] = params[:search_text]			
-  		elsif (params.has_key?(:low) or params.has_key?(:high))
-  			parameters["low"] = params[:low]
-  			parameters["high"] = params[:high]
-  		end
-  		@items = Item.sortbyprice(parameters)
-  		
-  		
-  	elsif (params.has_key?(:search_text))
-  		@items = Item.search(params[:search_text])
-  	elsif (params.has_key?(:low) or params.has_key?(:high))
-  		@items = Item.filter(params[:low], params[:high])
-  	elsif (params.has_key?(:cpath))
-  		@items = Item.categoryfilter(params[:cpath])
-  	else
-  		@items = Item.find(:all)
+  		parameters["ascend"] = params[:ascend]
+	end
+  	if (params.has_key?(:search_text))
+  		parameters["search_text"] = params[:search_text]
   	end
+  	if (params.has_key?(:low))
+  		parameters["low"] = params[:low]
+  	end
+  	if (params.has_key?(:high))
+  	    parameters["high"] = params[:high]
+  	end
+  	if (params.has_key?(:cpath))
+  		parameters["cpath"] = params[:cpath]
+	end
+	
+	@items = Item.findItems(parameters)
 
   	perpage = 10
   	@numpages = (@items.count/perpage)
@@ -79,9 +75,7 @@
     else
     	@current = nil
     end
-    # @similar = Item.find(:all, :conditions=>["category_id IS ? AND id IS NOT ?", @item.category_id, @item.id])
-    @similar = @item.category.items.to_a
-    @similar.delete(@item)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @item }
