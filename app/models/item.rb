@@ -53,7 +53,7 @@ class Item < ActiveRecord::Base
   		if parameters["cpath"] == "-1"
   			condition += "category_id IS null"
   		else
-  			condition += ("category_id IS " + parameters["cpath"])
+  			condition += "category_id = " + parameters["cpath"]
   		end
   	end
   	
