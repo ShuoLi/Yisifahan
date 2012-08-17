@@ -5,21 +5,21 @@
 	<%= link_to image_tag(item.images.first.image_url, :size => "180x135"), item %>				
 	<% end%>
 
-	<h4 class='itemName'><%= link_to item.name, item%></h4>
-	<ul class='remove-margin '>
-	<li class="remove-margin btn-small btn-danger">#<%= item.item_code %></li>
-	<li class="remove-margin btn btn-warning item_price"><%= number_to_currency item.price %></li>
+	
+	<div class='remove-margin item_btn_group'> 
+	<span class="remove-margin btn btn-warning	 item_price"><%= number_to_currency item.price %></span>
 
 	<% if (!cookies['wishlist'].split(",").include?(item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
-		<li class="remove-margin btn-small btn-success interest" id=<%="interest_" +item.id.to_s%>>
-			Wishlist
-		</li>
+	<span class="remove-margin btn btn-success interest" id=<%="interest_" +item.id.to_s%>>
+			<i class="icon-shopping-cart icon-white"></i>
+	</span>
+	<% else %>
+	<span class="remove-margin btn btn-danger interest" id=<%="interest_" +item.id.to_s%>>
+			<i class="icon-shopping-cart icon-white"></i>
+	</span>
 	<% end %>
-	
-	</ul>
-
-	
-
+	</div>
+	<h4><span class="remove-margin  label item_code">#<%= item.item_code %></span><%= link_to item.name, item%></h4>
 </div>
 
 <script type="text/javascript">
@@ -41,14 +41,13 @@ $(".interest").click(function() {
 			add_item_in_wishlist_html(item_id);
 		};
 	}
-	$('#interest_'+item_id).hide();
+	$('#interest_'+item_id).removeClass('btn-success').addClass('btn-danger');
 });
 
 function add_item_in_wishlist_html(item_id){
 	// display in wishlist
-	var item_name = $("#item_box_"+item_id+" .itemName").text();
+	var item_name = $("#item_box_"+item_id+" .item_code").text();
 	var item_price = $("#item_box_"+item_id+" .item_price").text();
-	$('#wishlist').prepend('<a href="/items/'+item_id+'"><div>'+'<span>'+item_name+' : </span>'+'<span>'+item_price+'</span>'+'</div></a>');
+	$('#wishlist').prepend('<div><%= link_to image_tag("header.png", :size => "100x60")%><a href="/items/'+item_id+'"><span class="btn">'+item_name+':'+item_price+'</span></a></div>');
 }
 </script>
-

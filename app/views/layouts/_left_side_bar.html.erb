@@ -23,10 +23,10 @@
 	<% item_wl = Item.find(wl.to_i) %>
 	<% if item_wl %>
 	<%= link_to item_wl do %>
-	<div>
+	<p>
 		<span> <%= item_wl.name %> : </span>
 		<span> $ <%= item_wl.price %> </span>
-	</div>
+	</p>
 	<% end %>
 	<% end %>
 	<% end %>
@@ -37,6 +37,7 @@
 	$("#clean_wishlist").click(function(){
 		$.cookie('wishlist', null);
 		$('#wishlist').html("");
+		$('.interest').removeClass('btn-danger').addClass('btn-success');
 	});
 	</script>
 	<% end %>
