@@ -46,6 +46,27 @@
     end
   end
 
+  # render message to send wishlist
+  def send_wishlist
+    if cookies['wishlist']
+      wishlist_ids = cookies['wishlist'].split(',')
+      wishlist = []
+      wishlist_ids.each do |id|
+        wishlist << Item.find(id)
+      end
+      if !wishlist.empty?
+        @msg = "I am interested in these items:\r\n"
+        wishlist.each do |item|
+          @msg += item.name + ", item code: #" + item.item_code.to_s + ";\r\n"
+        end
+      end
+      # puts @msg
+      render "send_wishlist.js.erb"
+    else
+      render :nothing => true
+    end
+  end
+
   # GET /items/1
   # GET /items/1.json
   def show

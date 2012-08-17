@@ -56,6 +56,7 @@ BlanketV::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+  match '/send_wishlist' => "items#send_wishlist"
   match '/homepage' => 'home#index'
   match '/admin' => 'sessions#failure'
   match '/service' => 'home#service'
