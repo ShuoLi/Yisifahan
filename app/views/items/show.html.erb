@@ -8,7 +8,7 @@
 					<% if @current == nil%>
 						<%= "No Image Found"%>
 					<%else%>
-						<%= image_tag @current.image, :size => "532x399"%>				
+						<%= image_tag @current.image, :width => "520"%>				
 					<% end%>
 				</p>
 			</div>
@@ -17,7 +17,7 @@
 				<% if @images != [] %>
 					<% @images.each do |img|%>
 						<li>
-							<%= image_tag img.image, :size=> "120x90", :class=>"sel-img", :id=>("image"+img.id.to_s)%>
+							<%= image_tag img.image, :size=> "45x60", :class=>"sel-img", :id=>("image"+img.id.to_s)%>
 						</li>
 					<% end %>
 				<% end%>
@@ -48,12 +48,6 @@
 			<%= link_to 'Back', items_path, :class=>"btn" %>
 			
 		</div>
-	
-	</div>
-	<div class="span12">
-		<% @similar[0,5].each do |item| %>
-			<%= render "items/item_box", :item => item %>
-		<%end%>
 	</div>
 </div>
 
@@ -61,7 +55,7 @@
     $('.sel-img').click(function(){
     	var myid = this.id;
         var image_url = document.getElementById(myid).src;
-        $('#curr-img').html('<img alt="" src="' + image_url + '" width="532"/>');
+        $('#curr-img').html('<p><img alt="" src="' + image_url + '" width="520"/></p>');
     });
     
     // handle interest button click
