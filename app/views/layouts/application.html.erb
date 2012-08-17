@@ -16,7 +16,7 @@
 
 <body>
 	<%= render 'layouts/header' %>
-	<div class="container">
+	<div class="container" id="content_container">
 		<% flash.each do |name, msg| %>
 		  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
 		    <a class="close" data-dismiss="alert">×</a>
@@ -38,8 +38,3 @@
 	</div>
 </body>
 </html>
-<!-- <script type="text/javascript">
-$('#blog').click(function(){
-	$("#mainpage").load('http://yisifahan.lofter.com');
-});
-</script> -->

@@ -1,0 +1,5 @@
+<% unless @msg.nil? %>
+$("#message_text").text('<%= @msg = escape_javascript @msg %>');
+$('#contract_us').click();
+
+<% end %>

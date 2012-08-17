@@ -33,6 +33,9 @@
 	<div>
 		<a id="clean_wishlist">Clean Wishlist</a>
 	</div>
+	<div>
+		<%= link_to 'Send Wishlist', send_wishlist_path, :remote => true %>
+	</div>
 	<script type="text/javascript">
 	$("#clean_wishlist").click(function(){
 		$.cookie('wishlist', null);

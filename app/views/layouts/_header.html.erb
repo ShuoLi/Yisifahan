@@ -15,8 +15,8 @@
 								<li><%= link_to "商品",items_path %></li>
 								<li><%= link_to "关于我们","/aboutUs" %></li>
 								<li><%= link_to "服务","/service" %></li>
-								<li id='blog'><%= link_to "博客",'http://yisifahan.lofter.com', :target => "_blank" %></li>
-									<li><a data-toggle="modal" href="#myModal">联系我们</a></li>
+								<li><a id="blog_link" style="cursor:pointer;">博客</a></li>
+								<li><a id="contract_us" data-toggle="modal" href="#myModal">联系我们</a></li>
 						</ul>
 					</div>
 					<%= form_tag items_path, :method => 'get',:class=>"navbar-search pull-left" do %>
@@ -32,6 +32,20 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+$("#blog_link").click(function(){
+	var blog = '<iframe id="blog_frame" src="http://yisifahan.lofter.com"><p>Your browser does not support this page. Visit <a href="http://yisifahan.lofter.com">blog here</a>.</p></iframe>';
+	$("#content_container").html(blog);
+	$("body").css("padding-top","40px");
+	$("#blog_frame").css('width','100%');
+	$("#blog_frame").css('margin-left','-20px');
+	var windowHeight = $(window).height();
+	var iframeHeight = windowHeight-48;
+	$("#blog_frame").css('height',iframeHeight);
+});
+<%#= link_to "博客",'http://yisifahan.lofter.com', :target => "_blank" %>
+</script>
 
 <div class="modal hide fade" id="myModal" style="padding:15px;">
 	 <div>
