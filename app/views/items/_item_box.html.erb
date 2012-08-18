@@ -1,4 +1,4 @@
-<div class='thumbnail span2 item-box' id='<%="item_box_" + item.id.to_s%>'>
+<div class='thumbnail span2 item-box item_pic' id='<%="item_box_" + item.id.to_s%>'>
 	<% if item.images == []%>
 	<%= "No Image Found"%>
 	<%else%>
@@ -49,6 +49,7 @@ function add_item_in_wishlist_html(item_id){
 	var item_name = $("#item_box_"+item_id+" .item_code").text();
 	var item_price = $("#item_box_"+item_id+" .item_price").text();
 
-	$('#wish_items').prepend('<div><%= link_to image_tag("header.png", :size => "100x60")%><a href="/items/'+item_id+'"><span class="btn">'+item_name+':'+item_price+'</span></a></div>');
+	$('#wish_items').prepend("<span class='label remove-margin remove-border span2 pull-left'> #"+item_name+"<span class='pull-right'><i class='icon-trash'></i></span></span>");
+		
 }
 </script>
