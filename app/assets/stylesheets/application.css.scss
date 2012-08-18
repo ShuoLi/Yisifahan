@@ -35,6 +35,11 @@ body{
 	margin: 0px;
 }
 
+.remove-border{
+	border: 0px;
+	padding:0px;
+}
+
 .navbar{
 	opacity:0.9;
 
@@ -65,6 +70,14 @@ body{
 
 .input-large{
 	width: 450px;
+}
+
+.categories{
+	margin-bottom:2px;
+}
+
+.wish-item{
+	margin-bottom:2px;
 }
 
 /*

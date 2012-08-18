@@ -1,8 +1,7 @@
 <div class='remove-magrin'>
-	<h4>Categories</h4>
 	<% Category.all.each do |category| %>
-	<div remove-magrin>
-		<p>
+	<div class='remove-magrin'>
+		<p class='categories'>
 			<% if category.image%>
 			<%= link_to image_tag(category.image, :size => "200x60"), items_path(:cpath=>category) %>	
 			<% else%>
@@ -11,37 +10,47 @@
 		</p>
 	</div>
 	<%end%>
-	<p><%= link_to 'Uncategorized', items_path(:cpath=>-1)%></p>
+	<button class='btn uncategorized remove-margin span2'><%= link_to '未分类', items_path(:cpath=>-1)%></button>
 </div>
+<br>
 <hr/>
 
-<br>
+<button id='myCart' class="btn btn-inverse  remove-margin span2"><i class="icon-shopping-cart icon-white"></i>&nbsp我挑选的商品</button>
 
-<div id ='wishlist'>
+<div id ='wishlist' class='remove-margin remove-border span2'>
+	
+<div id='wish_items' class='remove-margin remove-border span2'>
+	
 	<% if cookies['wishlist'] %>
 	<% cookies['wishlist'].split(",").each do |wl| %>
+	<div class='wish-item remove-margin remove-border span2'>
 	<% item_wl = Item.find(wl.to_i) %>
 	<% if item_wl %>
 	<%= link_to item_wl do %>
-	<p>
-		<span> <%= item_wl.name %> : </span>
-		<span> $ <%= item_wl.price %> </span>
-	</p>
-	<% end %>
-	<% end %>
-	<% end %>
-	<div>
-		<a id="clean_wishlist">Clean Wishlist</a>
+		<span class='label remove-margin remove-border span2 pull-left'> #<%= item_wl.item_code %><span class='pull-right'><i class="icon-trash"></i></span></span>
+		<% if item_wl.images == []%>
+		<%= "No Image Found"%>
+		<%else%>
+		<%= link_to image_tag(item_wl.images.first.image_url, :size => "140x140"), item_wl %>				
+		<% end%>
 	</div>
-	<div>
-		<%= link_to 'Send Wishlist', send_wishlist_path, :remote => true %>
-	</div>
-	<script type="text/javascript">
-	$("#clean_wishlist").click(function(){
-		$.cookie('wishlist', null);
-		$('#wishlist').html("");
-		$('.interest').removeClass('btn-danger').addClass('btn-success');
-	});
-	</script>
+
+	<% end %>
+	<% end %>
+	<% end %>
 	<% end %>
 </div>
+	<%= link_to '联系管理员', send_wishlist_path, :remote => true, :class=>'btn btn-success remove-margin'%>
+	<button class='btn btn-danger remove-margin' id="clean_wishlist"><i class="icon-trash"></i></button>
+</div>
+
+<script>
+$("#myCart").click(function(){
+	$('#wishlist').toggle("fast");
+});
+$("#clean_wishlist").click(function(){
+	$.cookie('wishlist', null);
+	$('#wish_items').html("");
+	$('.interest').removeClass('btn-danger').addClass('btn-success');
+});
+</script>
