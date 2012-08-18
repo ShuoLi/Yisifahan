@@ -27,6 +27,7 @@
 	<% item_wl = Item.find(wl.to_i) %>
 	<% if item_wl %>
 	<%= link_to item_wl do %>
+
 		<span class='label remove-margin remove-border span2 pull-left'> #<%= item_wl.item_code %><span class='pull-right'><i class="icon-trash"></i></span></span>
 		<% if item_wl.images == []%>
 		<%= "No Image Found"%>
@@ -38,6 +39,7 @@
 	<% end %>
 	<% end %>
 	<% end %>
+
 	<% end %>
 </div>
 	<%= link_to '联系管理员', send_wishlist_path, :remote => true, :class=>'btn btn-success remove-margin'%>
