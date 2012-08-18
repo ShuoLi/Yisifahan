@@ -26,13 +26,13 @@
 					  </a>
 					  <ul class="dropdown-menu">
 						<li>
-							<%= link_to 'Most Recent', items_path(:ascend=>1, :cpath=>params[:cpath], :search_text=>params[:search_text], :low=>params[:low], :high=>params[:high]) %>,
+							<%= link_to 'Most Recent', items_path(:ascend=>1, :cpath=>params[:cpath], :search_text=>params[:search_text], :low=>params[:low], :high=>params[:high]) %>
 						</li>					    
 					  	<li>
-							<%= link_to 'Price: Low to High', items_path(:ascend=>2, :cpath=>params[:cpath], :search_text=>params[:search_text], :low=>params[:low], :high=>params[:high]) %>,
+							<%= link_to 'Price: Low to High', items_path(:ascend=>2, :cpath=>params[:cpath], :search_text=>params[:search_text], :low=>params[:low], :high=>params[:high]) %>
 					    </li>
 					    <li>
-							<%= link_to 'Price High to Low', items_path(:ascend=>3, :cpath=>params[:cpath], :search_text=>params[:search_text], :low=>params[:low], :high=>params[:high]) %>,
+							<%= link_to 'Price High to Low', items_path(:ascend=>3, :cpath=>params[:cpath], :search_text=>params[:search_text], :low=>params[:low], :high=>params[:high]) %>
 						</li>
 					  </ul>					
 				</div>
@@ -85,11 +85,6 @@
 
 
 <script>
-	function confirm(){
-		<% @mimi = MadMimi.new('yisifahan@gmail.com','fa4a98ed7af0adfe49e64ccdec8fca92')%>
-		<% @mimi.add_to_list('dante@gmail.com','newsletter') %>
-		$('#subscribe').modal('hide');
-	};
 
 $(function() {
 	$( "input:submit, button" ).button();
