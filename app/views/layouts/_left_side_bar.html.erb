@@ -28,12 +28,13 @@
 	<% if item_wl %>
 	<%= link_to item_wl do %>
 
-		<span class='label remove-margin remove-border span2 pull-left'> #<%= item_wl.item_code %><span class='pull-right'><i class="icon-trash"></i></span></span>
+	
 		<% if item_wl.images == []%>
 		<%= "No Image Found"%>
 		<%else%>
 		<%= link_to image_tag(item_wl.images.first.image_url, :size => "140x140"), item_wl %>				
 		<% end%>
+			<span class='label remove-margin remove-border span2 pull-left'> #<%= item_wl.item_code %><span class='pull-right'><i class="icon-trash"></i></span></span>
 	</div>
 
 	<% end %>
