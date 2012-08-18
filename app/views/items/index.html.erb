@@ -25,27 +25,14 @@
 					    <span class="caret"></span>
 					  </a>
 					  <ul class="dropdown-menu">
-					    <li>
-						    <%if params.has_key?(:cpath)%>
-								<%= link_to 'Ascending', items_path(:ascend=>true, :cpath=>params[:cpath]) %>,
-							<%elsif params.has_key?(:search_text)%>
-								<%= link_to 'Ascending', items_path(:ascend=>true, :search_text=>params[:search_text]) %>,
-							<%elsif params.has_key?(:low) or params.has_key?(:high)%>
-								<%= link_to 'Ascending', items_path(:ascend=>true, :low=>params[:low], :high=>params[:high]) %>,
-							<%else%>
-								<%= link_to 'Ascending', items_path(:ascend=>true) %>,
-							<%end%>
+						<li>
+							<%= link_to 'Most Recent', items_path(:ascend=>1, :cpath=>params[:cpath], :search_text=>params[:search_text], :low=>params[:low], :high=>params[:high]) %>,
+						</li>					    
+					  	<li>
+							<%= link_to 'Price: Low to High', items_path(:ascend=>2, :cpath=>params[:cpath], :search_text=>params[:search_text], :low=>params[:low], :high=>params[:high]) %>,
 					    </li>
 					    <li>
-							<%if params.has_key?(:cpath)%>
-								<%= link_to 'Descending', items_path(:ascend=>false, :cpath=>params[:cpath]) %>
-							<%elsif params.has_key?(:search_text)%>
-								<%= link_to 'Descending', items_path(:ascend=>false, :search_text=>params[:search_text]) %>
-							<%elsif params.has_key?(:low) or params.has_key?(:high)%>
-								<%= link_to 'Descending', items_path(:ascend=>false, :low=>params[:low], :high=>params[:high]) %>			
-							<%else%>
-								<%= link_to 'Descending', items_path(:ascend=>false) %>	
-							<%end%>				    
+							<%= link_to 'Price High to Low', items_path(:ascend=>3, :cpath=>params[:cpath], :search_text=>params[:search_text], :low=>params[:low], :high=>params[:high]) %>,
 						</li>
 					  </ul>					
 				</div>
@@ -56,14 +43,12 @@
 				    <span class="caret"></span>
 				  </a>
 				  <ul class="dropdown-menu">
-				    <li><%= link_to "$0.00 - $100.00", items_path(:low=>0, :high=>100)%></li>
-				    <li><%= link_to "$100.00 - $250.00", items_path(:low=>100, :high=>250)%></li>
-				    <li><%= link_to "$250.00 - $500.00", items_path(:low=>250, :high=>500)%></li>
-				    <li><%= link_to "$500.00 - $1000.00", items_path(:low=>500, :high=>1000)%></li>
-				    <li><%= link_to "$1000.00+", items_path(:low=>1000)%></li>
+				    <li><%= link_to "$0.00 - $100.00", items_path(:low=>0, :high=>100, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "$100.00 - $250.00", items_path(:low=>100, :high=>250, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "$250.00 - $500.00", items_path(:low=>250, :high=>500, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "$500.00 - $1000.00", items_path(:low=>500, :high=>1000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "$1000.00+", items_path(:low=>1000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
 				  </ul>
-				  
-
 				</div>	
 			</p>	
 		</div>
