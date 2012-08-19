@@ -1,6 +1,5 @@
 
 		<div id="myCarousel" class="carousel slide">
-		    <!-- Carousel items -->
 		    <div class="carousel-inner">
 				<% @slides.each_with_index do |slide,index| %>
 					<%if slide==@current%>
@@ -24,7 +23,7 @@
 					<%end%>
 				<%end%>
 		    </div>
-	  	    <!-- Carousel nav -->
+		    		
 		    <a class="carousel-control left carousel-shift-down" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 		    <a class="carousel-control right carousel-shift-down" href="#myCarousel" data-slide="next">&rsaquo;</a>
 		</div>

@@ -19,32 +19,30 @@
 
 <div id ='wishlist' class='remove-margin remove-border span2'>
 	
-<div id='wish_items' class='remove-margin remove-border span2'>
-	
-	<% if cookies['wishlist'] %>
-	<% cookies['wishlist'].split(",").each do |wl| %>
-	<div class='wish-item remove-margin remove-border span2'>
-	<% item_wl = Item.find(wl.to_i) %>
-	<% if item_wl %>
-	<%= link_to item_wl do %>
-
-	
-		<% if item_wl.images == []%>
-		<%= "No Image Found"%>
-		<%else%>
-		<%= link_to image_tag(item_wl.images.first.image_url, :size => "140x140"), item_wl %>				
-		<% end%>
-			<span class='label remove-margin remove-border span2 pull-left'> #<%= item_wl.item_code %><span class='pull-right'><i class="icon-trash"></i></span></span>
+	<div id='wish_items' class='remove-margin remove-border span2'>
+		
+		<% if cookies['wishlist'] %>
+			<% cookies['wishlist'].split(",").each do |wl| %>
+				<div class='wish-item remove-margin remove-border span2'>
+					<% item_wl = Item.find(wl.to_i) %>
+						<% if item_wl %>
+							<%= link_to item_wl do %>
+								<% if item_wl.images == []%>
+									<%= "No Image Found"%>
+								<%else%>
+									<%= link_to image_tag(item_wl.images.first.image_url, :size => "140x140"), item_wl %>				
+								<% end%>
+								<span class='label remove-margin remove-border span2 pull-left'> #<%= item_wl.item_code %>
+									<span class='pull-right' ><i class="icon-remove"></i></span>
+								</span>
+						<% end %>
+					<% end %>
+				</div>
+			<% end %>
+		<% end %>
 	</div>
-
-	<% end %>
-	<% end %>
-	<% end %>
-
-	<% end %>
-</div>
 	<%= link_to '联系管理员', send_wishlist_path, :remote => true, :class=>'btn btn-success remove-margin'%>
-	<button class='btn btn-danger remove-margin' id="clean_wishlist"><i class="icon-trash"></i></button>
+	<button class='btn btn-danger remove-margin' id="clean_wishlist"><i class="icon-remove"></i></button>
 </div>
 
 <script>
