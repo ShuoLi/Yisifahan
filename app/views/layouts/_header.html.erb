@@ -21,6 +21,7 @@
 					</div>
 					<%= form_tag items_path, :method => 'get',:class=>"navbar-search pull-left" do %>
 						<%= text_field_tag :search_text, params[:search_text], :class=>"search-query",:placeholder=>"Search"%>
+						<button type="submit" class="btn btn-inverse"><i class=' icon-search icon-white'></i></button>
 					<% end %>
 					<div class="navbar-form pull-right">
 						<ul class="nav">
