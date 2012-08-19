@@ -114,9 +114,20 @@ body{
 
 
 div.item_code_overlay{
- 		position:absolute;  
+ 	position:absolute;  
     bottombottom:0px;  
     left:4px;
+    top:4px;
+    background-color:black;  
+    color:white;  
+    opacity:0.5; 
+    filter:alpha(opacity=60);
+}
+
+div.item_popularity_overlay{
+ 	position:absolute;  
+    bottombottom:0px;  
+    left:130px;
     top:4px;
     background-color:black;  
     color:white;  

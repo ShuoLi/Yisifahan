@@ -3,6 +3,11 @@
 		<span class="remove-margin item_code">#<%= item.item_code %></span>
 	</div>
 	
+	<%if item.popular%>
+		<div class="item_popularity_overlay">
+			<span class="remove-margin"><i class="icon-star icon-white"></i></span>
+		</div>	
+	<%end%>
 		<% if item.images == []%>
 			<%= "No Image Found"%>
 		<%else%>
