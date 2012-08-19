@@ -1,25 +1,35 @@
-<div class='thumbnail span2 item-box ' id='<%="item_box_" + item.id.to_s%>'>
-	<% if item.images == []%>
-	<%= "No Image Found"%>
-	<%else%>
-	<%= link_to image_tag(item.images.first.image_url, :size => "180x135", :class=>'item_pic'), item %>				
-	<% end%>
+<div class='thumbnail span2 item-box' id='<%="item_box_" + item.id.to_s%>'>
+	<div class="item_code_overlay">
+		<span class="remove-margin item_code">#<%= item.item_code %></span>
+	</div>
+	
+		<% if item.images == []%>
+			<%= "No Image Found"%>
+		<%else%>
+			<%= link_to image_tag(item.images.first.image_url, :size => "180x135", :class=>'item_pic'), item %>				
+		<% end%>
+	
 
 	
-	<div class='remove-margin item_btn_group'> 
-	<span class="remove-margin btn btn-warning	 item_price"><%= number_to_currency item.price %></span>
+	<h4><%= link_to truncate(item.name, :length=>42, :omission=>""), item%></h4>
 
-	<% if (!cookies['wishlist'].split(",").include?(item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
-	<span class="remove-margin btn btn-success interest" id=<%="interest_" +item.id.to_s%>>
-			<i class="icon-shopping-cart icon-white"></i>
-	</span>
-	<% else %>
-	<span class="remove-margin btn btn-danger interest" id=<%="interest_" +item.id.to_s%>>
-			<i class="icon-shopping-cart icon-white"></i>
-	</span>
-	<% end %>
+	<span class="remove-margin"><%= number_to_currency item.price %></span>
+	
+	<div class='remove-margin btn_group'> 
+
+
+		<% if (!cookies['wishlist'].split(",").include?(item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
+			<span class="remove-margin btn btn-success interest" id=<%="interest_" +item.id.to_s%>>
+				Add to Cart
+				<i class="icon-shopping-cart icon-white"></i>
+			</span>
+		<% else %>
+			<span class="remove-margin btn btn-danger interest" id=<%="interest_" +item.id.to_s%>>	
+				Add to Cart
+				<i class="icon-shopping-cart icon-white"></i>
+			</span>
+		<% end %>
 	</div>
-	<h4><span class="remove-margin  label item_code">#<%= item.item_code %></span><%= link_to item.name, item%></h4>
 </div>
 
 <script type="text/javascript">

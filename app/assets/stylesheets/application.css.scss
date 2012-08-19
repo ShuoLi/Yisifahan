@@ -42,8 +42,10 @@ body{
 }
 
 .item-box{
-	height:275px;
+	height:210px;
 	margin: 5px 5px 0px 0px;
+	position: relative;
+	float:left;
 }
 
 .popular-box{
@@ -81,20 +83,6 @@ body{
 	margin-top: 10px;
 }
 
-
-.item_price{
-	width:84px;
-	margin-left:0px;
-	border:0px;
-}
-.interest{
-	width:10px;
-}
-
-.item_btn_group{
-
-}
-
 .input-large{
 	width: 450px;
 }
@@ -115,7 +103,16 @@ body{
 	margin-top:3px;
 }
 
-
+div.item_code_overlay{
+ 	position:absolute;  
+    bottombottom:0px;  
+    left:4px;
+    top:4px;
+    background-color:black;  
+    color:white;  
+    opacity:0.5; 
+    filter:alpha(opacity=60);
+}
 
 /*
 .slideIndex{
