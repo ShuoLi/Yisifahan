@@ -21,6 +21,7 @@ body{
 }
 
 
+
 .brand{
 	height:15px;
 	padding:0px;
@@ -42,7 +43,7 @@ body{
 }
 
 .item-box{
-	height:210px;
+	height:215px;
 	margin: 5px 5px 0px 0px;
 	position: relative;
 	float:left;
@@ -68,7 +69,11 @@ body{
 }
 
 .navbar .btn{
+	margin-top:0px;
 	margin-left:-5px;
+	padding:3px;
+	padding-left:6px;
+	padding-right:6px;
 }
 
 .navbar-search .search-query {
@@ -103,8 +108,13 @@ body{
 	margin-top:3px;
 }
 
+.wish_btn{
+	padding:3px;
+}
+
+
 div.item_code_overlay{
- 	position:absolute;  
+ 		position:absolute;  
     bottombottom:0px;  
     left:4px;
     top:4px;

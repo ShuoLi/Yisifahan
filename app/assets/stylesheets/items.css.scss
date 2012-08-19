@@ -38,3 +38,22 @@ font-size: 0.7em;
 .locationLabel{
 	width:100%;
 }
+.item_price{
+	text-align: center;
+	width:134px;
+	height:15px;
+	margin-bottom:2px;
+	border-style:groove;
+	border-color:#E9AB17;
+	background-color:#FFF380;
+	font-family:"Times New Roman",Georgia,Serif;
+	font-size:16px;
+	position: absolute;
+	bottom: 22px;
+}
+.interest{
+	width:136px;
+	padding:1px;
+	position: absolute;
+	bottom: 1px;
+}

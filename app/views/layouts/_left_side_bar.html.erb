@@ -41,8 +41,10 @@
 			<% end %>
 		<% end %>
 	</div>
-	<%= link_to '联系管理员', send_wishlist_path, :remote => true, :class=>'btn btn-success remove-margin'%>
-	<button class='btn btn-danger remove-margin' id="clean_wishlist"><i class="icon-remove"></i></button>
+	<div class=' pull-right'>
+	<%= link_to '发送给商家', send_wishlist_path, :remote => true, :class=>'btn wish_btn btn-success remove-margin'%>
+	<button class='btn btn-danger remove-margin wish_btn' id="clean_wishlist"><i class="icon-trash"></i></button>
+	</div>
 </div>
 
 <script>
