@@ -43,7 +43,7 @@ font-size: 0.7em;
 	width:134px;
 	height:15px;
 	margin-bottom:2px;
-	border-style:groove;
+	border-style:ridge;
 	border-color:#E9AB17;
 	background-color:#FFF380;
 	font-family:"Times New Roman",Georgia,Serif;
@@ -56,4 +56,9 @@ font-size: 0.7em;
 	padding:1px;
 	position: absolute;
 	bottom: 1px;
+}
+
+.show_code{
+	font-family:"Times New Roman",Georgia,Serif;
+	font-size:16px;
 }

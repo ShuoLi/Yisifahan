@@ -6,70 +6,75 @@
 			<div id="curr-img" >
 				<p>	
 					<% if @current == nil%>
-						<%= "No Image Found"%>
+					<%= "No Image Found"%>
 					<%else%>
-						<%= image_tag @current.image, :width => "520", :class=>'item_pic'%>				
+					<%= image_tag @current.image, :width => "520", :class=>'item_pic'%>				
 					<% end%>
 				</p>
 			</div>
 			
 			<ul class="thumbnails">
 				<% if @images != [] %>
-					<% @images.each do |img|%>
-						<li>
-							<%= image_tag img.image, :size=> "45x60", :class=>"sel-img", :id=>("image"+img.id.to_s)%>
-						</li>
-					<% end %>
+				<% @images.each do |img|%>
+				<li>
+					<%= image_tag img.image, :size=> "45x60", :class=>"sel-img", :id=>("image"+img.id.to_s)%>
+				</li>
+				<% end %>
 				<% end%>
 			</ul>
 		</div>
 		
 		<div class="span4">
 			<p>
-			  <h1 id="item-name"><%= @item.name %></h1>
+				<i class=' icon-tag'></i>产品编号：<span class="item_code show_code"><%= @item.item_code %></span>
 			</p>
 			<p>
-			  <h1 class="item_code"><%= @item.item_code %></h1>
+				<h1 id="item-name"><%= @item.name %></h1>
 			</p>
+			<br><br>
 			<p>
-			  <span class="btn btn-warning" id="item-price"> <%= number_to_currency @item.price%></span>
+				<span class="btn btn-info" id="item-price"> <%= number_to_currency @item.price%></span>
 			  
-			  	<% if (!cookies['wishlist'].split(",").include?(@item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
-					<span class="remove-margin btn btn-success interest" id=<%="interest_" +@item.id.to_s%>>
-						Wishlist
-					</span>
+				<% if (!cookies['wishlist'].split(",").include?(@item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
+				<button class="remove-margin btn btn-success show_interest" id=<%="showInterest_" +@item.id.to_s%>>
+					加入购物车
+				</button>
+				<%else%>
+				<button class="remove-margin btn btn-danger show_interest" id=<%="showInterest_" +@item.id.to_s%>>
+					加入购物车
+				</button>
 				<% end %>
 			  
 			</p>
-			
+	
+			<hr/>
+			<br>
 			<p class="remove-margin">
-			  <b>Description:</b>
-			  <%= @item.description%>
-			</p>
+				<span class=show_code>产品介绍 :</span><br>
+				<p class='well'><%= @item.description%></p >
+				</p>
 			
-			<%= link_to 'Back', items_path, :class=>"btn" %>
-			
+			</div>
 		</div>
 	</div>
-</div>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
-function show_add_item_in_wishlist_html(item_id){
-	// display in wishlist
-	var item_name = $(" .item_code").text();
-	var imagelink = $(" .item_pic").attr("src");
-	$('#wish_items').prepend("<span class='label remove-margin remove-border span2 pull-left'> #"+item_name+"<span class='pull-right'><i class='icon-remove'></i></span></span>");
-	$('#wish_items').prepend("<a href='/items/"+item_id+"'><img src="+imagelink+"/></a>")
+		function show_add_item_in_wishlist_html(item_id){
+			// display in wishlist
+			var item_name = $(" .item_code").text();
+			var imagelink = $(" .item_pic").attr("src");
+			$('#wish_items').prepend("<span class='label remove-margin remove-border span2 pull-left'> #"+item_name+"</span><button class='pull-right remove_wish_item' id='removeWishItem_"+item_id+"'><i class='icon-remove'></i></button>");
+			$('#wish_items').prepend("<a href='/items/"+item_id+"'><img src="+imagelink+"/></a>")
 	
-}
-    $('.sel-img').click(function(){
-    	var myid = this.id;
-        var image_url = document.getElementById(myid).src;
-        $('#curr-img').html('<p><img alt="" src="' + image_url + '" width="520"/></p>');
-    });
+		}
+		$('.sel-img').click(function(){
+			var myid = this.id;
+			var image_url = document.getElementById(myid).src;
+			$('#curr-img').html('<p><img alt="" src="' + image_url + '" width="520"/></p>');
+		});
 
-		$(".interest").click(function() {
+		$(".show_interest").click(function() {
 			var s = this.id.toString();
 			var item_id = s.split('_')[1];
 			// add item_id into cookies
@@ -87,7 +92,8 @@ function show_add_item_in_wishlist_html(item_id){
 				};
 			}
 			$('#interest_'+item_id).removeClass('btn-success').addClass('btn-danger');
+			$('#showInterest_'+item_id).removeClass('btn-success').addClass('btn-danger');
 			$('#wishlist').show();
 		});
 
-</script>
+	</script>
