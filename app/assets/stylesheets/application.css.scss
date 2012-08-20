@@ -135,6 +135,21 @@ div.item_popularity_overlay{
     filter:alpha(opacity=60);
 }
 
+ul, ol{
+	margin: 2px 5px;
+}
+
+#catalog{
+	margin-top: 10px;
+}
+
+.slide-area{
+	display: block;
+	background-color: #B2B2B2;
+	padding: 7px 5px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}
 /*
 .slideIndex{
  	width: 20%;
