@@ -3,12 +3,12 @@
 	<div class="span12">
 		<div class="span7 remove-margin">
 			
-			<div id="curr-img">
+			<div id="curr-img" >
 				<p>	
 					<% if @current == nil%>
 						<%= "No Image Found"%>
 					<%else%>
-						<%= image_tag @current.image, :width => "520"%>				
+						<%= image_tag @current.image, :width => "520", :class=>'item_pic'%>				
 					<% end%>
 				</p>
 			</div>
@@ -28,7 +28,9 @@
 			<p>
 			  <h1 id="item-name"><%= @item.name %></h1>
 			</p>
-			
+			<p>
+			  <h1 class="item_code"><%= @item.item_code %></h1>
+			</p>
 			<p>
 			  <span class="btn btn-warning" id="item-price"> <%= number_to_currency @item.price%></span>
 			  
@@ -51,38 +53,41 @@
 	</div>
 </div>
 
-<script>
+<script type="text/javascript">
+
+function show_add_item_in_wishlist_html(item_id){
+	// display in wishlist
+	var item_name = $(" .item_code").text();
+	var imagelink = $(" .item_pic").attr("src");
+	$('#wish_items').prepend("<span class='label remove-margin remove-border span2 pull-left'> #"+item_name+"<span class='pull-right'><i class='icon-remove'></i></span></span>");
+	$('#wish_items').prepend("<a href='/items/"+item_id+"'><img src="+imagelink+"/></a>")
+	
+}
     $('.sel-img').click(function(){
     	var myid = this.id;
         var image_url = document.getElementById(myid).src;
         $('#curr-img').html('<p><img alt="" src="' + image_url + '" width="520"/></p>');
     });
-    
-    // handle interest button click
-$(".interest").click(function() {
-	var s = this.id.toString();
-	var item_id = s.split('_')[1];
-	// add item_id into cookies
-	var wishlist = $.cookie('wishlist');
-	if(wishlist == null){
-		wishlist = [item_id];
-		$.cookie('wishlist', wishlist, { expires: 99 });
-		add_item_in_wishlist_html(item_id);
-	}else{
-		wishlist = wishlist.split(',');
-		if ($.inArray(item_id, wishlist) == -1) {
-			wishlist.push(item_id);
-			$.cookie('wishlist', wishlist, { expires: 99 });
-			add_item_in_wishlist_html(item_id);
-		};
-	}
-	$('#interest_'+item_id).hide();
-});
 
-function add_item_in_wishlist_html(item_id){
-	// display in wishlist
-	var item_name = $("#item-name").text();
-	var item_price = $("#item-price").text();
-	$('#wishlist').prepend('<a href="/items/'+item_id+'"><div>'+'<span>'+item_name+' : </span>'+'<span>'+item_price+'</span>'+'</div></a>');
-}
+		$(".interest").click(function() {
+			var s = this.id.toString();
+			var item_id = s.split('_')[1];
+			// add item_id into cookies
+			var wishlist = $.cookie('wishlist');
+			if(wishlist == null){
+				wishlist = [item_id];
+				$.cookie('wishlist', wishlist, { expires: 99 });
+				show_add_item_in_wishlist_html(item_id);
+			}else{
+				wishlist = wishlist.split(',');
+				if ($.inArray(item_id, wishlist) == -1) {
+					wishlist.push(item_id);
+					$.cookie('wishlist', wishlist, { expires: 99 });
+					show_add_item_in_wishlist_html(item_id);
+				};
+			}
+			$('#interest_'+item_id).removeClass('btn-success').addClass('btn-danger');
+			$('#wishlist').show();
+		});
+
 </script>

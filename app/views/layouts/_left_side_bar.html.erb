@@ -48,12 +48,10 @@
 </div>
 
 <script>
-$("#myCart").click(function(){
-	$('#wishlist').toggle("fast");
-});
 $("#clean_wishlist").click(function(){
 	$.cookie('wishlist', null);
 	$('#wish_items').html("");
 	$('.interest').removeClass('btn-danger').addClass('btn-success');
+	$('#wishlist').hide();
 });
 </script>
