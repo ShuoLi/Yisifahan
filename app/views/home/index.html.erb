@@ -1,44 +1,40 @@
+<div class="slide-area">
+<ul class="rs-slider slide-list">
+	<% @slides.each_with_index do |slide,index| %>
+	<li>
+		<% if slide.image == []%>
+		<%= "No Image Found"%>
+		<%else%>
+		<%=link_to image_tag(slide.image, :size=>"750x456"), item_path(:id=>slide.item_id) %>
+		<div class="rs-caption rs-bottom">
+			<%= slide.item.name %>
+		</div>	
+		<% end%>
+	</li>
+	<%end%>
+</ul>
+</div>
 
-		<div id="myCarousel" class="carousel slide">
-		    <div class="carousel-inner">
-				<% @slides.each_with_index do |slide,index| %>
-					<%if slide==@current%>
-						<div  class="active item" id='car_<%=index%>'>
-							<p>	<% if slide.image == []%>
-									<%= "No Image Found"%>
-								<%else%>
-									<%=link_to image_tag(slide.image, :size => "780x400"), item_path(:id=>slide.item_id) %>				
-								<% end%>
-							</p>
-						</div>
-					<%else%>
-						<div class="item" id='car_<%=index%>'>
-							<p>	<% if slide.image == []%>
-									<%= "No Image Found"%>
-								<%else%>
-									<%=link_to image_tag(slide.image, :size => "780x400"), item_path(:id=>slide.item_id) %>				
-								<% end%>
-							</p>
-						</div>
-					<%end%>
-				<%end%>
-		    </div>
-		    		
-		    <a class="carousel-control left carousel-shift-down" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-		    <a class="carousel-control right carousel-shift-down" href="#myCarousel" data-slide="next">&rsaquo;</a>
-		</div>
-
-
-		
-			<div id="catalog">
-				<% @items.each do |item| %>
-					<%= render "items/item_box", :item => item %>	
-				<%end%>
-		</div>
+<div id="catalog">
+	<% @items.each do |item| %>
+	<%= render "items/item_box", :item => item %>	
+	<%end%>
+</div>
 
 <script>
-$(function() {
-	$( "input:submit, button" ).button();
-	$('.carousel').carousel();
-});
+$( "input:submit, button" ).button();
+
+$(document).ready(slider_start());
+
+function slider_start () {
+	$('.rs-slider').refineSlide({
+		transition         : 'cubeH',
+		transitionDuration : 1000,
+		// autoPlay           : true,
+		keyNav             : false,
+		delay              : 5000,
+		controls           : 'thumbs',
+	});
+}
+
 </script>
