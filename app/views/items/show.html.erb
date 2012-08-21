@@ -64,7 +64,7 @@
 			// display in wishlist
 			var item_name = $(" .item_code").text();
 			var imagelink = $(" .item_pic").attr("src");
-			$('#wish_items').prepend("<div class='wish-item remove-margin remove-border span2' id='wishItem_"+item_id+"'><span class='label remove-margin remove-border span2 pull-left'> #"+item_name+"</span><button class='remove_wish_item' id='removeWishItem_"+item_id+"'><i class='icon-remove'></i></button><a href='/items/"+item_id+"'><img src="+imagelink+"/></a></div>");
+			$('#wish_items').append("<div class='wish-item remove-margin remove-border span2' id='wishItem_"+item_id+"'><span class='label remove-margin remove-border span2 pull-left'> #"+item_name+"</span><button class='remove_wish_item' id='removeWishItem_"+item_id+"'><i class='icon-remove'></i></button><a href='/items/"+item_id+"'><img src="+imagelink+"/></a></div>");
 	
 		}
 		$('.sel-img').click(function(){
