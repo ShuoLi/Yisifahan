@@ -65,8 +65,7 @@ function add_item_in_wishlist_html(item_id){
 	var item_name = $("#item_box_"+item_id+" .item_code").text();
 	var item_price = $("#item_box_"+item_id+" .item_price").text();
 	var imagelink = $("#item_box_"+item_id+" .item_pic").attr("src");
-	$('#wish_items').prepend("<span class='label remove-margin remove-border span2 pull-left'> #"+item_name+"</span><button class='remove_wish_item' id='removeWishItem_"+item_id+"'><i class='icon-remove'></i></button>");
-	$('#wish_items').prepend("<a href='/items/"+item_id+"'><img src="+imagelink+"/></a>")
+	$('#wish_items').append("<div class='wish-item remove-margin remove-border span2' id='wishItem_"+item_id+"'><span class='label remove-margin remove-border span2 pull-left'> #"+item_name+"</span><button class='remove_wish_item' id='removeWishItem_"+item_id+"'><i class='icon-remove'></i></button><a href='/items/"+item_id+"'><img src="+imagelink+"/></a></div>");
 }
 
 

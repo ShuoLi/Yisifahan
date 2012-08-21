@@ -10,7 +10,7 @@
 		</p>
 	</div>
 	<%end%>
-	<button class='btn uncategorized remove-margin span2'><%= link_to '其他', items_path(:cpath=>-1)%></button>
+	<%= link_to image_tag('other_category.png', :size => "200x60"), items_path(:cpath=>-1) %>	
 </div>
 <br>
 <hr/>
@@ -55,7 +55,7 @@
 		$('#wishlist').hide();
 	});
 	
-	$(".remove_wish_item").click(function(){
+	$('#wish_items').on('click', '.remove_wish_item', function() {
 		var s = this.id.toString();
 		var item_id = s.split('_')[1];
 		var wishlist = $.cookie('wishlist');
@@ -69,6 +69,6 @@
 
 		$('#interest_'+item_id).removeClass('btn-danger').addClass('btn-success');
 		$('#showInterest_'+item_id).removeClass('btn-danger').addClass('btn-success');
-		$('#wishItem_'+item_id).html("");
+		$('#wish_items').find('#wishItem_'+item_id).html("");
 	});
 </script>
