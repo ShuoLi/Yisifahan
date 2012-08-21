@@ -22,22 +22,27 @@
 	<div id='wish_items' class='remove-margin remove-border span2'>
 		
 		<% if cookies['wishlist'] %>
-		<% cookies['wishlist'].split(",").each do |wl| %>
-		<div class='wish-item remove-margin remove-border span2' id='wishItem_<%=wl%>'>
-			<% item_wl = Item.find(wl.to_i) %>
-			<% if item_wl %>
-			<%= link_to item_wl do %>
-			<% if item_wl.images == []%>
-			<%= "No Image Found"%>
-			<%else%>
-			<%= link_to image_tag(item_wl.images.first.image_url, :size => "140x140"), item_wl %>				
-			<% end%>
-			<span class='label remove-margin remove-border span2 pull-left'> #<%= item_wl.item_code %></span>
-			<button class='remove_wish_item' id='removeWishItem_<%=wl%>'><i class='icon-remove'></i></button>
+			<% cookies['wishlist'].split(",").each do |wl| %>
+			<div class='wish-item remove-margin remove-border span2' id='wishItem_<%=wl%>'>
+				<% item_wl = Item.find(wl.to_i) %>
+				<% if item_wl %>
+					<%= link_to item_wl do %>
+
+						<span class='label remove-margin remove-border pull-left wish_code_overlay'> #<%= item_wl.item_code %></span>
+						
+						<% if item_wl.images == []%>
+							<%= "No Image Found"%>
+						<%else%>
+							<%= link_to image_tag(item_wl.images.first.image_url, :size => "140x140"), item_wl %>				
+						<% end%>
+						<span>
+							<%= number_to_currency item_wl.price%>
+							<button class='remove_wish_item pull-right' id='removeWishItem_<%=wl%>'><i class='icon-remove'></i></button>
+						</span>
+					<% end %>
+				<% end %>
+			</div>
 			<% end %>
-			<% end %>
-		</div>
-		<% end %>
 		<% end %>
 	</div>
 	<div class=' pull-right'>
