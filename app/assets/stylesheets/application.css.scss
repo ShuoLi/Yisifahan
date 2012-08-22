@@ -1,17 +1,18 @@
-$navbarBackground:white;
-$navbarBackgroundHighlight:gray;
+$navbarBackground:#CCB280;
+$navbarBackgroundHighlight:white;
 $navbarText:black;
 $navbarLinkColor:black;
 $navbarLinkColorHover:black;
-/*$navbarLinkColorActive	*/
-/*$navbarLinkColorHover	*/
-/*$navbarLinkBackgroundHover	transparent	*/
-/*$navbarLinkBackgroundActive:$navbarBackground;	*/
+$navbarLinkColorActive:black;
+$navbarLinkColorHover:black;
+$navbarLinkBackgroundHover:white;	
+$navbarLinkBackgroundActive:#F0FFFF;
 /*$navbarSearchBackground	lighten($navbarBackground, 25%)	*/
 /*$navbarSearchBackgroundFocus:white	*/
 /*$navbarSearchBorder	darken(@navbarSearchBackground, 30%)	*/
 /*$navbarSearchPlaceholderColor	#ccc	*/
-/*$navbarBrandColor:*/
+$navbarBrandColor:white;
+
 @import "bootstrap_and_overwrite";
 @import "items";
 
