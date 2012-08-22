@@ -82,13 +82,13 @@
 			var wishlist = $.cookie('wishlist');
 			if(wishlist == null){
 				wishlist = [item_id];
-				$.cookie('wishlist', wishlist, { expires: 99 });
+				$.cookie('wishlist', wishlist, { expires: 99, path: '/' });
 				show_add_item_in_wishlist_html(item_id);
 			}else{
 				wishlist = wishlist.split(',');
 				if ($.inArray(item_id, wishlist) == -1) {
 					wishlist.push(item_id);
-					$.cookie('wishlist', wishlist, { expires: 99 });
+					$.cookie('wishlist', wishlist, { expires: 99, path: '/' });
 					show_add_item_in_wishlist_html(item_id);
 				};
 			}
