@@ -14,11 +14,13 @@ class Item < ActiveRecord::Base
   	parameters.each do |p|
   		case p.first
   			when "ascend"
-  				if p[1] == "1"
-  					order += 'created_at DESC'
-  				elsif p[1] == "2"
-			  		order +='price ASC'
-			  	else
+  				if p[1] == "0"
+  					order += 'created_at ASC'
+  				elsif p[1] == "1"
+			  		order += 'created_at DESC'
+		  		elsif p[1] == "2"
+		  			order +='price ASC'
+		  		else
 			  		order +='price DESC'
 			  	end
   			when "low"

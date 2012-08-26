@@ -1,20 +1,20 @@
 <div class="slide-area">
-<ul class="rs-slider slide-list">
-	<% @slides.each_with_index do |slide,index| %>
-	<li>
-		<% if slide.image == []%>
-		<%= "No Image Found"%>
-		<%else%>
-		<%=link_to image_tag(slide.image, :size=>"750x456"), item_path(:id=>slide.item_id) %>
-		<div class="rs-caption rs-bottom">
-			<%= slide.item.name %>
-		</div>	
-		<% end%>
-	</li>
-	<%end%>
-</ul>
+	<ul class="rs-slider slide-list">
+		<% @slides.each_with_index do |slide,index| %>
+			<li>
+				<% if slide.image == []%>
+					<%= "No Image Found"%>
+				<%else%>
+					<%=link_to image_tag(slide.image, :size=>"750x456"), item_path(:id=>slide.item_id) %>
+					<div class="rs-caption rs-bottom">
+						<%= slide.item.name %>
+					</div>	
+				<% end%>
+			</li>
+		<%end%>
+	</ul>
 </div>
-
+<hr/>
 <div id="catalog">
 	<% @items.each do |item| %>
 	<%= render "items/item_box", :item => item %>	

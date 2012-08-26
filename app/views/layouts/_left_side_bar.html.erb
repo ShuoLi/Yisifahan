@@ -15,12 +15,10 @@
 <br>
 <hr/>
 
-<button id='myCart' class="btn btn-inverse  remove-margin span2"><i class="icon-shopping-cart icon-white"></i>&nbsp我挑选的商品</button>
 
 <div id ='wishlist' class='remove-margin remove-border span2'>
-	
+<button id='myCart' class="btn btn-inverse  remove-margin span2"><i class="icon-shopping-cart icon-white"></i>&nbsp我挑选的商品</button>
 	<div id='wish_items' class='remove-margin remove-border span2'>
-		
 		<% if cookies['wishlist'] %>
 			<% cookies['wishlist'].split(",").each do |wl| %>
 			<div class='wish-item remove-margin remove-border span2' id='wishItem_<%=wl%>'>

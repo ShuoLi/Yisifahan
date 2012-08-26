@@ -25,10 +25,14 @@
 					    <span class="caret"></span>
 					  </a>
 					  <ul class="dropdown-menu">
-						<li>
 
-							<%= link_to 'Most Recent', items_path(:ascend=>1, :cpath=>params[:cpath], :search_text=>params[:search_text], :low=>params[:low], :high=>params[:high]) %>
+						<li>
+							<%= link_to 'Newest to Oldest', items_path(:ascend=>1, :cpath=>params[:cpath], :search_text=>params[:search_text], :low=>params[:low], :high=>params[:high]) %>
+						</li>	
+						<li>
+							<%= link_to 'Oldest to Newest', items_path(:ascend=>0, :cpath=>params[:cpath], :search_text=>params[:search_text], :low=>params[:low], :high=>params[:high]) %>
 						</li>					    
+				    
 					  	<li>
 							<%= link_to 'Price: Low to High', items_path(:ascend=>2, :cpath=>params[:cpath], :search_text=>params[:search_text], :low=>params[:low], :high=>params[:high]) %>
 					    </li>
@@ -44,11 +48,11 @@
 				    <span class="caret"></span>
 				  </a>
 				  <ul class="dropdown-menu">
-				    <li><%= link_to "$0.00 - $100.00", items_path(:low=>0, :high=>100, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
-				    <li><%= link_to "$100.00 - $250.00", items_path(:low=>100, :high=>250, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
-				    <li><%= link_to "$250.00 - $500.00", items_path(:low=>250, :high=>500, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
-				    <li><%= link_to "$500.00 - $1000.00", items_path(:low=>500, :high=>1000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
-				    <li><%= link_to "$1000.00+", items_path(:low=>1000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "$0.00 - $1000.00", items_path(:low=>0, :high=>1000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "$1000.00 - $2500.00", items_path(:low=>1000, :high=>2500, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "$2500.00 - $5000.00", items_path(:low=>2500, :high=>5000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "$5000.00 - $10000.00", items_path(:low=>5000, :high=>10000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "$10000.00+", items_path(:low=>10000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
 				  </ul>
 				</div>	
 			</p>	
