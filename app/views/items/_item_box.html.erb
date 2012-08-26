@@ -43,16 +43,16 @@ $(".interest").click(function() {
 	var s = this.id.toString();
 	var item_id = s.split('_')[1];
 	// add item_id into cookies
-	var wishlist = $.cookie('wishlist');
+	var wishlist = $.cookie('wishlist',{  path: '/' });
 	if(wishlist == null){
 		wishlist = [item_id];
-		$.cookie('wishlist', wishlist, { expires: 99 });
+		$.cookie('wishlist', wishlist, { expires: 99,  path: '/'  });
 		add_item_in_wishlist_html(item_id);
 	}else{
 		wishlist = wishlist.split(',');
 		if ($.inArray(item_id, wishlist) == -1) {
 			wishlist.push(item_id);
-			$.cookie('wishlist', wishlist, { expires: 99 });
+			$.cookie('wishlist', wishlist, { expires: 99, path: '/' });
 			add_item_in_wishlist_html(item_id);
 		};
 	}

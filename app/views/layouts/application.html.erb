@@ -41,7 +41,7 @@
 </body>
 </html>
 <script>
-	if($.cookie('wishlist')==null){
+	if($.cookie('wishlist'，{path:'/'})==null){
 		$('#wishlist').hide();
 	}
 </script>
