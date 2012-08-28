@@ -1,5 +1,5 @@
-$navbarBackground:#BE4C00;
-$navbarBackgroundHighlight:#F1F9FD;
+$navbarBackground:#F68204;
+$navbarBackgroundHighlight:	#FFEBCC;
 $navbarText:black;
 $navbarLinkColor:black;
 $navbarLinkColorHover:black;
@@ -7,8 +7,8 @@ $navbarLinkColorActive:black;
 $navbarLinkColorHover:black;
 $navbarLinkBackgroundHover:#F1F9FD;	
 $navbarLinkBackgroundActive:#F0FFFF;
-/*$navbarSearchBackground	lighten($navbarBackground, 25%)	*/
-/*$navbarSearchBackgroundFocus:white	*/
+$navbarSearchBackground:white;	
+$navbarSearchBackgroundFocus:white;	
 /*$navbarSearchBorder	darken(@navbarSearchBackground, 30%)	*/
 /*$navbarSearchPlaceholderColor	#ccc	*/
 $navbarBrandColor:white;
@@ -40,9 +40,15 @@ html{
 }
 body{
 	padding-top: 60px;
-	@include gradient( black,#7E3817 );
+	@include gradient(#7E3817,black);
 }
 
+.btn-search{
+    background-color: #8C6222;
+    background-image: -moz-linear-gradient(center top , #8C6222, #8C6222);
+    background-repeat: repeat-x;
+    border-color: #8C6222 #8C6222 #8C6222;
+}
 
 .brand{
 	height:15px;
@@ -119,11 +125,12 @@ body{
 }
 
 #wishlist{
-	border:#A2F9FF 5px solid;
+	border:red 5px solid;
 	border-radius:15px;
 	-moz-border-radius:15px;
 	padding: 5px;
 	margin-left: -10px;
+	border-style:outset;
 }
 
 .wish-item{
