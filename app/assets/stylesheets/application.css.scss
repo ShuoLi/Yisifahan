@@ -1,11 +1,11 @@
-$navbarBackground:#CCB280;
-$navbarBackgroundHighlight:white;
+$navbarBackground:#BE4C00;
+$navbarBackgroundHighlight:#F1F9FD;
 $navbarText:black;
 $navbarLinkColor:black;
 $navbarLinkColorHover:black;
 $navbarLinkColorActive:black;
 $navbarLinkColorHover:black;
-$navbarLinkBackgroundHover:white;	
+$navbarLinkBackgroundHover:#F1F9FD;	
 $navbarLinkBackgroundActive:#F0FFFF;
 /*$navbarSearchBackground	lighten($navbarBackground, 25%)	*/
 /*$navbarSearchBackgroundFocus:white	*/
@@ -13,14 +13,35 @@ $navbarLinkBackgroundActive:#F0FFFF;
 /*$navbarSearchPlaceholderColor	#ccc	*/
 $navbarBrandColor:white;
 
+
+@mixin gradient($from, $to) {
+  /* fallback/image non-cover color */
+  background-color: $from;
+
+  /* Firefox 3.6+ */
+  background-image: -moz-linear-gradient($from, $to);
+
+  /* Safari 4+, Chrome 1+ */
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to));
+
+  /* Safari 5.1+, Chrome 10+ */
+  background-image: -webkit-linear-gradient($from, $to);
+
+  /* Opera 11.10+ */
+  background-image: -o-linear-gradient($from, $to);
+}
+
+
 @import "bootstrap_and_overwrite";
 @import "items";
 
+html{
+	height:100%;
+}
 body{
 	padding-top: 60px;
-	height:100%
+	@include gradient( black,#7E3817 );
 }
-
 
 
 .brand{
