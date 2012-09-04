@@ -6,3 +6,20 @@
 	
 }
 
+html{
+	height:inherit;
+}
+
+.title{
+	font-family: "Times New Roman", serif;
+	font-size:28px;
+}
+
+.submitTagMessage{
+		margin-top:1px;
+		margin-right:10px;
+}
+
+.input-prepend .add-on, .input-prepend .btn {
+    margin-right: 6px;
+}

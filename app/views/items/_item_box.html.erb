@@ -18,13 +18,13 @@
 	
 	<h4><%= link_to truncate(item.name, :length=>40, :omission=>""), item%></h4>
 
-	<div class="item_price"><%= number_to_currency item.price %></div>
+	<div class="btn btn_price"><%= number_to_currency item.price %></div>
 	
 	<div class='remove-margin btn_group'> 
 
 
 		<% if (!cookies['wishlist'].split(",").include?(item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
-			<span class="remove-margin btn btn-success interest" id=<%="interest_" +item.id.to_s%>>
+			<span class="remove-margin btn btn-inverse interest" id=<%="interest_" +item.id.to_s%>>
 				Add to Cart
 				<i class="icon-shopping-cart icon-white"></i>
 			</span>
@@ -56,7 +56,7 @@ $(".interest").click(function() {
 			add_item_in_wishlist_html(item_id);
 		};
 	}
-	$('#interest_'+item_id).removeClass('btn-success').addClass('btn-danger');
+	$('#interest_'+item_id).removeClass('btn-inverse').addClass('btn-danger');
 	$('#wishlist').show();
 });
 

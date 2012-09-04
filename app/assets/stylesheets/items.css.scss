@@ -35,22 +35,26 @@ font-family: Verdana, Arial, sans-serif;
 font-size: 0.7em;
 }*/
 
+html{
+	height:inherit;
+}
+
 .locationLabel{
 	width:100%;
 }
-.item_price{
+
+.btn_price{
 	text-align: center;
-	width:134px;
+	width:118px;
 	height:15px;
 	margin-bottom:2px;
-	border-style:ridge;
-	border-color:#E9AB17;
-	background-color:#FFF380;
+	background-color:white;
 	font-family:"Times New Roman",Georgia,Serif;
 	font-size:16px;
 	position: absolute;
 	bottom: 22px;
 }
+
 .interest{
 	width:136px;
 	padding:1px;

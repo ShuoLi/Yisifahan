@@ -11,8 +11,8 @@ $.ready(function(){
 	
 		$.cookie('wishlist', wishlist, { expires: 99  ,path: '/' });
 
-		$('#interest_'+item_id).removeClass('btn-danger').addClass('btn-success');
-		$('#showInterest_'+item_id).removeClass('btn-danger').addClass('btn-success');
+		$('#interest_'+item_id).removeClass('btn-danger').addClass('btn-inverse');
+		$('#showInterest_'+item_id).removeClass('btn-danger').addClass('btn-inverse');
 		$('#wishItem_'+item_id).html("");
 	});
 

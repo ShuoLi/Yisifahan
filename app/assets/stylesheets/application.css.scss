@@ -1,11 +1,11 @@
-$navbarBackground:#F68204;
-$navbarBackgroundHighlight:	#FFEBCC;
+$navbarBackground:#E7E7E7;
+$navbarBackgroundHighlight:white;
 $navbarText:black;
 $navbarLinkColor:black;
 $navbarLinkColorHover:black;
 $navbarLinkColorActive:black;
-$navbarLinkColorHover:black;
-$navbarLinkBackgroundHover:#F1F9FD;	
+$navbarLinkColorHover:white;
+$navbarLinkBackgroundHover:#343438;	
 $navbarLinkBackgroundActive:#F0FFFF;
 $navbarSearchBackground:white;	
 $navbarSearchBackgroundFocus:white;	
@@ -34,21 +34,34 @@ $navbarBrandColor:white;
 
 @import "bootstrap_and_overwrite";
 @import "items";
+@import "messages";
 
 html{
 	height:inherit;
 }
 body{
-	padding-top: 60px;
-	@include gradient(#7E3817,black);
+	padding-top: 50px;
+	/*@include gradient(#99FFFF,black);*/
+	background-color:white;
+	font-size: 16px;
+
 }
 
 .btn-search{
-    background-color: #8C6222;
-    background-image: -moz-linear-gradient(center top , #8C6222, #8C6222);
-    background-repeat: repeat-x;
-    border-color: #8C6222 #8C6222 #8C6222;
+	cursor: pointer;
+	float: right;
+	display: block;
+	width: 32px;
+	height: 28px;
+	padding: 0;
+	margin: 0;
+	border: none;
+	margin-top:-37px;
+	margin-left: -3px;
+	border:2px;
+	border-radius: 6px;
 }
+
 
 .brand{
 	height:15px;
@@ -56,6 +69,7 @@ body{
 	border:0px;
 	margin:0px;
 }
+
 
 .sidebar_text_field{
 	width: 125px;
@@ -92,24 +106,37 @@ body{
 }
 
 .navbar{
-	opacity:0.9;
+	opacity:1.0;
 
 }
 
 .navbar .btn{
 	margin-top:0px;
-	margin-left:-5px;
+	margin-left:0px;
 	padding:3px;
 	padding-left:6px;
 	padding-right:6px;
 }
 
+.navbar-search {
+	margin-top: 5px;
+}
+
+.navbar-inner{
+	margin-top:0px;
+	height:40px;	
+}
+
 .navbar-search .search-query {
-	margin-bottom: 4px;
+	margin-bottom: 5px;
 }
 .footer{
 	text-align: center;
 	height: 20px;
+}
+
+.navbar .nav > li > a:hover {
+	
 }
 
 .carousel-shift-down{
@@ -124,13 +151,17 @@ body{
 	margin-bottom:2px;
 }
 
+.navbar .nav {
+margin: -3px 10px 4px 4px;
+}
+
 #wishlist{
-	border:red 5px solid;
+	border:2px;
 	border-radius:15px;
 	-moz-border-radius:15px;
 	padding: 5px;
 	margin-left: -10px;
-	border-style:outset;
+	border-style:ridge;
 }
 
 .wish-item{

@@ -1,4 +1,4 @@
-<%= form_for(@message,:class=>"well") do |f| %>
+  <%= form_for(@message,:class=>"well") do |f| %>
   <% if @message.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
@@ -11,26 +11,28 @@
     </div>
   <% end %>
 
-  
+  <div class="modal-body">
   <div class="field span6 input-prepend">
     姓名：<%= f.text_field :name %>
   </div>
   <div class="field span6 input-prepend">
     邮箱：<%= f.text_field :email %>
   </div>
- <div class="field span6  input-prepend">
+  <div class="field span6  input-prepend">
     电话：<%= f.text_field :phone %>
   </div>
-	<br>
-	<br>
-  <div class="field span6  input-prepend">
-    留言消息：
-		<br><%= f.text_area :content, :class=>'input-large', :size=>"40x8", :id=>"message_text" %>
-  </div>
-	<div class="field span3  input-prepend">
-		<br />
-    <%= f.submit '发送', :class=>'btn btn-primary submitTagMessage' %>
-  </div>
 
-<% end %>
+   <div class="field span6  input-prepend">
+    留言：<%= f.text_area :content, :size=>"40x8", :id=>"message_text" %>
+  </div>
+   <div class="field span6  input-prepend">
+       <%= f.submit '发送', :class=>'btn btn-primary pull-left submitTagMessage' %>
+       <button type="button" class="btn" data-dismiss="modal">关闭</button>
+  </div>
+    </div>
+
+  	 <br />
+  
+
+  <% end %>
 

@@ -20,8 +20,8 @@
 						</ul>
 					</div>
 					<%= form_tag items_path, :method => 'get',:class=>"navbar-search pull-left" do %>
-					<%= text_field_tag :search_text, params[:search_text], :class=>"search-query",:placeholder=>"搜索"%>
-						<button type="submit" class="btn btn-search"><i class=' icon-search icon-white'></i></button>
+					<%= text_field_tag :search_text, params[:search_text], :class=>"search-query,remove-border,remove-margin",:placeholder=>"搜索"%>
+						<button type="submit" class="btn-search btn-inverse"><i class="icon-search icon-white"></i></button>
 					<% end %>
 					<div class="navbar-form pull-right">
 						<ul class="nav">
@@ -55,14 +55,13 @@ $("#blog_link").click(function(){
 <div  class="modal hide fade" id='subscribe'>
 	<div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Enter Your email</h3>
   </div>
   <div class="modal-body">
-    <p><%= text_field_tag :email, (params[:email])  %></p>
+    邮箱：<%= text_field_tag :email, (params[:email])  %>
   </div>
-  <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
-		<%= button_to_function "confirm", "confirm()", :id => "follow_button", :class=>"btn btn-primary" %>
+  <div class="pull-left ">
+	<%= button_to_function "确认", "confirm()", :id => "follow_button", :class=>"btn btn-primary" %>
+    <a href="#" class="btn" data-dismiss="modal">关闭</a>
   </div>
 </div>
 

@@ -53,8 +53,8 @@
 	$("#clean_wishlist").click(function(){
 		$.cookie('wishlist', null, {  path: '/' });
 		$('#wish_items').html("");
-		$('.interest').removeClass('btn-danger').addClass('btn-success');
-		$('.show_interest').removeClass('btn-danger').addClass('btn-success');
+		$('.interest').removeClass('btn-danger').addClass('btn-inverse');
+		$('.show_interest').removeClass('btn-danger').addClass('btn-inverse');
 		$('#wishlist').hide();
 	});
 	
@@ -70,8 +70,8 @@
 	
 		$.cookie('wishlist', wishlist, { expires: 99, path: '/'  });
 
-		$('#interest_'+item_id).removeClass('btn-danger').addClass('btn-success');
-		$('#showInterest_'+item_id).removeClass('btn-danger').addClass('btn-success');
+		$('#interest_'+item_id).removeClass('btn-danger').addClass('btn-inverse');
+		$('#showInterest_'+item_id).removeClass('btn-danger').addClass('btn-inverse');
 		$('#wish_items').find('#wishItem_'+item_id).html("");
 	});
 </script>
