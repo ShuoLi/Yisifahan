@@ -33,10 +33,9 @@ gem "mini_magick"
 # in production environments by default.
 group :assets do  
   gem 'coffee-rails', "~> 3.1.0"
-  gem 'uglifier'
-  gem 'bootstrap-sass', '~> 2.0.4.0'
+  gem 'uglifier' 
 end
-
+gem 'bootstrap-sass', '~> 2.0.4.0'
 gem 'activeadmin'
 gem 'jquery-rails'
 
