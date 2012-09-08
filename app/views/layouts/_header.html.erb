@@ -53,16 +53,15 @@ $("#blog_link").click(function(){
 	</div>
 </div>
 <div  class="modal hide fade" id='subscribe'>
-	<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
-  </div>
   <div class="modal-body">
     邮箱：<%= text_field_tag :email, (params[:email])  %>
-  </div>
-  <div class="pull-left ">
+    <br>
+     <div class=" pull-left ">
 	<%= button_to_function "确认", "confirm()", :id => "follow_button", :class=>"btn btn-primary" %>
     <a href="#" class="btn" data-dismiss="modal">关闭</a>
   </div>
+  </div>
+ 
 </div>
 
 	

@@ -1,24 +1,54 @@
+<!--This is slide area
 <div class="slide-area">
-	<ul class="rs-slider slide-list">
-		<% @slides.each_with_index do |slide,index| %>
-			<li>
-				<% if slide.image == []%>
-					<%= "No Image Found"%>
-				<%else%>
-					<%=link_to image_tag(slide.image, :size=>"750x456"), item_path(:id=>slide.item_id) %>
-					<div class="rs-caption rs-bottom">
-						<%= slide.item.name %>
-					</div>	
-				<% end%>
-			</li>
-		<%end%>
-	</ul>
+<ul class="rs-slider slide-list">
+<% @slides.each_with_index do |slide,index| %>
+	<li>
+		<% if slide.image == []%>
+			<%= "No Image Found"%>
+		<%else%>
+			<%=link_to image_tag(slide.image, :size=>"750x456"), item_path(:id=>slide.item_id) %>
+			<div class="rs-caption rs-bottom">
+				<%= slide.item.name %>
+			</div>	
+		<% end%>
+	</li>
+<%end%>
+</ul>
 </div>
 <hr/>
+-->
+
+<div id="myCarousel" class="carousel slide">
+<!-- Carousel items -->
+<div class="carousel-inner">
+<% @slides.each_with_index do |slide,index| %>
+
+		<% if index == 0%>
+			<div class="active item"><%=link_to image_tag(slide.image, :size=>"780x320"), item_path(:id=>slide.item_id) %>
+				<div class="carousel-caption">
+				<h4><center><%= slide.item.name %></center></h4>
+				</div>
+			</div>
+		<%else%>
+			<div class="item"><%=link_to image_tag(slide.image, :size=>"780x320"), item_path(:id=>slide.item_id) %>	
+				<div class="carousel-caption">
+				<h4><center><%= slide.item.name %></center></h4>
+				</div>
+			</div>	
+		<% end%>
+
+<%end%>
+</div>
+<!-- Carousel nav -->
+<a class="carousel-control left" href="#myCarousel" data-slide="prev"><%=image_tag("left_grey.png",:size=>"30x30")%></a>
+<a class="carousel-control right" href="#myCarousel" data-slide="next"><%=image_tag("right_grey.png",:size=>"30x30")%></a>
+</div>
+
+<!--This is the container-->
 <div id="catalog">
-	<% @items.each do |item| %>
-	<%= render "items/item_box", :item => item %>	
-	<%end%>
+<% @items.each do |item| %>
+<%= render "items/item_box", :item => item %>	
+<%end%>
 </div>
 
 <script>
@@ -27,14 +57,14 @@ $( "input:submit, button" ).button();
 $(document).ready(slider_start());
 
 function slider_start () {
-	$('.rs-slider').refineSlide({
-		transition         : 'cubeH',
-		transitionDuration : 1000,
-		autoPlay           : true,
-		keyNav             : false,
-		delay              : 5000,
-		controls           : 'thumbs',
-	});
+$('.rs-slider').refineSlide({
+transition         : 'cubeH',
+transitionDuration : 1000,
+autoPlay           : true,
+keyNav             : false,
+delay              : 5000,
+controls           : 'thumbs',
+});
 }
 
 </script>

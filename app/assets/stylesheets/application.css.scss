@@ -62,6 +62,23 @@ body{
 	border-radius: 6px;
 }
 
+.carousel-control{
+	position: absolute;
+	top: 96%;
+	left: 15px;
+	width: 25px;
+	height: 30px;
+	margin-top: -20px;
+	font-size: 60px;
+	font-weight: 100;
+	line-height: 0;
+	color: white;
+	text-align: center;
+	border: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
 
 .brand{
 	height:15px;
@@ -70,6 +87,18 @@ body{
 	margin:0px;
 }
 
+.navbar .brand {
+	float: left;
+	display: block;
+	padding: 0px 20px 10px;
+	margin-left: -20px;
+	font-size: 20px;
+	font-weight: 200;
+	line-height: 1;
+	color: white;
+	width: 100px;
+	height: 30px;
+}
 
 .sidebar_text_field{
 	width: 125px;
@@ -78,6 +107,14 @@ body{
 .sidebar_number_field{
 	width: 40px;
 	
+}
+
+.navbar .nav > li > a{
+	-webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+
 }
 
 .slide{

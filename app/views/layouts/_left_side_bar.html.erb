@@ -31,7 +31,7 @@
 						<% if item_wl.images == []%>
 							<%= "No Image Found"%>
 						<%else%>
-							<%= link_to image_tag(item_wl.images.first.image_url, :size => "140x140"), item_wl %>				
+							<%= link_to image_tag(item_wl.images.first.image_url, :size => "140x100"), item_wl %>				
 						<% end%>
 						<span>
 							<%= number_to_currency item_wl.price%>
