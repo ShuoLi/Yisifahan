@@ -87,12 +87,17 @@ body{
 	margin:0px;
 }
 
+.input-prepend .btn:first-child {
+    border-radius: 0 0 0 0;
+    margin-top: 0.5px;
+}
+
 .navbar .brand {
 	float: left;
 	display: block;
 	padding: 0px 20px 10px;
 	margin-left: -20px;
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 200;
 	line-height: 1;
 	color: white;
