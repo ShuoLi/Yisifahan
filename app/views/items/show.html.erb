@@ -51,7 +51,9 @@
 			<br>
 			<p class="remove-margin">
 				<span class=show_code>产品介绍 :</span><br>
-				<p class='well'><%= @item.description%></p >
+				<div class='well'>	
+					<%= simple_format(@item.description)%>
+				</div>
 				</p>
 			
 			</div>

@@ -5,7 +5,7 @@ $navbarLinkColor:black;
 $navbarLinkColorHover:black;
 $navbarLinkColorActive:black;
 $navbarLinkColorHover:white;
-$navbarLinkBackgroundHover:#343438;	
+$navbarLinkBackgroundHover:#005a87;	
 $navbarLinkBackgroundActive:#F0FFFF;
 $navbarSearchBackground:white;	
 $navbarSearchBackgroundFocus:white;	
@@ -44,7 +44,7 @@ body{
 	/*@include gradient(#99FFFF,black);*/
 	background-color:white;
 	font-size: 16px;
-
+	color: #005a87
 }
 
 .btn-search{
@@ -60,6 +60,11 @@ body{
 	margin-left: -3px;
 	border:2px;
 	border-radius: 6px;
+}
+
+a {
+color: black;
+text-decoration: none;
 }
 
 .carousel-control{
@@ -95,9 +100,9 @@ body{
 .navbar .brand {
 	float: left;
 	display: block;
-	padding: 0px 20px 10px;
+	padding: 0px 23px 10px;
 	margin-left: -20px;
-	font-size: 18px;
+	font-size: 14px;
 	font-weight: 200;
 	line-height: 1;
 	color: white;
@@ -119,7 +124,9 @@ body{
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-
+    font-size:15px;
+    color: #005a87;
+    padding:11px 10px;
 }
 
 .slide{
@@ -161,7 +168,7 @@ body{
 }
 
 .navbar-search {
-	margin-top: 5px;
+	margin-top: 6px;
 }
 
 .navbar-inner{

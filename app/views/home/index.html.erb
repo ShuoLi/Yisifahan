@@ -1,3 +1,5 @@
+
+
 <!--This is slide area
 <div class="slide-area">
 <ul class="rs-slider slide-list">
@@ -51,20 +53,29 @@
 <%end%>
 </div>
 
+
 <script>
+    $('#myCarousel').carousel({
+    interval: 2000
+    })
+</script>
+
+
+<script>
+
 $( "input:submit, button" ).button();
 
-$(document).ready(slider_start());
+// $(document).ready(slider_start());
 
-function slider_start () {
-$('.rs-slider').refineSlide({
-transition         : 'cubeH',
-transitionDuration : 1000,
-autoPlay           : true,
-keyNav             : false,
-delay              : 5000,
-controls           : 'thumbs',
-});
-}
+// function slider_start () {
+// $('.rs-slider').refineSlide({
+// transition         : 'cubeH',
+// transitionDuration : 1000,
+// autoPlay           : true,
+// keyNav             : false,
+// delay              : 5000,
+// controls           : 'thumbs',
+// });
+// }
 
 </script>
