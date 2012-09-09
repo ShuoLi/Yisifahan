@@ -44,7 +44,6 @@ body{
 	/*@include gradient(#99FFFF,black);*/
 	background-color:white;
 	font-size: 16px;
-	color: #005a87
 }
 
 .btn-search{
@@ -60,6 +59,23 @@ body{
 	margin-left: -3px;
 	border:2px;
 	border-radius: 6px;
+background-color: #005A87;
+background-image: #005A87;
+}
+
+.carousel-caption {
+position: absolute;
+left: 0;
+right: 0;
+bottom: 0;
+padding: 15px 15px 15px;
+opacity: 0.8;
+background: #333;
+}
+
+.carousel-caption h4, .carousel-caption p {
+color: white;
+font-size:26px;
 }
 
 a {
@@ -69,7 +85,7 @@ text-decoration: none;
 
 .carousel-control{
 	position: absolute;
-	top: 96%;
+	top: 95%;
 	left: 15px;
 	width: 25px;
 	height: 30px;
