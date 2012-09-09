@@ -51,9 +51,9 @@
         wishlist << Item.find(id)
       end
       if !wishlist.empty?
-        @msg = "I am interested in these items:\r\n"
+        @msg = " \r\n"
         wishlist.each do |item|
-          @msg += item.name + ", item code: #" + item.item_code.to_s + ";\r\n"
+          @msg += item.name + " #" + item.item_code.to_s + ";\r\n"
         end
       end
       # puts @msg

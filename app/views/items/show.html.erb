@@ -33,7 +33,7 @@
 			</p>
 			<br><br>
 			<p>
-				<span class="btn btn-price" id="item-price"> <%= number_to_currency @item.price%></span>
+				<span class="btn btn-price" id="item-price"> ￥<%= @item.price%></span>
 			  
 				<% if (!cookies['wishlist'].split(",").include?(@item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
 				<button class="remove-margin btn btn-inverse show_interest" id=<%="showInterest_" +@item.id.to_s%>>

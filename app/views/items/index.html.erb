@@ -48,11 +48,12 @@
 				    <span class="caret"></span>
 				  </a>
 				  <ul class="dropdown-menu">
-				    <li><%= link_to "￥0.00 - ￥10000.00", items_path(:low=>0, :high=>1000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
-				    <li><%= link_to "￥10000.00 - ￥50000.00", items_path(:low=>1000, :high=>2500, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
-				    <li><%= link_to "￥50000.00 - ￥100000.00", items_path(:low=>2500, :high=>5000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
-				    <li><%= link_to "￥100000.00 - ￥200000.00", items_path(:low=>5000, :high=>10000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
-				    <li><%= link_to "￥100000.00+", items_path(:low=>10000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "￥0.00 - ￥10000.00", items_path(:low=>0, :high=>10000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "￥10000.00 - ￥50000.00", items_path(:low=>10000, :high=>50000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "￥50000.00 - ￥100000.00", items_path(:low=>50000, :high=>100000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "￥100000.00 - ￥200000.00", items_path(:low=>100000, :high=>200000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "￥200000.00 - ￥500000.00", items_path(:low=>200000, :high=>500000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+				    <li><%= link_to "￥500000.00+", items_path(:low=>500000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
 				  </ul>
 				</div>	
 			</p>	

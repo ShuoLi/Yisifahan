@@ -34,7 +34,7 @@
 							<%= link_to image_tag(item_wl.images.first.image_url, :size => "140x100"), item_wl %>				
 						<% end%>
 						<span>
-							<%= number_to_currency item_wl.price%>
+							￥<%=item_wl.price%>
 							<button class='remove_wish_item pull-right' id='removeWishItem_<%=wl%>'><i class='icon-remove'></i></button>
 						</span>
 					<% end %>

@@ -18,19 +18,19 @@
 	
 	<h4><%= link_to truncate(item.name, :length=>40, :omission=>""), item%></h4>
 
-	<div class="btn btn_price"><%= number_to_currency item.price %></div>
+	<div class="btn btn_price item_price">￥<%= item.price %></div>
 	
 	<div class='remove-margin btn_group'> 
 
 
 		<% if (!cookies['wishlist'].split(",").include?(item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
 			<span class="remove-margin btn btn-inverse interest" id=<%="interest_" +item.id.to_s%>>
-				Add to Cart
+				加入购物车
 				<i class="icon-shopping-cart icon-white"></i>
 			</span>
 		<% else %>
 			<span class="remove-margin btn btn-danger interest" id=<%="interest_" +item.id.to_s%>>	
-				Add to Cart
+				加入购物车
 				<i class="icon-shopping-cart icon-white"></i>
 			</span>
 		<% end %>
