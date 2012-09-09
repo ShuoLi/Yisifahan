@@ -1,0 +1,562 @@
+Searching 489 files for "i am inter"
+
+/Users/Shuo/Documents/blanket/app/controllers/items_controller.rb:
+   52        end
+   53        if !wishlist.empty?
+   54:         @msg = "I am interested in these items:\r\n"
+   55          wishlist.each do |item|
+   56            @msg += item.name + ", item code: #" + item.item_code.to_s + ";\r\n"
+
+1 match in 1 file
+
+
+Searching 489 files for "wishlist"
+
+/Users/Shuo/Documents/blanket/app/assets/javascripts/application.js:
+   12  $.ready(function(){
+   13  $("#myCart").click(function(){
+   14: 	$('#wishlist').toggle("fast");
+   15  });
+   16  
+
+/Users/Shuo/Documents/blanket/app/assets/javascripts/items.js:
+    3  		var s = this.id.toString();
+    4  		var item_id = s.split('_')[1];
+    5: 		var wishlist = $.cookie('wishlist',{ path: '/' });
+    6: 		wishlist = wishlist.split(',');
+    7: 		//remove one element from the wishlist
+    8: 		while (wishlist.indexOf(item_id) !== -1) {
+    9: 			wishlist.splice(wishlist.indexOf(item_id), 1);
+   10  		}
+   11  	
+   12: 		$.cookie('wishlist', wishlist, { expires: 99  ,path: '/' });
+   13  
+   14  		$('#interest_'+item_id).removeClass('btn-danger').addClass('btn-inverse');
+
+/Users/Shuo/Documents/blanket/app/assets/stylesheets/application.css.scss:
+  227  }
+  228  
+  229: #wishlist{
+  230  	border:2px;
+  231  	border-radius:15px;
+
+/Users/Shuo/Documents/blanket/app/controllers/items_controller.rb:
+   43    end
+   44  
+   45:   # render message to send wishlist
+   46:   def send_wishlist
+   47:     if cookies['wishlist']
+   48:       wishlist_ids = cookies['wishlist'].split(',')
+   49:       wishlist = []
+   50:       wishlist_ids.each do |id|
+   51:         wishlist << Item.find(id)
+   52        end
+   53:       if !wishlist.empty?
+   54          @msg = "我对这件商品感兴趣:\r\n"
+   55:         wishlist.each do |item|
+   56            @msg += item.name + ", 商品编号: #" + item.item_code.to_s + ";\r\n"
+   57          end
+   58        end
+   59        # puts @msg
+   60:       render "send_wishlist.js.erb"
+   61      else
+   62        render :nothing => true
+
+/Users/Shuo/Documents/blanket/app/views/items/_item_box.html.erb:
+   24  
+   25  
+   26: 		<% if (!cookies['wishlist'].split(",").include?(item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
+   27  			<span class="remove-margin btn btn-inverse interest" id=<%="interest_" +item.id.to_s%>>
+   28  				加入购物车
+   ..
+   44  	var item_id = s.split('_')[1];
+   45  	// add item_id into cookies
+   46: 	var wishlist = $.cookie('wishlist',{  path: '/' });
+   47: 	if(wishlist == null){
+   48: 		wishlist = [item_id];
+   49: 		$.cookie('wishlist', wishlist, { expires: 99,  path: '/'  });
+   50: 		add_item_in_wishlist_html(item_id);
+   51  	}else{
+   52: 		wishlist = wishlist.split(',');
+   53: 		if ($.inArray(item_id, wishlist) == -1) {
+   54: 			wishlist.push(item_id);
+   55: 			$.cookie('wishlist', wishlist, { expires: 99, path: '/' });
+   56: 			add_item_in_wishlist_html(item_id);
+   57  		};
+   58  	}
+   59  	$('#interest_'+item_id).removeClass('btn-inverse').addClass('btn-danger');
+   60: 	$('#wishlist').show();
+   61  });
+   62  
+   63: function add_item_in_wishlist_html(item_id){
+   64: 	// display in wishlist
+   65  	var item_code = $("#item_box_"+item_id+" .item_code").text();
+   66  	var item_price = $("#item_box_"+item_id+" .item_price").text();
+
+/Users/Shuo/Documents/blanket/app/views/items/show.html.erb:
+   36  				<span class="btn btn-price" id="item-price"> ￥<%= @item.price%></span>
+   37  			  
+   38: 				<% if (!cookies['wishlist'].split(",").include?(@item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
+   39  				<button class="remove-margin btn btn-inverse show_interest" id=<%="showInterest_" +@item.id.to_s%>>
+   40  					加入购物车
+   ..
+   63  	<script type="text/javascript">
+   64  
+   65: 		function show_add_item_in_wishlist_html(item_id){
+   66: 			// display in wishlist
+   67  			var item_code = $(" .item_code").text();
+   68  			var item_price = $(" #item-price").text();
+   ..
+   82  			var item_id = s.split('_')[1];
+   83  			// add item_id into cookies
+   84: 			var wishlist = $.cookie('wishlist',{path:'/'});
+   85: 			if(wishlist == null){
+   86: 				wishlist = [item_id];
+   87: 				$.cookie('wishlist', wishlist, { expires: 99, path: '/' });
+   88: 				show_add_item_in_wishlist_html(item_id);
+   89  			}else{
+   90: 				wishlist = wishlist.split(',');
+   91: 				if ($.inArray(item_id, wishlist) == -1) {
+   92: 					wishlist.push(item_id);
+   93: 					$.cookie('wishlist', wishlist, { expires: 99, path: '/' });
+   94: 					show_add_item_in_wishlist_html(item_id);
+   95  				};
+   96  			}
+   97  			$('#interest_'+item_id).removeClass('btn-inverse').addClass('btn-danger');
+   98  			$('#showInterest_'+item_id).removeClass('btn-inverse').addClass('btn-danger');
+   99: 			$('#wishlist').show();
+  100  		});
+  101  
+
+/Users/Shuo/Documents/blanket/app/views/layouts/_left_side_bar.html.erb:
+   17  
+   18  
+   19: <div id ='wishlist' class='remove-margin remove-border span2'>
+   20  <button id='myCart' class="btn btn-inverse  remove-margin span2"><i class="icon-shopping-cart icon-white"></i>&nbsp我挑选的商品</button>
+   21  	<div id='wish_items' class='remove-margin remove-border span2'>
+   22: 		<% if cookies['wishlist'] %>
+   23: 			<% cookies['wishlist'].split(",").each do |wl| %>
+   24  			<div class='wish-item remove-margin remove-border span2' id='wishItem_<%=wl%>'>
+   25  				<% item_wl = Item.find(wl.to_i) %>
+   ..
+   45  	</div>
+   46  	<div class=' pull-right'>
+   47: 		<%= link_to '发送给商家', send_wishlist_path, :remote => true, :class=>'btn wish_btn btn-success remove-margin'%>
+   48: 		<button class='btn btn-danger remove-margin wish_btn' id="clean_wishlist"><i class="icon-trash"></i></button>
+   49  	</div>
+   50  </div>
+   51  
+   52  <script>
+   53: 	$("#clean_wishlist").click(function(){
+   54: 		$.cookie('wishlist', null, {  path: '/' });
+   55  		$('#wish_items').html("");
+   56  		$('.interest').removeClass('btn-danger').addClass('btn-inverse');
+   57  		$('.show_interest').removeClass('btn-danger').addClass('btn-inverse');
+   58: 		$('#wishlist').hide();
+   59  	});
+   60  	
+   ..
+   62  		var s = this.id.toString();
+   63  		var item_id = s.split('_')[1];
+   64: 		var wishlist = $.cookie('wishlist',{  path: '/' });
+   65: 		wishlist = wishlist.split(',');
+   66: 		//remove one element from the wishlist
+   67: 		while (wishlist.indexOf(item_id) !== -1) {
+   68: 			wishlist.splice(wishlist.indexOf(item_id), 1);
+   69  		}
+   70  	
+   71: 		$.cookie('wishlist', wishlist, { expires: 99, path: '/'  });
+   72  
+   73  		$('#interest_'+item_id).removeClass('btn-danger').addClass('btn-inverse');
+
+/Users/Shuo/Documents/blanket/app/views/layouts/application.html.erb:
+   45  </html>
+   46  <script>
+   47: 	if($.cookie('wishlist',{path:'/'})==null){
+   48: 		$('#wishlist').hide();
+   49  	}
+   50  </script>
+
+/Users/Shuo/Documents/blanket/config/routes.rb:
+   57    # You can have the root of your site routed with "root"
+   58    # just remember to delete public/index.html.
+   59:   match '/send_wishlist' => "items#send_wishlist"
+   60    match '/homepage' => 'home#index'
+   61    match '/admin' => 'sessions#failure'
+
+85 matches across 9 files
+
+
+Searching 489 files for "number_to_currency"
+
+/Users/Shuo/Documents/blanket/app/views/layouts/_left_side_bar.html.erb:
+   35  						<% end%>
+   36  						<span>
+   37: 							<%= number_to_currency item_wl.price%>
+   38  							<button class='remove_wish_item pull-right' id='removeWishItem_<%=wl%>'><i class='icon-remove'></i></button>
+   39  						</span>
+
+1 match in 1 file
+
+
+Searching 489 files for "add to wish list"
+
+0 matches across 0 files
+
+
+Searching 489 files for "add_to_wish"
+
+0 matches across 0 files
+
+
+Searching 489 files for "wish"
+
+/Users/Shuo/Documents/blanket/app/assets/javascripts/application.js:
+   12  $.ready(function(){
+   13  $("#myCart").click(function(){
+   14: 	$('#wishlist').toggle("fast");
+   15  });
+   16  
+
+/Users/Shuo/Documents/blanket/app/assets/javascripts/items.js:
+    1  $.ready(function(){
+    2: 	$(".remove_wish_item").click(function(){
+    3  		var s = this.id.toString();
+    4  		var item_id = s.split('_')[1];
+    5: 		var wishlist = $.cookie('wishlist',{ path: '/' });
+    6: 		wishlist = wishlist.split(',');
+    7: 		//remove one element from the wishlist
+    8: 		while (wishlist.indexOf(item_id) !== -1) {
+    9: 			wishlist.splice(wishlist.indexOf(item_id), 1);
+   10  		}
+   11  	
+   12: 		$.cookie('wishlist', wishlist, { expires: 99  ,path: '/' });
+   13  
+   14  		$('#interest_'+item_id).removeClass('btn-danger').addClass('btn-inverse');
+   15  		$('#showInterest_'+item_id).removeClass('btn-danger').addClass('btn-inverse');
+   16: 		$('#wishItem_'+item_id).html("");
+   17  	});
+   18  
+
+/Users/Shuo/Documents/blanket/app/assets/stylesheets/application.css.scss:
+  227  }
+  228  
+  229: #wishlist{
+  230  	border:2px;
+  231  	border-radius:15px;
+  ...
+  236  }
+  237  
+  238: .wish-item{
+  239  	margin-bottom:2px;
+  240  	position:relative;
+  ...
+  250  }
+  251  
+  252: .wish_btn{
+  253  	padding:3px;
+  254  }
+  255  
+  256: span.wish_code_overlay{
+  257   	position:absolute;  
+  258      bottombottom:0px;  
+
+/Users/Shuo/Documents/blanket/app/controllers/items_controller.rb:
+   43    end
+   44  
+   45:   # render message to send wishlist
+   46:   def send_wishlist
+   47:     if cookies['wishlist']
+   48:       wishlist_ids = cookies['wishlist'].split(',')
+   49:       wishlist = []
+   50:       wishlist_ids.each do |id|
+   51:         wishlist << Item.find(id)
+   52        end
+   53:       if !wishlist.empty?
+   54          @msg = "我对这件商品感兴趣:\r\n"
+   55:         wishlist.each do |item|
+   56            @msg += item.name + ", 商品编号: #" + item.item_code.to_s + ";\r\n"
+   57          end
+   58        end
+   59        # puts @msg
+   60:       render "send_wishlist.js.erb"
+   61      else
+   62        render :nothing => true
+
+/Users/Shuo/Documents/blanket/app/views/items/_item_box.html.erb:
+   24  
+   25  
+   26: 		<% if (!cookies['wishlist'].split(",").include?(item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
+   27  			<span class="remove-margin btn btn-inverse interest" id=<%="interest_" +item.id.to_s%>>
+   28  				加入购物车
+   ..
+   44  	var item_id = s.split('_')[1];
+   45  	// add item_id into cookies
+   46: 	var wishlist = $.cookie('wishlist',{  path: '/' });
+   47: 	if(wishlist == null){
+   48: 		wishlist = [item_id];
+   49: 		$.cookie('wishlist', wishlist, { expires: 99,  path: '/'  });
+   50: 		add_item_in_wishlist_html(item_id);
+   51  	}else{
+   52: 		wishlist = wishlist.split(',');
+   53: 		if ($.inArray(item_id, wishlist) == -1) {
+   54: 			wishlist.push(item_id);
+   55: 			$.cookie('wishlist', wishlist, { expires: 99, path: '/' });
+   56: 			add_item_in_wishlist_html(item_id);
+   57  		};
+   58  	}
+   59  	$('#interest_'+item_id).removeClass('btn-inverse').addClass('btn-danger');
+   60: 	$('#wishlist').show();
+   61  });
+   62  
+   63: function add_item_in_wishlist_html(item_id){
+   64: 	// display in wishlist
+   65  	var item_code = $("#item_box_"+item_id+" .item_code").text();
+   66  	var item_price = $("#item_box_"+item_id+" .item_price").text();
+   67  	var imagelink = $("#item_box_"+item_id+" .item_pic").attr("src");
+   68: 	$('#wish_items').append("<div class='wish-item remove-margin remove-border span2' id='wishItem_"+item_id+"'><span class='label remove-margin remove-border pull-left wish_code_overlay'>"+item_code+"</span><a href='/items/"+item_id+"'><img src="+imagelink+" width=140px height=100px/></a><span>"+item_price+"<button class='remove_wish_item pull-right' id='removeWishItem_"+item_id+"'><i class='icon-remove'></i></button></span></div>");
+   69  }
+   70  
+
+/Users/Shuo/Documents/blanket/app/views/items/show.html.erb:
+   36  				<span class="btn btn-price" id="item-price"> ￥<%= @item.price%></span>
+   37  			  
+   38: 				<% if (!cookies['wishlist'].split(",").include?(@item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
+   39  				<button class="remove-margin btn btn-inverse show_interest" id=<%="showInterest_" +@item.id.to_s%>>
+   40  					加入购物车
+   ..
+   63  	<script type="text/javascript">
+   64  
+   65: 		function show_add_item_in_wishlist_html(item_id){
+   66: 			// display in wishlist
+   67  			var item_code = $(" .item_code").text();
+   68  			var item_price = $(" #item-price").text();
+   69  			var imagelink = $(" .item_pic").attr("src");
+   70: 			$('#wish_items').append("<div class='wish-item remove-margin remove-border span2' id='wishItem_"+item_id+"'><span class='label remove-margin remove-border pull-left wish_code_overlay'>"+item_code+"</span><a href='/items/"+item_id+"'><img src="+imagelink+" width=140px height=100px /></a><span>"+item_price+"<button class='remove_wish_item pull-right' id='removeWishItem_"+item_id+"'><i class='icon-remove'></i></button></span></div>");
+   71  
+   72  	
+   ..
+   82  			var item_id = s.split('_')[1];
+   83  			// add item_id into cookies
+   84: 			var wishlist = $.cookie('wishlist',{path:'/'});
+   85: 			if(wishlist == null){
+   86: 				wishlist = [item_id];
+   87: 				$.cookie('wishlist', wishlist, { expires: 99, path: '/' });
+   88: 				show_add_item_in_wishlist_html(item_id);
+   89  			}else{
+   90: 				wishlist = wishlist.split(',');
+   91: 				if ($.inArray(item_id, wishlist) == -1) {
+   92: 					wishlist.push(item_id);
+   93: 					$.cookie('wishlist', wishlist, { expires: 99, path: '/' });
+   94: 					show_add_item_in_wishlist_html(item_id);
+   95  				};
+   96  			}
+   97  			$('#interest_'+item_id).removeClass('btn-inverse').addClass('btn-danger');
+   98  			$('#showInterest_'+item_id).removeClass('btn-inverse').addClass('btn-danger');
+   99: 			$('#wishlist').show();
+  100  		});
+  101  
+
+/Users/Shuo/Documents/blanket/app/views/layouts/_left_side_bar.html.erb:
+   17  
+   18  
+   19: <div id ='wishlist' class='remove-margin remove-border span2'>
+   20  <button id='myCart' class="btn btn-inverse  remove-margin span2"><i class="icon-shopping-cart icon-white"></i>&nbsp我挑选的商品</button>
+   21: 	<div id='wish_items' class='remove-margin remove-border span2'>
+   22: 		<% if cookies['wishlist'] %>
+   23: 			<% cookies['wishlist'].split(",").each do |wl| %>
+   24: 			<div class='wish-item remove-margin remove-border span2' id='wishItem_<%=wl%>'>
+   25  				<% item_wl = Item.find(wl.to_i) %>
+   26  				<% if item_wl %>
+   27  					<%= link_to item_wl do %>
+   28  
+   29: 						<span class='label remove-margin remove-border pull-left wish_code_overlay'> #<%= item_wl.item_code %></span>
+   30  						
+   31  						<% if item_wl.images == []%>
+   ..
+   36  						<span>
+   37  							￥<%=item_wl.price%>
+   38: 							<button class='remove_wish_item pull-right' id='removeWishItem_<%=wl%>'><i class='icon-remove'></i></button>
+   39  						</span>
+   40  					<% end %>
+   ..
+   45  	</div>
+   46  	<div class=' pull-right'>
+   47: 		<%= link_to '发送给商家', send_wishlist_path, :remote => true, :class=>'btn wish_btn btn-success remove-margin'%>
+   48: 		<button class='btn btn-danger remove-margin wish_btn' id="clean_wishlist"><i class="icon-trash"></i></button>
+   49  	</div>
+   50  </div>
+   51  
+   52  <script>
+   53: 	$("#clean_wishlist").click(function(){
+   54: 		$.cookie('wishlist', null, {  path: '/' });
+   55: 		$('#wish_items').html("");
+   56  		$('.interest').removeClass('btn-danger').addClass('btn-inverse');
+   57  		$('.show_interest').removeClass('btn-danger').addClass('btn-inverse');
+   58: 		$('#wishlist').hide();
+   59  	});
+   60  	
+   61: 	$('#wish_items').on('click', '.remove_wish_item', function() {
+   62  		var s = this.id.toString();
+   63  		var item_id = s.split('_')[1];
+   64: 		var wishlist = $.cookie('wishlist',{  path: '/' });
+   65: 		wishlist = wishlist.split(',');
+   66: 		//remove one element from the wishlist
+   67: 		while (wishlist.indexOf(item_id) !== -1) {
+   68: 			wishlist.splice(wishlist.indexOf(item_id), 1);
+   69  		}
+   70  	
+   71: 		$.cookie('wishlist', wishlist, { expires: 99, path: '/'  });
+   72  
+   73  		$('#interest_'+item_id).removeClass('btn-danger').addClass('btn-inverse');
+   74  		$('#showInterest_'+item_id).removeClass('btn-danger').addClass('btn-inverse');
+   75: 		$('#wish_items').find('#wishItem_'+item_id).html("");
+   76  	});
+   77  </script>
+
+/Users/Shuo/Documents/blanket/app/views/layouts/application.html.erb:
+   45  </html>
+   46  <script>
+   47: 	if($.cookie('wishlist',{path:'/'})==null){
+   48: 		$('#wishlist').hide();
+   49  	}
+   50  </script>
+
+/Users/Shuo/Documents/blanket/config/routes.rb:
+   57    # You can have the root of your site routed with "root"
+   58    # just remember to delete public/index.html.
+   59:   match '/send_wishlist' => "items#send_wishlist"
+   60    match '/homepage' => 'home#index'
+   61    match '/admin' => 'sessions#failure'
+
+/Users/Shuo/Documents/blanket/config/initializers/backtrace_silencers.rb:
+    1  # Be sure to restart your server when you modify this file.
+    2  
+    3: # You can add backtrace silencers for libraries that you're using but don't wish to see in your backtraces.
+    4  # Rails.backtrace_cleaner.add_silencer { |line| line =~ /my_noisy_library/ }
+    5  
+
+116 matches across 10 files
+
+
+Searching 489 files for "我对这件"
+
+/Users/Shuo/Documents/blanket/app/controllers/items_controller.rb:
+   52        end
+   53        if !wishlist.empty?
+   54:         @msg = "我对这件商品感兴趣:\r\n"
+   55          wishlist.each do |item|
+   56            @msg += item.name + ", 商品编号: #" + item.item_code.to_s + ";\r\n"
+
+1 match in 1 file
+
+
+Searching 489 files for "I am "
+
+/Users/Shuo/Documents/blanket/app/controllers/items_controller.rb:
+   52        end
+   53        if !wishlist.empty?
+   54:         @msg = "I am interested in these items:\r\n"
+   55          wishlist.each do |item|
+   56            @msg += item.name + ", item code: #" + item.item_code.to_s + ";\r\n"
+
+1 match in 1 file
+
+
+Searching 489 files for "@msg"
+
+/Users/Shuo/Documents/blanket/app/controllers/items_controller.rb:
+   52        end
+   53        if !wishlist.empty?
+   54:         @msg = " \r\n"
+   55          wishlist.each do |item|
+   56:           @msg += item.name + " #" + item.item_code.to_s + ";\r\n"
+   57          end
+   58        end
+   59:       # puts @msg
+   60        render "send_wishlist.js.erb"
+   61      else
+
+/Users/Shuo/Documents/blanket/app/views/items/send_wishlist.js.erb:
+    1: <% unless @msg.nil? %>
+    2: $("#message_text").text('<%= @msg = escape_javascript @msg %>');
+    3  $('#contract_us').click();
+    4  
+
+6 matches across 2 files
+
+
+Searching 489 files for "￥"
+
+/Users/Shuo/Documents/blanket/app/views/items/_item_box.html.erb:
+   19  	<h4><%= link_to truncate(item.name, :length=>40, :omission=>""), item%></h4>
+   20  
+   21: 	<div class="btn btn_price item_price">￥<%= item.price %></div>
+   22  	
+   23  	<div class='remove-margin btn_group'> 
+
+/Users/Shuo/Documents/blanket/app/views/items/index.html.erb:
+   49  				  </a>
+   50  				  <ul class="dropdown-menu">
+   51: 				    <li><%= link_to "￥0.00 - ￥10000.00", items_path(:low=>0, :high=>10000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+   52: 				    <li><%= link_to "￥10000.00 - ￥50000.00", items_path(:low=>10000, :high=>50000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+   53: 				    <li><%= link_to "￥50000.00 - ￥100000.00", items_path(:low=>50000, :high=>100000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+   54: 				    <li><%= link_to "￥100000.00 - ￥200000.00", items_path(:low=>100000, :high=>200000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+   55: 				    <li><%= link_to "￥200000.00 - ￥500000.00", items_path(:low=>200000, :high=>500000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+   56: 				    <li><%= link_to "￥500000.00+", items_path(:low=>500000, :ascend=>params[:ascend], :cpath=>params[:cpath], :search_text=>params[:search_text])%></li>
+   57  				  </ul>
+   58  				</div>	
+
+/Users/Shuo/Documents/blanket/app/views/items/show.html.erb:
+   34  			<br><br>
+   35  			<p>
+   36: 				<span class="btn btn-price" id="item-price"> ￥<%= @item.price%></span>
+   37  			  
+   38  				<% if (!cookies['wishlist'].split(",").include?(@item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
+
+/Users/Shuo/Documents/blanket/app/views/layouts/_left_side_bar.html.erb:
+   35  						<% end%>
+   36  						<span>
+   37: 							￥<%=item_wl.price%>
+   38  							<button class='remove_wish_item pull-right' id='removeWishItem_<%=wl%>'><i class='icon-remove'></i></button>
+   39  						</span>
+
+14 matches across 4 files
+
+
+Searching 490 files for "item.price"
+
+/Users/Shuo/Documents/blanket/app/views/items/_item_box.html.erb:
+   19  	<h4><%= link_to truncate(item.name, :length=>40, :omission=>""), item%></h4>
+   20  
+   21: 	<div class="btn btn_price item_price">￥<%= number_with_precision(item.price, :precision => 2) %></div>
+   22  	
+   23  	<div class='remove-margin btn_group'> 
+
+/Users/Shuo/Documents/blanket/app/views/items/show.html.erb:
+   34  			<br><br>
+   35  			<p>
+   36: 				<span class="btn btn-price" id="item-price"> ￥<%= @item.price%></span>
+   37  			  
+   38  				<% if (!cookies['wishlist'].split(",").include?(@item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
+
+2 matches across 2 files
+
+
+Searching 490 files for "item.price"
+
+/Users/Shuo/Documents/blanket/app/views/items/_item_box.html.erb:
+   19  	<h4><%= link_to truncate(item.name, :length=>40, :omission=>""), item%></h4>
+   20  
+   21: 	<div class="btn btn_price item_price">￥<%= number_with_precision(item.price, :precision => 2) %></div>
+   22  	
+   23  	<div class='remove-margin btn_group'> 
+
+/Users/Shuo/Documents/blanket/app/views/items/show.html.erb:
+   34  			<br><br>
+   35  			<p>
+   36: 				<span class="btn btn-price" id="item-price"> ￥<%= number_with_precision(@item.price, :precision => 2)%></span>
+   37  			  
+   38  				<% if (!cookies['wishlist'].split(",").include?(@item.id.to_s) if cookies['wishlist']) || (true if !cookies['wishlist'])%>
+
+2 matches across 2 files
