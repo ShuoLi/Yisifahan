@@ -64,18 +64,20 @@ background-image: #005A87;
 }
 
 .carousel-caption {
+background:black;
 position: absolute;
 left: 0;
 right: 0;
 bottom: 0;
 padding: 15px 15px 15px;
-opacity: 0.8;
+opacity: 0.6;
 background: #333;
 }
 
 .carousel-caption h4, .carousel-caption p {
 color: white;
 font-size:26px;
+opacity: 1.0;
 }
 
 a {
