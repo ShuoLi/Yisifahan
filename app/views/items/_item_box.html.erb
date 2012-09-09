@@ -44,7 +44,7 @@ $(".interest").click(function() {
 	var item_id = s.split('_')[1];
 	// add item_id into cookies
 	var wishlist = $.cookie('wishlist',{  path: '/' });
-	if(wishlist == null){
+	if(wishlist == null || wishlist == ""){
 		wishlist = [item_id];
 		$.cookie('wishlist', wishlist, { expires: 99,  path: '/'  });
 		add_item_in_wishlist_html(item_id);
