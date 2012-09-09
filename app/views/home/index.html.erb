@@ -28,13 +28,13 @@
 		<% if index == 0%>
 			<div class="active item"><%=link_to image_tag(slide.image, :size=>"780x386"), item_path(:id=>slide.item_id) %>
 				<div class="carousel-caption">
-				<h4><center><%= slide.item.name %></center></h4>
+				<h4 class='non-opacity'><center><%= slide.item.name %></center></h4>
 				</div>
 			</div>
 		<%else%>
 			<div class="item"><%=link_to image_tag(slide.image, :size=>"780x386"), item_path(:id=>slide.item_id) %>	
 				<div class="carousel-caption">
-				<h4><center><%= slide.item.name %></center></h4>
+				<h4><center class='non-opacity'><%= slide.item.name %></center></h4>
 				</div>
 			</div>	
 		<% end%>
