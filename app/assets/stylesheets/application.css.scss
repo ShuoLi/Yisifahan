@@ -84,6 +84,10 @@ font-size:24px;
 	background: none repeat scroll 0 0 transparent;
 }
 
+.label, .badge {
+    vertical-align: text-top;
+}
+
 a {
 color: black;
 text-decoration: none;
